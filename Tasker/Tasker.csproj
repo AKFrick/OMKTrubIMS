@@ -166,6 +166,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Main.cs" />
+    <Compile Include="Model\CurrentTasks.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="ProductionTask.cs">
       <DependentUpon>Model1.tt</DependentUpon>

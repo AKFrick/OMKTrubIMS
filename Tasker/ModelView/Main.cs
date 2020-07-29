@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using Prism.Mvvm;
+using Tasker.Model;
 
 namespace Tasker.ModelView
 {
-    class Main
+    class Main : BindableBase
     {
         public Main()
         {
-
+            
         }
-    }
+        public ObservableCollection<ProductionTask> TaskList { get; private set; }
+        CurrentTasks currentTasks;
+        void FillTaskList()
+        {
+            currentTasks = new CurrentTasks();
+            TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
+        }
+    }  
 }
