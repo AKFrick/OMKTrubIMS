@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tasker"
+        xmlns:main="clr-namespace:Tasker.View.Main"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -27,7 +28,7 @@
             <Button Command="{Binding GetTasks}" Grid.Column="2" Content="Get tasks" Margin="5" Height="50" Width="120"/>
         </Grid>
         <!--Centre Content-->
-        <mainViews:TaskList Grid.Row ="1"/>
+        <main:TaskList Grid.Row ="1"/>
         <!--Bottom panel-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
