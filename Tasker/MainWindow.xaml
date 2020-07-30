@@ -44,5 +44,7 @@
             <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="2" Content="Создать задание" Margin="5,5,5,5" Width="120" Height="50"/>
             <Button Command="{Binding StartTask}" Grid.Column="1" Content="Начать задание" Margin="5,5,5,5" Width="120" Height="50"/>
         </Grid>
+        <!--Status bar-->
+        <main:StatusBar Grid.Row="3"/>
     </Grid>
 </Window>

@@ -13,7 +13,7 @@ namespace Tasker.ModelView
             
         }
         public ErrorItem CurrentError { get; set; }
-
+        public void AddError() { }
     }
     public class ErrorItem
     {
@@ -21,5 +21,6 @@ namespace Tasker.ModelView
         {
 
         }
+        public string Message { get; set; }
     }
 }

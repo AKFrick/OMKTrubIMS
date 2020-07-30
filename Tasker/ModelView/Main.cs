@@ -9,10 +9,13 @@ namespace Tasker.ModelView
     {
         public Main()
         {
+            StatusBarInit();
             FillTaskList();
+            
         }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         CurrentTasks currentTasks;
+        
         void FillTaskList()
         {
             try { currentTasks = new CurrentTasks(); }
@@ -21,6 +24,12 @@ namespace Tasker.ModelView
 
             //TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
             TaskList = new ObservableCollection<ProductionTask>();
+        }
+        public ErrorScroller errorScroller { get; private set; }
+        public ErrorItem CurrentError { get { return errorScroller.CurrentError; } }
+        void StatusBarInit()
+        {
+            errorScroller = new ErrorScroller();
         }
     }  
 }
