@@ -14,9 +14,10 @@ namespace Tasker.ModelView
         CurrentTasks currentTasks;
         void FillTaskList()
         {
-            currentTasks = new CurrentTasks();
-            TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
-            //TaskList = new ObservableCollection<ProductionTask>();
+            currentTasks = new CurrentTasks();            
+            
+            //TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
+            TaskList = new ObservableCollection<ProductionTask>();
         }
     }  
 }

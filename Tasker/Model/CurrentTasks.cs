@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Data.Entity.Core;
 
 namespace Tasker.Model
 {
@@ -18,11 +20,19 @@ namespace Tasker.Model
             List<ProductionTask> tasks = new List<ProductionTask>();
             using (var db = new Trubodetal189Entities())
             {
-                var query = from b in db.ProductionTasks select b;
-                foreach (ProductionTask task in query)
+                try
                 {
-                    tasks.Add(task);
+                    var query = from b in db.ProductionTasks select b;
+                    foreach (ProductionTask task in query)
+                    {
+                        tasks.Add(task);
+                    }
                 }
+                catch(EntityException ex)
+                {
+                    Log.logThis(ex.ToString());
+                }
+                
             }
             return tasks;
         }

@@ -2,7 +2,7 @@
 using System;
 using System.Threading;
 
-namespace TaskManager.Model
+namespace Tasker.Model
 {
     public static class Log
     {
