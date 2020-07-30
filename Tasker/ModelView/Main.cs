@@ -8,7 +8,7 @@ namespace Tasker.ModelView
     {
         public Main()
         {
-            
+            FillTaskList();
         }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         CurrentTasks currentTasks;
@@ -16,6 +16,7 @@ namespace Tasker.ModelView
         {
             currentTasks = new CurrentTasks();
             TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
+            //TaskList = new ObservableCollection<ProductionTask>();
         }
     }  
 }

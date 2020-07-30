@@ -8,8 +8,10 @@ namespace Tasker.Model
     {
         public CurrentTasks()
         {
-
+            currentTaskCollection = new ObservableCollection<ProductionTask>(getAllCurrentTasks());
+            CurrentTasksCollection = new ReadOnlyObservableCollection<ProductionTask>(currentTaskCollection);
         }
+        ObservableCollection<ProductionTask> currentTaskCollection;
         public ReadOnlyObservableCollection<ProductionTask> CurrentTasksCollection { get; private set; }
         List<ProductionTask> getAllCurrentTasks()
         {
