@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
             <Button Grid.Column="1" Content="История заданий" Margin="5" Height="50" Width="120"/>
-            <Button Command="{Binding GetTasks}" Grid.Column="2" Content="Get tasks" Margin="5" Height="50" Width="120"/>
+            <Button Command="{Binding GetAllTasks}" Grid.Column="2" Content="Get tasks" Margin="5" Height="50" Width="120"/>
         </Grid>
         <!--Centre Content-->
         <main:TaskList Grid.Row ="1"/>
