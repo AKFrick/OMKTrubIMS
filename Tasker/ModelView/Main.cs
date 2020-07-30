@@ -12,7 +12,7 @@ namespace Tasker.ModelView
         {            
             FillTaskList();
             errorScroller = new ErrorScroller();
-            errorScroller.PropertyChanged += (s, a) => RaisePropertyChanged(nameof(CurrentError));
+            errorScroller.CurrentErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
 
             GetAllTasks = new DelegateCommand(() => 
             {
