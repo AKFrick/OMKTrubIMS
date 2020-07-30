@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Prism.Mvvm;
 using Tasker.Model;
 
@@ -14,8 +15,10 @@ namespace Tasker.ModelView
         CurrentTasks currentTasks;
         void FillTaskList()
         {
-            currentTasks = new CurrentTasks();            
-            
+            try { currentTasks = new CurrentTasks(); }
+            catch (Exception ex) { Log.logThis(ex.Message); }
+
+
             //TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
             TaskList = new ObservableCollection<ProductionTask>();
         }

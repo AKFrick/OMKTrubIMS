@@ -30,7 +30,8 @@ namespace Tasker.Model
                 }
                 catch(EntityException ex)
                 {
-                    Log.logThis(ex.ToString());
+                    Log.logThis(ex.Message);
+                    throw new Exception("Ошибка подклюения к SQL");
                 }
                 
             }
