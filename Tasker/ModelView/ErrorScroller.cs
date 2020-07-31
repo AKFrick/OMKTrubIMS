@@ -12,8 +12,7 @@ namespace Tasker.ModelView
     {
         public ErrorScroller()
         {
-            errorList = new List<ErrorItem>();
-            AddError(new ErrorItem("Пусто!"));
+            errorList = new List<ErrorItem>();            
             startScrolling();
         }
         public Action RaiseErrorChanged;
@@ -21,6 +20,10 @@ namespace Tasker.ModelView
         public void AddError(ErrorItem error)
         {
             errorList.Add(error);         
+        }
+        public void RemoveError(ErrorItem error)
+        {
+            errorList.RemoveAll(item => item.Message == error.Message);
         }
         List<ErrorItem> errorList;
         Thread scrollingThread;

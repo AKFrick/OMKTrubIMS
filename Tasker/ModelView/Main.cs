@@ -16,7 +16,10 @@ namespace Tasker.ModelView
 
             GetAllTasks = new DelegateCommand(() => 
             {
-                try { currentTasks = new CurrentTasks(); }
+                try
+                {
+                    currentTasks = new CurrentTasks();                    
+                }
                 catch (Exception ex)
                 {
                     errorScroller.AddError(new ErrorItem(ex.Message));

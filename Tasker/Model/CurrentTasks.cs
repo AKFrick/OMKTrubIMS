@@ -15,6 +15,7 @@ namespace Tasker.Model
         }
         ObservableCollection<ProductionTask> currentTaskCollection;
         public ReadOnlyObservableCollection<ProductionTask> CurrentTasksCollection { get; private set; }
+        
         List<ProductionTask> getAllCurrentTasks()
         {
             List<ProductionTask> tasks = new List<ProductionTask>();
