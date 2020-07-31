@@ -18,16 +18,22 @@ namespace Tasker.ModelView
             {
                 try
                 {
+                    if (currentTaskError != null)
+                    {
+                        errorScroller.RemoveError(currentTaskError);
+                        currentTaskError = null;
+                    }                    
                     currentTasks = new CurrentTasks();                    
                 }
                 catch (Exception ex)
                 {
-                    errorScroller.AddError(new ErrorItem(ex.Message));
-                    
+                    currentTaskError = new ErrorItem(ex.Message);
+                    errorScroller.AddError(currentTaskError);                    
                     Log.logThis(ex.Message);
                 }
             });
         }
+        ErrorItem currentTaskError;
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         CurrentTasks currentTasks;
         

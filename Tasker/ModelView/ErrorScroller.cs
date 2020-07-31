@@ -12,7 +12,8 @@ namespace Tasker.ModelView
     {
         public ErrorScroller()
         {
-            errorList = new List<ErrorItem>();            
+            errorList = new List<ErrorItem>();
+            AddError(new ErrorItem("ПУсто!"));
             startScrolling();
         }
         public Action RaiseErrorChanged;
