@@ -14,19 +14,17 @@ namespace Tasker.ModelView
         {
             errorList = new List<ErrorItem>();
             AddError(new ErrorItem("Пусто!"));
-            //ShowNextError();
+            startScrolling();
         }
         public Action RaiseErrorChanged;
         public ErrorItem CurrentError { get; set; }
         public void AddError(ErrorItem error)
         {
-            errorList.Add(error);
-            CurrentError = errorList.ElementAt(0);
-            RaiseErrorChanged?.Invoke();
+            errorList.Add(error);         
         }
         List<ErrorItem> errorList;
         Thread scrollingThread;
-        void StartScrolling()
+        void startScrolling()
         {
             if (scrollingThread == null)
             {
@@ -38,6 +36,8 @@ namespace Tasker.ModelView
                         Thread.Sleep(3000);
                     }
                 });
+                scrollingThread.IsBackground = true;
+                scrollingThread.Start();
             }
         }
         int currentErrorIndex = 0;
@@ -48,7 +48,7 @@ namespace Tasker.ModelView
             else currentErrorIndex = 0;
             CurrentError = errorList.ElementAt(currentErrorIndex);
 
-            RaiseErrorChanged();
+            RaiseErrorChanged?.Invoke();
         }
     }
 
