@@ -10,7 +10,6 @@ namespace Tasker.ModelView
     {
         public Main()
         {            
-            FillTaskList();
             errorScroller = new ErrorScroller();
             errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
 
@@ -23,15 +22,20 @@ namespace Tasker.ModelView
                         errorScroller.RemoveError(currentTaskError);
                         currentTaskError = null;
                     }                    
-                    currentTasks = new CurrentTasks();                    
+                    currentTasks = new CurrentTasks();
+                    TaskList = new ObservableCollection<ProductionTask>(currentTasks.CurrentTasksCollection);
+                    RaisePropertyChanged(nameof(TaskList));
                 }
                 catch (Exception ex)
                 {
                     currentTaskError = new ErrorItem(ex.Message);
                     errorScroller.AddError(currentTaskError);                    
                     Log.logThis(ex.Message);
+                    TaskList = new ObservableCollection<ProductionTask>();
+                    RaisePropertyChanged(nameof(TaskList));
                 }
             });
+            GetAllTasks.Execute();
         }
         ErrorItem currentTaskError;
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
