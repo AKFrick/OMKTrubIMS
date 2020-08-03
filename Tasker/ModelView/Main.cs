@@ -19,21 +19,21 @@ namespace Tasker.ModelView
 
             currentTasks = new CurrentTasks(errorScroller);
             TaskList = new ObservableCollection<ProductionTask>(currentTasks.TaskList);
-            //((INotifyCollectionChanged)currentTasks.TaskList).CollectionChanged += (s, a) =>
-            //{
-            //    if (a.NewItems?.Count >= 1)
-            //        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-            //        {
-            //            foreach (ProductionTask task in a.NewItems)
-            //                TaskList.Add(task);                        
-            //        }));
-            //    if (a.OldItems?.Count >= 1)
-            //        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-            //        {
-            //            foreach (ProductionTask task in a.OldItems)
-            //                TaskList.Remove(task);                        
-            //        }));
-            //};
+            ((INotifyCollectionChanged)currentTasks.TaskList).CollectionChanged += (s, a) =>
+            {
+                if (a.NewItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (ProductionTask task in a.NewItems)
+                            TaskList.Add(task);
+                    }));
+                if (a.OldItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (ProductionTask task in a.OldItems)
+                            TaskList.Remove(task);
+                    }));
+            };
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;        
