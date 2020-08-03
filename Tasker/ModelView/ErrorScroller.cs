@@ -50,6 +50,7 @@ namespace Tasker.ModelView
             if (errorList.Count - 1 > currentErrorIndex)
                 currentErrorIndex++;
             else currentErrorIndex = 0;
+            
             CurrentError = errorList.ElementAt(currentErrorIndex);
 
             RaiseErrorChanged?.Invoke();
