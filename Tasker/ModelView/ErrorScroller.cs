@@ -20,7 +20,8 @@ namespace Tasker.ModelView
         public ErrorItem CurrentError { get; set; }
         public void AddError(ErrorItem error)
         {
-            errorList.Add(error);         
+            if (!errorList.Contains(error))
+                errorList.Add(error);                
         }
         public void RemoveError(ErrorItem error)
         {
@@ -59,10 +60,7 @@ namespace Tasker.ModelView
 
     public class ErrorItem
     {
-        public ErrorItem(string msg)
-        {
-            Message = msg;
-        }
+        public ErrorItem(string msg) { Message = msg; }
         public string Message { get; private set; }
     }
 }

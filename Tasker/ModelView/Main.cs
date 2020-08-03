@@ -40,27 +40,3 @@ namespace Tasker.ModelView
         public DelegateCommand GetAllTasks { get; }
     }  
 }
-
-//GetAllTasks = new DelegateCommand(() => 
-//            {
-//    try
-//    {
-//        if (currentTaskError != null)
-//        {
-//            errorScroller.RemoveError(currentTaskError);
-//            currentTaskError = null;
-//        }
-//        currentTasks = new CurrentTasks();
-//        TaskList = new ObservableCollection<ProductionTask>(currentTasks.TaskList);
-//        RaisePropertyChanged(nameof(TaskList));
-//    }
-//    catch (Exception ex)
-//    {
-//        currentTaskError = new ErrorItem(ex.Message);
-//        errorScroller.AddError(currentTaskError);
-//        Log.logThis(ex.Message);
-//        TaskList = new ObservableCollection<ProductionTask>();
-//        RaisePropertyChanged(nameof(TaskList));
-//    }
-//});
-//            GetAllTasks.Execute();
