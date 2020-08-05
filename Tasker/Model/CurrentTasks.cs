@@ -18,15 +18,17 @@ namespace Tasker.Model
             currentTaskCollection = new ObservableCollection<ProductionTask>();
             TaskList = new ReadOnlyObservableCollection<ProductionTask>(currentTaskCollection);
 
-            trackingThread = new Thread(threadTask);
-            trackingThread.IsBackground = true;
-            trackingThread.Start();
+            trackingThread = new Thread(threadTask) { IsBackground = true };
+            trackingThread.Start();            
         }
         void threadTask()
         {
             try
             {
-                getAllCurrentTasks();
+                RefreshTaskList();
+                errorScroller?.RemoveError(connectionError);
+                Thread.Sleep(20000);
+                threadTask();
             }
             catch (EntityException ex)
             {
@@ -37,21 +39,28 @@ namespace Tasker.Model
             }
         }
         ErrorScroller errorScroller;
+        ErrorItem connectionError = new ErrorItem("Ошибка подключения к SQL");
         public CurrentTasks(ErrorScroller errorScroller) : this()
         {
             this.errorScroller = errorScroller;
         }        
         ObservableCollection<ProductionTask> currentTaskCollection;
         public ReadOnlyObservableCollection<ProductionTask> TaskList { get; private set; }
-        ErrorItem connectionError = new ErrorItem("Ошибка подключения к SQL");
-        void getAllCurrentTasks()
+        public void RefreshTaskList()
         {
-            using (var db = new Trubodetal189Entities())
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
                 IQueryable<ProductionTask> query = from b in db.ProductionTasks select b;
-                foreach (ProductionTask task in query)                    
-                    currentTaskCollection.Add(task);                    
-                errorScroller?.RemoveError(connectionError);                
+                foreach (ProductionTask task in query)
+                {
+                    if (!currentTaskCollection.Any(item => item.Id == task.Id))
+                        currentTaskCollection.Add(task);
+                }
+                currentTaskCollection.ToList().ForEach(task =>
+                {
+                    if (!query.Any(item => item.Id == task.Id))
+                        currentTaskCollection.Remove(task);
+                });
             }
         }
     }

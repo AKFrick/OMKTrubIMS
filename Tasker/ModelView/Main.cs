@@ -34,9 +34,11 @@ namespace Tasker.ModelView
                             TaskList.Remove(task);
                     }));
             };
+
+            RefreshTaskList = new DelegateCommand(currentTasks.RefreshTaskList);
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;        
-        public DelegateCommand GetAllTasks { get; }
+        public DelegateCommand RefreshTaskList { get; private set; }      
     }  
 }
