@@ -7,7 +7,6 @@ using Tasker.ModelView;
 using System.Threading;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Threading.Tasks;
 
 namespace Tasker.Model
 {
