@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using Opc.UaFx.Client;
+using Opc.UaFx;
 
 namespace Tasker.Model
 {
@@ -14,7 +15,7 @@ namespace Tasker.Model
         /// отправить в ПЛК задание
         /// </summary>
         public void SendTask(ProductionTask task)
-        {
+        {            
             using (OpcClient client = new OpcClient(endpoint))
             {
                 client.Connect();
@@ -24,7 +25,17 @@ namespace Tasker.Model
                                         (Int16)task.Id,
                                         (String)task.Number,
                                         (Int16)task.Position,
-                                        (String)task.Item);
+                                        (String)task.Item,
+                                        (String)task.ItemBatch,
+                                        (String)task.ItemBeginSerial,
+                                        (String)task.RecipeNumber,
+                                        (String)task.PipeBatch,
+                                        (String)task.PipeNumber,
+                                        (String)task.PipeHeat,
+                                        (String)task.PipeSteel,
+                                        (Int16)task.PipeDiameter,
+                                        (Int16)task.PipeThickness
+                                        );
             }
         }
         

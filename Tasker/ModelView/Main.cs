@@ -37,7 +37,22 @@ namespace Tasker.ModelView
             //Работа с ПЛК
             plc = new Plc();
             RefreshTaskList = new DelegateCommand(currentTasks.RefreshTaskList);
-            SendToPlc = new DelegateCommand(() => plc.SendTask(new ProductionTask() { Id = 123 }));
+            SendToPlc = new DelegateCommand(() => plc.SendTask(new ProductionTask()
+            {
+                Id = 123,
+                Number = "Number1",
+                Position = 33,
+                Item = "Item1",
+                ItemBatch = "ItemBatch1",
+                ItemBeginSerial = "ItemBeginSerial1",
+                RecipeNumber = "RecipeNumber1",
+                PipeBatch = "PipeBatch1",
+                PipeNumber = "PipeNumber1",
+                PipeHeat = "PipeHeat1",
+                PipeSteel = "PipeSteel1",
+                PipeDiameter = 44,
+                PipeThickness = 55
+            }));
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
