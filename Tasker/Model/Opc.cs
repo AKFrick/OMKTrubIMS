@@ -10,7 +10,9 @@ namespace Tasker.Model
     public class Opc
     {
         readonly string endpoint = ConfigurationManager.AppSettings.Get("OpcUaEndpoint");
-
+        /// <summary>
+        /// отправить в ПЛК задание
+        /// </summary>
         public void SendTask(ProductionTask task)
         {
             using (OpcClient client = new OpcClient(endpoint))
