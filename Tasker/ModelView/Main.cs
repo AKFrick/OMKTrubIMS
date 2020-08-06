@@ -13,7 +13,7 @@ namespace Tasker.ModelView
         public ErrorScroller errorScroller { get; }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         public Main()
-        {
+        {          
             errorScroller = new ErrorScroller();
             errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
 
