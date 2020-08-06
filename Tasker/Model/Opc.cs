@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
+using Opc.UaFx.Client;
 
 namespace Tasker.Model
 {
@@ -11,6 +9,23 @@ namespace Tasker.Model
     /// </summary>
     public class Opc
     {
+        readonly string endpoint = ConfigurationManager.AppSettings.Get("OpcUaEndpoint");
 
+        public void SendTask(ProductionTask task)
+        {
+            using (OpcClient client = new OpcClient(endpoint))
+            {
+                client.Connect();
+                object[] result = client.CallMethod(
+                                        "ns=3;s=\"SendNewTask\"",
+                                        "ns=3;s=\"SendNewTask\".Method",
+                                        (Int16)task.Id,
+                                        (String)task.Number.Trim(),
+                                        (String)task.PipeBatch,
+                                        (String)task.ProductBatchNumber,
+                                        (Int16)task.ItemAmount1);                    
+            }
+        }
+        
     }
 }
