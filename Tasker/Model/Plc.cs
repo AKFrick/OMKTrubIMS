@@ -12,7 +12,6 @@ namespace Tasker.Model
         /// <summary> Отправить задание в ПЛК </summary>
         public bool SendTask(ProductionTask task)
         {
-
             return true;
         }
     }
