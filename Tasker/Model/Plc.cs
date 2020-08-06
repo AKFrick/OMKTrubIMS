@@ -21,18 +21,20 @@ namespace Tasker.Model
         /// <summary> Отправить задание в ПЛК </summary>
         public bool SendTask(ProductionTask task)
         {
-            try
-            {
-                opc.SendTask(task);
-                errorScroller?.RemoveError(plcConnectionError);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                errorScroller?.AddError(plcConnectionError);
-                Log.logThis(ex.Message);
-                return false;
-            }
+            opc.SendTask(task);
+            return true;
+            //try
+            //{
+            //    opc.SendTask(task);
+            //    errorScroller?.RemoveError(plcConnectionError);
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    errorScroller?.AddError(plcConnectionError);
+            //    Log.logThis(ex.Message);
+            //    return false;
+            //}
         }
     }
 }

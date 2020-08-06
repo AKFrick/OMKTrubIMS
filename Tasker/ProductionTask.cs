@@ -17,9 +17,9 @@ namespace Tasker
         public int Id { get; set; }
         public string Number { get; set; }
         public Nullable<int> Position { get; set; }
-        public string Product { get; set; }
-        public string ProductBatchNumber { get; set; }
-        public string ProductBeginSerial { get; set; }
+        public string Item { get; set; }
+        public string ItemBatch { get; set; }
+        public string ItemBeginSerial { get; set; }
         public Nullable<int> ItemAmount1 { get; set; }
         public Nullable<int> ItemLength1 { get; set; }
         public Nullable<int> ItemAmount2 { get; set; }

@@ -48,7 +48,7 @@ namespace Tasker.Model
         public ReadOnlyObservableCollection<ProductionTask> TaskList { get; private set; }
         public void RefreshTaskList()
         {
-            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            using (Trubodetal189Entities1 db = new Trubodetal189Entities1())
             {
                 IQueryable<ProductionTask> query = from b in db.ProductionTasks select b;
                 foreach (ProductionTask task in query)

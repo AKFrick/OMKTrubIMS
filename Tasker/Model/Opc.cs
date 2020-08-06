@@ -19,13 +19,12 @@ namespace Tasker.Model
             {
                 client.Connect();
                 object[] result = client.CallMethod(
-                                        "ns=3;s=\"SendNewTask\"",
-                                        "ns=3;s=\"SendNewTask\".Method",
+                                        "ns=3;s=\"OpcUaMethodSendNewTask\"",
+                                        "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
                                         (Int16)task.Id,
-                                        (String)task.Number.Trim(),
-                                        (String)task.PipeBatch,
-                                        (String)task.ProductBatchNumber,
-                                        (Int16)task.ItemAmount1);                    
+                                        (String)task.Number,
+                                        (Int16)task.Position,
+                                        (String)task.Item);
             }
         }
         

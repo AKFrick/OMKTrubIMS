@@ -13,10 +13,10 @@ namespace Tasker
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Trubodetal189Entities : DbContext
+    public partial class Trubodetal189Entities1 : DbContext
     {
-        public Trubodetal189Entities()
-            : base("name=Trubodetal189Entities")
+        public Trubodetal189Entities1()
+            : base("name=Trubodetal189Entities1")
         {
         }
     

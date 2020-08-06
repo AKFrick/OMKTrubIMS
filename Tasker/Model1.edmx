@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Trubodetal189Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Trubodetal189Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ProductionTask">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,9 +12,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Number" Type="nvarchar" MaxLength="15" />
           <Property Name="Position" Type="int" />
-          <Property Name="Product" Type="nvarchar" MaxLength="25" />
-          <Property Name="ProductBatchNumber" Type="nvarchar" MaxLength="25" />
-          <Property Name="ProductBeginSerial" Type="nvarchar" MaxLength="15" />
+          <Property Name="Item" Type="nvarchar" MaxLength="25" />
+          <Property Name="ItemBatch" Type="nvarchar" MaxLength="25" />
+          <Property Name="ItemBeginSerial" Type="nvarchar" MaxLength="15" />
           <Property Name="ItemAmount1" Type="int" />
           <Property Name="ItemLength1" Type="int" />
           <Property Name="ItemAmount2" Type="int" />
@@ -56,7 +56,8 @@
         <EntityContainer Name="Trubodetal189ModelStoreContainer">
           <EntitySet Name="ProductionTask" EntityType="Self.ProductionTask" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Trubodetal189Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -64,12 +65,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="Int32" />
-          <Property Name="Product" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="ProductBatchNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="ProductBeginSerial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ItemBatch" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ItemBeginSerial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="ItemAmount1" Type="Int32" />
           <Property Name="ItemLength1" Type="Int32" />
           <Property Name="ItemAmount2" Type="Int32" />
@@ -108,7 +109,7 @@
           <Property Name="PipeDiameter" Type="Int32" />
           <Property Name="PipeThickness" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Trubodetal189Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ProductionTasks" EntityType="Self.ProductionTask" />
         </EntityContainer>
       </Schema>
@@ -116,16 +117,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Trubodetal189ModelStoreContainer" CdmEntityContainer="Trubodetal189Entities">
+        <EntityContainerMapping StorageEntityContainer="Trubodetal189ModelStoreContainer" CdmEntityContainer="Trubodetal189Entities1">
           <EntitySetMapping Name="ProductionTasks">
             <EntityTypeMapping TypeName="Trubodetal189Model.ProductionTask">
               <MappingFragment StoreEntitySet="ProductionTask">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Product" ColumnName="Product" />
-                <ScalarProperty Name="ProductBatchNumber" ColumnName="ProductBatchNumber" />
-                <ScalarProperty Name="ProductBeginSerial" ColumnName="ProductBeginSerial" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="ItemBatch" ColumnName="ItemBatch" />
+                <ScalarProperty Name="ItemBeginSerial" ColumnName="ItemBeginSerial" />
                 <ScalarProperty Name="ItemAmount1" ColumnName="ItemAmount1" />
                 <ScalarProperty Name="ItemLength1" ColumnName="ItemLength1" />
                 <ScalarProperty Name="ItemAmount2" ColumnName="ItemAmount2" />

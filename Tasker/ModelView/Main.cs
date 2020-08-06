@@ -16,7 +16,7 @@ namespace Tasker.ModelView
         {          
             errorScroller = new ErrorScroller();
             errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
-
+            // Работа с SQL
             currentTasks = new CurrentTasks(errorScroller);
             TaskList = new ObservableCollection<ProductionTask>(currentTasks.TaskList);
             ((INotifyCollectionChanged)currentTasks.TaskList).CollectionChanged += (s, a) =>
@@ -34,11 +34,15 @@ namespace Tasker.ModelView
                             TaskList.Remove(task);
                     }));
             };
-
+            //Работа с ПЛК
+            plc = new Plc();
             RefreshTaskList = new DelegateCommand(currentTasks.RefreshTaskList);
+            SendToPlc = new DelegateCommand(() => plc.SendTask(new ProductionTask() { Id = 123 }));
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
-        CurrentTasks currentTasks;        
+        CurrentTasks currentTasks;
+        Plc plc;
         public DelegateCommand RefreshTaskList { get; private set; }      
+        public DelegateCommand SendToPlc { get; private set; }
     }  
 }
