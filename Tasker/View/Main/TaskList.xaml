@@ -16,26 +16,34 @@
         <DataTemplate DataType="{x:Type local:ProductionTask}">
             <Grid Margin="0.5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition/> <!--0-->
+                    <ColumnDefinition/> <!--1-->
+                    <ColumnDefinition/> <!--2-->
+                    <ColumnDefinition/> <!--3-->
+                    <ColumnDefinition/> <!--4-->
+                    <ColumnDefinition/> <!--5-->
+                    <ColumnDefinition/> <!--6-->
                 </Grid.ColumnDefinitions>
                 <Border Style="{DynamicResource MyBlueBorder}"  Grid.Column="0">
-                    <TextBlock Margin="5" FontSize="15" Text="{ Binding ID }"/>
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding CreatedAt }"/>
                 </Border>
                 <Border Style="{DynamicResource MyBlueBorder}"  Grid.Column="1">
-                    <TextBlock Margin="5" FontSize="15" Text="{ Binding Number }"/>
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding ItemBatch }"/>
                 </Border>
                 <Border Style="{DynamicResource MyBlueBorder}" Grid.Column="2">
-                    <TextBlock Margin="5" FontSize="15" Text="{ Binding Item }" />
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding PipeSteel }" />
                 </Border>
                 <Border Style="{DynamicResource MyBlueBorder}" Grid.Column="3">
-                    <TextBlock Margin="5" FontSize="15" Text="{ Binding StartSerial }" />
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding PipeNumber }" />
                 </Border>
                 <Border Style="{DynamicResource MyBlueBorder}" Grid.Column="4">
-                    <TextBlock Margin="5" FontSize="15" Text="{ Binding TargetCount }" />
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding PipeDiameter }" />
+                </Border>
+                <Border Style="{DynamicResource MyBlueBorder}" Grid.Column="5">
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding ItemAmount1 }" />
+                </Border>
+                <Border Style="{DynamicResource MyBlueBorder}" Grid.Column="6">
+                    <TextBlock Margin="5" FontSize="15" Text="{ Binding State }" />
                 </Border>
             </Grid>
         </DataTemplate>

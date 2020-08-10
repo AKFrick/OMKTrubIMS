@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Tasker.View.Main.TaskTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tasker.View.Main"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid Name="taskTable1" 
+                  Width="Auto"
+                  Height="Auto"
+                  RowBackground="#edf5ef" AlternatingRowBackground="#fafffb"
+                  BorderBrush="Gray" BorderThickness="1"
+                  IsReadOnly="True" 
+                  AreRowDetailsFrozen="True" FrozenColumnCount="2"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserAddRows="False"
+                  CanUserResizeRows="False"
+                  CanUserDeleteRows="False"                  
+                  CanUserSortColumns = "False"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False"
+                  FontSize="16"
+                  MinRowHeight="35"     
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  CurrentItem="{Binding SelectedTask}"
+                  ItemsSource="{Binding TaskList}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="FontWeight"  Value="Bold" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <!--Показать эти колонки-->
+                <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreatedAt}"/>
+                <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ItemBatch}"/>
+                <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding PipeSteel}"/>
+                <DataGridTextColumn Header="Номер трубы" Width="150" Binding="{Binding PipeNumber}"/>
+                <DataGridTextColumn Header="Диаметер трубы" Width="100" Binding="{Binding PipeDiameter}"/>
+                <DataGridTextColumn Header="Количество" Width="100" Binding="{Binding ItemAmount1}"/>
+                <DataGridTextColumn Header="Статус" Width="150" Binding="{Binding State}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

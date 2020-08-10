@@ -8,7 +8,7 @@
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
         Icon="..\image\promatisLogo.png"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1000">
     <Window.DataContext>
         <modelView:Main/>
     </Window.DataContext>
@@ -35,7 +35,7 @@
             <Button Command="{Binding SendToPlc}" Grid.Column="3" Content="SendToPlc" Margin="5" Height="50" Width="120"/>
         </Grid>
         <!--Centre Content-->
-        <main:TaskList Grid.Row ="1"/>
+        <main:TaskTable Grid.Row ="1"/>
         <!--Bottom panel-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

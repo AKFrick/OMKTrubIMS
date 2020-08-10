@@ -56,6 +56,7 @@ namespace Tasker.ModelView
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
+        public ProductionTask SelectedTask { get; set; }
         Plc plc;
         public DelegateCommand RefreshTaskList { get; private set; }      
         public DelegateCommand SendToPlc { get; private set; }
