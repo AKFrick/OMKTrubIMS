@@ -52,6 +52,8 @@
           <Property Name="PipeSteel" Type="nvarchar" MaxLength="25" />
           <Property Name="PipeDiameter" Type="int" />
           <Property Name="PipeThickness" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="State" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityContainer Name="Trubodetal189ModelStoreContainer">
           <EntitySet Name="ProductionTask" EntityType="Self.ProductionTask" Schema="dbo" store:Type="Tables" />
@@ -108,8 +110,10 @@
           <Property Name="PipeSteel" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="PipeDiameter" Type="Int32" />
           <Property Name="PipeThickness" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="Trubodetal189Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ProductionTasks" EntityType="Self.ProductionTask" />
         </EntityContainer>
       </Schema>
@@ -117,7 +121,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Trubodetal189ModelStoreContainer" CdmEntityContainer="Trubodetal189Entities1">
+        <EntityContainerMapping StorageEntityContainer="Trubodetal189ModelStoreContainer" CdmEntityContainer="Trubodetal189Entities">
           <EntitySetMapping Name="ProductionTasks">
             <EntityTypeMapping TypeName="Trubodetal189Model.ProductionTask">
               <MappingFragment StoreEntitySet="ProductionTask">
@@ -164,6 +168,8 @@
                 <ScalarProperty Name="PipeSteel" ColumnName="PipeSteel" />
                 <ScalarProperty Name="PipeDiameter" ColumnName="PipeDiameter" />
                 <ScalarProperty Name="PipeThickness" ColumnName="PipeThickness" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="State" ColumnName="State" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,7 +17,7 @@ namespace Tasker.Model
         public void SendTask(ProductionTask task)
         {            
             using (OpcClient client = new OpcClient(endpoint))
-            {
+            {                
                 client.Connect();
                 object[] result = client.CallMethod(
                                         "ns=3;s=\"OpcUaMethodSendNewTask\"",
