@@ -7,7 +7,7 @@
         xmlns:main="clr-namespace:Tasker.View.Main"
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
-        Icon="..\image\promatisLogo.png"
+        Icon="image\promatisLogo.png"
         Title="MainWindow" Height="450" Width="1000">
     <Window.DataContext>
         <modelView:Main/>

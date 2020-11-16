@@ -23,18 +23,10 @@ namespace Tasker.Model
                                         "ns=3;s=\"OpcUaMethodSendNewTask\"",
                                         "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
                                         (Int16)task.Id,
-                                        (String)task.Number,
-                                        (Int16)task.Position,
-                                        (String)task.Item,
-                                        (String)task.ItemBatch,
-                                        (String)task.ItemBeginSerial,
-                                        (String)task.RecipeNumber,
-                                        (String)task.PipeBatch,
-                                        (String)task.PipeNumber,
-                                        (String)task.PipeHeat,
-                                        (String)task.PipeSteel,
                                         (Int16)task.PipeDiameter,
-                                        (Int16)task.PipeThickness
+                                        (Int16)task.PipeThickness,
+                                        (float)task.ItemLength1,
+                                        (Int16)task.ItemAmount1    
                                         );
             }
         }

@@ -5,6 +5,7 @@ using System.Windows;
 using Prism.Commands;
 using Prism.Mvvm;
 using Tasker.Model;
+using Tasker.View;
 
 namespace Tasker.ModelView
 {
@@ -40,19 +41,17 @@ namespace Tasker.ModelView
             SendToPlc = new DelegateCommand(() => plc.SendTask(new ProductionTask()
             {
                 Id = 123,
-                Number = "Number1",
-                Position = 33,
-                Item = "Item1",
-                ItemBatch = "ItemBatch1",
-                ItemBeginSerial = "ItemBeginSerial1",
-                RecipeNumber = "RecipeNumber1",
-                PipeBatch = "PipeBatch1",
-                PipeNumber = "PipeNumber1",
-                PipeHeat = "PipeHeat1",
-                PipeSteel = "PipeSteel1",
                 PipeDiameter = 44,
-                PipeThickness = 55
+                PipeThickness = 55,
+                ItemAmount1 = 20,
+                ItemLength1 = 204                
             }));
+
+            OpenNewTaskWindow = new DelegateCommand(()=>
+            {
+                NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
+                newTaskWindow.ShowDialog();
+            });
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
@@ -60,5 +59,6 @@ namespace Tasker.ModelView
         Plc plc;
         public DelegateCommand RefreshTaskList { get; private set; }      
         public DelegateCommand SendToPlc { get; private set; }
+        public DelegateCommand OpenNewTaskWindow { get; private set; }
     }  
 }

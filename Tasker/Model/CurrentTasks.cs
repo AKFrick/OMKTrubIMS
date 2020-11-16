@@ -63,5 +63,16 @@ namespace Tasker.Model
                 });
             }
         }
+        public ProductionTask InsertNewTask(ProductionTask task)
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                db.ProductionTasks.Add(task);
+                db.SaveChanges();
+            }
+            return task;
+            RefreshTaskList();
+        }
+
     }
 }

@@ -10,7 +10,7 @@
         <DataGrid Name="taskTable1" 
                   Width="Auto"
                   Height="Auto"
-                  RowBackground="#edf5ef" AlternatingRowBackground="#fafffb"
+                  RowBackground="White" AlternatingRowBackground="#f7f6f2"
                   BorderBrush="Gray" BorderThickness="1"
                   IsReadOnly="True" 
                   AreRowDetailsFrozen="True" FrozenColumnCount="2"
