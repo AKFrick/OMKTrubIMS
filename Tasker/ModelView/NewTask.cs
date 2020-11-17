@@ -18,6 +18,8 @@ namespace Tasker.ModelView
         {
             Create = new DelegateCommand(() =>
             {
+                task.CreatedAt = DateTime.Now;
+                task.State = "Создано";
                 currentTasks.InsertNewTask(task);
                 TaskCreated?.Invoke();
             });

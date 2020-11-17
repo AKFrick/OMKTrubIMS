@@ -36,21 +36,29 @@ namespace Tasker.ModelView
                     }));
             };
             //Работа с ПЛК
-            plc = new Plc();
-            RefreshTaskList = new DelegateCommand(currentTasks.RefreshTaskList);            
-
+            plc = new Plc();       
             OpenNewTaskWindow = new DelegateCommand(()=>
             {
                 NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
                 newTaskWindow.ShowDialog();
+            });
+            StartTask = new DelegateCommand(() =>
+            {
+                plc.SendTask(SelectedTask);
+            });
+            FinishTask = new DelegateCommand(() =>
+            {
+                TaskResult taskResult = plc.GetCurrentTaskResult();
+                taskResult.FinishDate = DateTime.Now;
+                currentTasks.LoadTaskResult(taskResult);
             });
         }        
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
         public ProductionTask SelectedTask { get; set; }
         Plc plc;
-        public DelegateCommand RefreshTaskList { get; private set; }      
-        public DelegateCommand SendToPlc { get; private set; }
         public DelegateCommand OpenNewTaskWindow { get; private set; }
+        public DelegateCommand StartTask { get; private set; }
+        public DelegateCommand FinishTask { get; private set; }
     }  
 }

@@ -31,5 +31,6 @@ namespace Tasker
         public Nullable<int> PipeThickness { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string State { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
     }
 }

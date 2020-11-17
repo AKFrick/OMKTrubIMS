@@ -36,6 +36,7 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                 </Style>
             </DataGrid.ColumnHeaderStyle>
+            
             <DataGrid.Columns>
                 <!--Показать эти колонки-->
                 <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreatedAt}"/>

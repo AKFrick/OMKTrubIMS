@@ -36,5 +36,9 @@ namespace Tasker.Model
             //    return false;
             //}
         }
+        public TaskResult GetCurrentTaskResult()
+        {
+            return opc.GetCurrentTaskResult();
+        }
     }
 }

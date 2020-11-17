@@ -26,5 +26,6 @@ namespace Tasker
         }
     
         public virtual DbSet<ProductionTask> ProductionTasks { get; set; }
+        public virtual DbSet<TaskResult> TaskResults { get; set; }
     }
 }

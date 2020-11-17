@@ -26,9 +26,26 @@
           <Property Name="PipeThickness" Type="int" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="State" Type="nvarchar" MaxLength="15" />
+          <Property Name="StartDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TaskResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductionTask_Id" Type="int" />
+          <Property Name="ItemAmount" Type="int" />
+          <Property Name="Interrupt" Type="bit" />
+          <Property Name="RecipeNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="MachineBrand" Type="nvarchar" MaxLength="50" />
+          <Property Name="BandType" Type="nvarchar" MaxLength="25" />
+          <Property Name="BandSpeed" Type="real" />
+          <Property Name="SawDownSpeed" Type="real" />
+          <Property Name="FinishDate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="Trubodetal189ModelStoreContainer">
           <EntitySet Name="ProductionTask" EntityType="Self.ProductionTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskResult" EntityType="Self.TaskResult" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -36,6 +53,7 @@
       <Schema Namespace="Trubodetal189Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ProductionTasks" EntityType="Trubodetal189Model.ProductionTask" />
+          <EntitySet Name="TaskResults" EntityType="Trubodetal189Model.TaskResult" />
         </EntityContainer>
         <EntityType Name="ProductionTask">
           <Key>
@@ -58,6 +76,22 @@
           <Property Name="PipeThickness" Type="Int32" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="State" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TaskResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductionTask_Id" Type="Int32" />
+          <Property Name="ItemAmount" Type="Int32" />
+          <Property Name="Interrupt" Type="Boolean" />
+          <Property Name="RecipeNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="MachineBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BandType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="BandSpeed" Type="Single" />
+          <Property Name="SawDownSpeed" Type="Single" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -68,6 +102,7 @@
           <EntitySetMapping Name="ProductionTasks">
             <EntityTypeMapping TypeName="Trubodetal189Model.ProductionTask">
               <MappingFragment StoreEntitySet="ProductionTask">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="PipeThickness" ColumnName="PipeThickness" />
@@ -84,6 +119,22 @@
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskResults">
+            <EntityTypeMapping TypeName="Trubodetal189Model.TaskResult">
+              <MappingFragment StoreEntitySet="TaskResult">
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
+                <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />
+                <ScalarProperty Name="BandType" ColumnName="BandType" />
+                <ScalarProperty Name="MachineBrand" ColumnName="MachineBrand" />
+                <ScalarProperty Name="RecipeNumber" ColumnName="RecipeNumber" />
+                <ScalarProperty Name="Interrupt" ColumnName="Interrupt" />
+                <ScalarProperty Name="ItemAmount" ColumnName="ItemAmount" />
+                <ScalarProperty Name="ProductionTask_Id" ColumnName="ProductionTask_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

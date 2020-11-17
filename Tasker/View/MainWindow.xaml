@@ -8,7 +8,7 @@
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
         Icon="image\promatisLogo.png"
-        Title="Управление заданиями" Height="450" Width="1098">
+        Title="Управление заданиями" Height="676" Width="1128">
     <Window.DataContext>
         <modelView:Main/>
     </Window.DataContext>
@@ -31,20 +31,21 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
             <Button Grid.Column="1" Content="История заданий" Margin="5" Height="50" Width="120"/>
-            <Button Command="{Binding RefreshTaskList}" Grid.Column="2" Content="RefreshList" Margin="5" Height="50" Width="120"/>
         </Grid>
         <!--Centre Content-->
         <main:TaskTable Grid.Row ="1"/>
         <!--Bottom panel-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Label Content="{Binding CallCount}" Grid.Column="1" Margin="5"/>
-            <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="2" Content="Создать задание" Margin="5,5,5,5" Width="120" Height="50"/>
-            <Button Command="{Binding StartTask}" Grid.Column="1" Content="Начать задание" Margin="5,5,5,5" Width="120" Height="50"/>
+            <Button Command="{Binding FinishTask}" Grid.Column="0" Content="Завершить задание" Margin="5,5,5,5" Width="120" Height="50"/>
+
+            <Button Command="{Binding StartTask}" Grid.Column="2" Content="Начать задание" Margin="5,5,5,5" Width="120" Height="50"/>
+            <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="3" Content="Создать задание" Margin="5,5,5,5" Width="120" Height="50"/>
         </Grid>
         <!--Status bar-->
         <main:StatusBar Grid.Row="3"/>
