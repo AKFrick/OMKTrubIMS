@@ -21,13 +21,16 @@
                   CanUserDeleteRows="False"                  
                   CanUserSortColumns = "False"
                   SelectionMode="Single"
+                  SelectionUnit="FullRow"
                   AutoGenerateColumns="False"
                   FontSize="16"
                   MinRowHeight="35"     
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center"                  
-                  CurrentItem="{Binding SelectedTask}"
-                  ItemsSource="{Binding TaskList}">
+                  ItemsSource="{Binding TaskList}"
+                  IsSynchronizedWithCurrentItem="False"
+                  SelectedItem="{Binding SelectedTask}"
+                  >
 
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">

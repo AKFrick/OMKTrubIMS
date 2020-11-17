@@ -20,10 +20,10 @@ namespace Tasker
         public Nullable<bool> Interrupt { get; set; }
         public string RecipeNumber { get; set; }
         public string MachineBrand { get; set; }
-        public string BandType { get; set; }
+        public Nullable<int> BandType { get; set; }
         public Nullable<float> BandSpeed { get; set; }
         public Nullable<float> SawDownSpeed { get; set; }
-        public Nullable<System.DateTime> FinishDate { get; set; }
         public string Operator { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
     }
 }

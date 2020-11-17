@@ -42,8 +42,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding FinishTask}" Grid.Column="0" Content="Завершить задание" Margin="5,5,5,5" Width="120" Height="50"/>
-
+            <Button Command="{Binding FinishTask}" Grid.Column="0" Content="Завешить задание" Margin="5,5,5,5" Width="120" Height="50"/>
             <Button Command="{Binding StartTask}" Grid.Column="2" Content="Начать задание" Margin="5,5,5,5" Width="120" Height="50"/>
             <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="3" Content="Создать задание" Margin="5,5,5,5" Width="120" Height="50"/>
         </Grid>

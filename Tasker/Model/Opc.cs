@@ -22,7 +22,7 @@ namespace Tasker.Model
                 object[] result = client.CallMethod(
                                         "ns=3;s=\"OpcUaMethodSendNewTask\"",
                                         "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
-                                        (Int16)task.Id,
+                                        (Int32)task.Id,
                                         (string)task.Number,
                                         (Int16)task.PipeDiameter,
                                         (Int16)task.PipeThickness,
@@ -33,23 +33,28 @@ namespace Tasker.Model
         }
         public TaskResult GetCurrentTaskResult()
         {
+            bool success;
+            string message;
+
             TaskResult taskResult = new TaskResult();
             using (OpcClient client = new OpcClient(endpoint))
             {
                 client.Connect();
                 object[] result = client.CallMethod(
-                                        "ns=3;s=\"OpcUaMethodSendNewTask\"",
-                                        "ns=3;s=\"OpcUaMethodSendNewTask\".Method"
+                                        "ns=3;s=\"OpcUaMethodGetTaskResult\"",
+                                        "ns=3;s=\"OpcUaMethodGetTaskResult\".Method"
                                         );
-                taskResult.Id = Convert.ToInt16(result[0]);
-                taskResult.ItemAmount = Convert.ToInt16(result[1]);
-                taskResult.Interrupt = Convert.ToBoolean(result[2]);
-                taskResult.RecipeNumber = Convert.ToString(result[3]);
-                taskResult.MachineBrand = Convert.ToString(result[4]);
-                taskResult.BandType = Convert.ToString(result[5]);
-                taskResult.BandSpeed = Convert.ToSingle(result[6]);
-                taskResult.SawDownSpeed = Convert.ToSingle(result[7]);
-                taskResult.Operator = Convert.ToString(result[8]);
+                success = Convert.ToBoolean(result[0]);
+                message = Convert.ToString(result[1]);
+                taskResult.ProductionTask_Id = Convert.ToInt32(result[2]);
+                taskResult.ItemAmount = Convert.ToInt16(result[3]);
+                taskResult.Interrupt = Convert.ToBoolean(result[4]);
+                taskResult.RecipeNumber = Convert.ToString(result[5]);
+                taskResult.MachineBrand = Convert.ToString(result[6]);
+                taskResult.BandType = Convert.ToInt16(result[7]);
+                taskResult.BandSpeed = Convert.ToSingle(result[8]);
+                taskResult.SawDownSpeed = Convert.ToSingle(result[9]);
+                taskResult.Operator = Convert.ToString(result[10]);
 
 
                 taskResult.FinishDate = DateTime.Now;

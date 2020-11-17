@@ -50,7 +50,9 @@ namespace Tasker.Model
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
-                IQueryable<ProductionTask> query = from b in db.ProductionTasks select b;
+                IQueryable<ProductionTask> query = from b in db.ProductionTasks
+                                                   where b.State != "Завершено"
+                                                   select b;
                 foreach (ProductionTask task in query)
                 {
                     if (!currentTaskCollection.Any(item => item.Id == task.Id))
@@ -68,7 +70,7 @@ namespace Tasker.Model
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
                 db.ProductionTasks.Add(task);
-                db.SaveChanges();
+                db.SaveChanges();                
             }
             RefreshTaskList();
             return task;
@@ -80,6 +82,28 @@ namespace Tasker.Model
             {
                 db.TaskResults.Add(taskResult);
                 db.SaveChanges();
+            }
+            UpdateTaskState(taskResult.ProductionTask_Id, "Завершено");
+            RefreshTaskList();
+
+        }
+        void UpdateTaskState(int? id, string state)
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                IQueryable<ProductionTask> query = from b in db.ProductionTasks select b;
+                foreach (ProductionTask task in query)
+                {
+                    if (task.Id == id)
+                    {                        
+                        task.State = state;
+                        break;
+                    }
+                }
+                db.SaveChanges();
+
+
+
             }
         }
 

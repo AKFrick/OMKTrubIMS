@@ -38,7 +38,7 @@
           <Property Name="Interrupt" Type="bit" />
           <Property Name="RecipeNumber" Type="nvarchar" MaxLength="25" />
           <Property Name="MachineBrand" Type="nvarchar" MaxLength="50" />
-          <Property Name="BandType" Type="nvarchar" MaxLength="25" />
+          <Property Name="BandType" Type="int" />
           <Property Name="BandSpeed" Type="real" />
           <Property Name="SawDownSpeed" Type="real" />
           <Property Name="Operator" Type="nvarchar" MaxLength="50" />
@@ -89,11 +89,11 @@
           <Property Name="Interrupt" Type="Boolean" />
           <Property Name="RecipeNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="MachineBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BandType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="BandType" Type="Int32" />
           <Property Name="BandSpeed" Type="Single" />
           <Property Name="SawDownSpeed" Type="Single" />
-          <Property Name="FinishDate" Type="DateTime" Precision="3" />
           <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -128,8 +128,8 @@
           <EntitySetMapping Name="TaskResults">
             <EntityTypeMapping TypeName="Trubodetal189Model.TaskResult">
               <MappingFragment StoreEntitySet="TaskResult">
-                <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
                 <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />
                 <ScalarProperty Name="BandType" ColumnName="BandType" />

@@ -14,14 +14,14 @@ namespace Tasker.ModelView
         public ErrorScroller errorScroller { get; }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         public Main()
-        {          
+        {
             errorScroller = new ErrorScroller();
             errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
             // Работа с SQL
             currentTasks = new CurrentTasks(errorScroller);
             TaskList = new ObservableCollection<ProductionTask>(currentTasks.TaskList);
             ((INotifyCollectionChanged)currentTasks.TaskList).CollectionChanged += (s, a) =>
-            {                
+            {
                 if (a.NewItems?.Count >= 1)
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
@@ -36,8 +36,8 @@ namespace Tasker.ModelView
                     }));
             };
             //Работа с ПЛК
-            plc = new Plc();       
-            OpenNewTaskWindow = new DelegateCommand(()=>
+            plc = new Plc();
+            OpenNewTaskWindow = new DelegateCommand(() =>
             {
                 NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
                 newTaskWindow.ShowDialog();
@@ -45,17 +45,18 @@ namespace Tasker.ModelView
             StartTask = new DelegateCommand(() =>
             {
                 plc.SendTask(SelectedTask);
+                //RaisePropertyChanged(nameof(SelectedTask));
             });
             FinishTask = new DelegateCommand(() =>
             {
                 TaskResult taskResult = plc.GetCurrentTaskResult();
                 taskResult.FinishDate = DateTime.Now;
-                currentTasks.LoadTaskResult(taskResult);
+                currentTasks.LoadTaskResult(taskResult);                
             });
-        }        
+        }
+        public ProductionTask SelectedTask { get; set; }
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
-        public ProductionTask SelectedTask { get; set; }
         Plc plc;
         public DelegateCommand OpenNewTaskWindow { get; private set; }
         public DelegateCommand StartTask { get; private set; }
