@@ -24,5 +24,6 @@ namespace Tasker
         public Nullable<float> BandSpeed { get; set; }
         public Nullable<float> SawDownSpeed { get; set; }
         public Nullable<System.DateTime> FinishDate { get; set; }
+        public string Operator { get; set; }
     }
 }

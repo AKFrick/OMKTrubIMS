@@ -49,6 +49,7 @@ namespace Tasker.Model
                 taskResult.BandType = Convert.ToString(result[5]);
                 taskResult.BandSpeed = Convert.ToSingle(result[6]);
                 taskResult.SawDownSpeed = Convert.ToSingle(result[7]);
+                taskResult.Operator = Convert.ToString(result[8]);
 
 
                 taskResult.FinishDate = DateTime.Now;

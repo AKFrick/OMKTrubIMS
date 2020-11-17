@@ -41,6 +41,7 @@
           <Property Name="BandType" Type="nvarchar" MaxLength="25" />
           <Property Name="BandSpeed" Type="real" />
           <Property Name="SawDownSpeed" Type="real" />
+          <Property Name="Operator" Type="nvarchar" MaxLength="50" />
           <Property Name="FinishDate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="Trubodetal189ModelStoreContainer">
@@ -92,6 +93,7 @@
           <Property Name="BandSpeed" Type="Single" />
           <Property Name="SawDownSpeed" Type="Single" />
           <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -126,6 +128,7 @@
           <EntitySetMapping Name="TaskResults">
             <EntityTypeMapping TypeName="Trubodetal189Model.TaskResult">
               <MappingFragment StoreEntitySet="TaskResult">
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
                 <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
                 <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />
