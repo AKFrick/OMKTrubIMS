@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Trubodetal189Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Trubodetal189Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ProductionTask">
           <Key>
             <PropertyRef Name="Id" />
@@ -15,36 +15,8 @@
           <Property Name="Item" Type="nvarchar" MaxLength="25" />
           <Property Name="ItemBatch" Type="nvarchar" MaxLength="25" />
           <Property Name="ItemBeginSerial" Type="nvarchar" MaxLength="15" />
-          <Property Name="ItemAmount1" Type="int" />
-          <Property Name="ItemLength1" Type="int" />
-          <Property Name="ItemAmount2" Type="int" />
-          <Property Name="ItemLength2" Type="int" />
-          <Property Name="ItemAmount3" Type="int" />
-          <Property Name="ItemLenth3" Type="int" />
-          <Property Name="ItemAmount4" Type="int" />
-          <Property Name="ItemLength4" Type="int" />
-          <Property Name="ItemAmount5" Type="int" />
-          <Property Name="ItemLength5" Type="int" />
-          <Property Name="ItemAmount6" Type="int" />
-          <Property Name="ItemLength6" Type="int" />
-          <Property Name="ItemAmount7" Type="int" />
-          <Property Name="ItemLength7" Type="int" />
-          <Property Name="ItemAmount8" Type="int" />
-          <Property Name="ItemLength8" Type="int" />
-          <Property Name="ItemAmount9" Type="int" />
-          <Property Name="ItemLength9" Type="int" />
-          <Property Name="ItemAmount10" Type="int" />
-          <Property Name="ItemLength10" Type="int" />
-          <Property Name="ItemAmount11" Type="int" />
-          <Property Name="ItemLength11" Type="int" />
-          <Property Name="ItemAmount12" Type="int" />
-          <Property Name="ItemLength12" Type="int" />
-          <Property Name="ItemAmount13" Type="int" />
-          <Property Name="ItemLength13" Type="int" />
-          <Property Name="ItemAmount14" Type="int" />
-          <Property Name="ItemLength14" Type="int" />
-          <Property Name="ItemAmount15" Type="int" />
-          <Property Name="ItemLength15" Type="int" />
+          <Property Name="ItemTargetAmount" Type="int" />
+          <Property Name="ItemLength" Type="int" />
           <Property Name="RecipeNumber" Type="nvarchar" MaxLength="15" />
           <Property Name="PipeBatch" Type="nvarchar" MaxLength="25" />
           <Property Name="PipeNumber" Type="nvarchar" MaxLength="15" />
@@ -58,11 +30,13 @@
         <EntityContainer Name="Trubodetal189ModelStoreContainer">
           <EntitySet Name="ProductionTask" EntityType="Self.ProductionTask" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Trubodetal189Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProductionTasks" EntityType="Trubodetal189Model.ProductionTask" />
+        </EntityContainer>
         <EntityType Name="ProductionTask">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,36 +47,8 @@
           <Property Name="Item" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="ItemBatch" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="ItemBeginSerial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ItemAmount1" Type="Int32" />
-          <Property Name="ItemLength1" Type="Int32" />
-          <Property Name="ItemAmount2" Type="Int32" />
-          <Property Name="ItemLength2" Type="Int32" />
-          <Property Name="ItemAmount3" Type="Int32" />
-          <Property Name="ItemLenth3" Type="Int32" />
-          <Property Name="ItemAmount4" Type="Int32" />
-          <Property Name="ItemLength4" Type="Int32" />
-          <Property Name="ItemAmount5" Type="Int32" />
-          <Property Name="ItemLength5" Type="Int32" />
-          <Property Name="ItemAmount6" Type="Int32" />
-          <Property Name="ItemLength6" Type="Int32" />
-          <Property Name="ItemAmount7" Type="Int32" />
-          <Property Name="ItemLength7" Type="Int32" />
-          <Property Name="ItemAmount8" Type="Int32" />
-          <Property Name="ItemLength8" Type="Int32" />
-          <Property Name="ItemAmount9" Type="Int32" />
-          <Property Name="ItemLength9" Type="Int32" />
-          <Property Name="ItemAmount10" Type="Int32" />
-          <Property Name="ItemLength10" Type="Int32" />
-          <Property Name="ItemAmount11" Type="Int32" />
-          <Property Name="ItemLength11" Type="Int32" />
-          <Property Name="ItemAmount12" Type="Int32" />
-          <Property Name="ItemLength12" Type="Int32" />
-          <Property Name="ItemAmount13" Type="Int32" />
-          <Property Name="ItemLength13" Type="Int32" />
-          <Property Name="ItemAmount14" Type="Int32" />
-          <Property Name="ItemLength14" Type="Int32" />
-          <Property Name="ItemAmount15" Type="Int32" />
-          <Property Name="ItemLength15" Type="Int32" />
+          <Property Name="ItemTargetAmount" Type="Int32" />
+          <Property Name="ItemLength" Type="Int32" />
           <Property Name="RecipeNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="PipeBatch" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="PipeNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -113,9 +59,6 @@
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="State" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ProductionTasks" EntityType="Self.ProductionTask" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -125,51 +68,23 @@
           <EntitySetMapping Name="ProductionTasks">
             <EntityTypeMapping TypeName="Trubodetal189Model.ProductionTask">
               <MappingFragment StoreEntitySet="ProductionTask">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="ItemBatch" ColumnName="ItemBatch" />
-                <ScalarProperty Name="ItemBeginSerial" ColumnName="ItemBeginSerial" />
-                <ScalarProperty Name="ItemAmount1" ColumnName="ItemAmount1" />
-                <ScalarProperty Name="ItemLength1" ColumnName="ItemLength1" />
-                <ScalarProperty Name="ItemAmount2" ColumnName="ItemAmount2" />
-                <ScalarProperty Name="ItemLength2" ColumnName="ItemLength2" />
-                <ScalarProperty Name="ItemAmount3" ColumnName="ItemAmount3" />
-                <ScalarProperty Name="ItemLenth3" ColumnName="ItemLenth3" />
-                <ScalarProperty Name="ItemAmount4" ColumnName="ItemAmount4" />
-                <ScalarProperty Name="ItemLength4" ColumnName="ItemLength4" />
-                <ScalarProperty Name="ItemAmount5" ColumnName="ItemAmount5" />
-                <ScalarProperty Name="ItemLength5" ColumnName="ItemLength5" />
-                <ScalarProperty Name="ItemAmount6" ColumnName="ItemAmount6" />
-                <ScalarProperty Name="ItemLength6" ColumnName="ItemLength6" />
-                <ScalarProperty Name="ItemAmount7" ColumnName="ItemAmount7" />
-                <ScalarProperty Name="ItemLength7" ColumnName="ItemLength7" />
-                <ScalarProperty Name="ItemAmount8" ColumnName="ItemAmount8" />
-                <ScalarProperty Name="ItemLength8" ColumnName="ItemLength8" />
-                <ScalarProperty Name="ItemAmount9" ColumnName="ItemAmount9" />
-                <ScalarProperty Name="ItemLength9" ColumnName="ItemLength9" />
-                <ScalarProperty Name="ItemAmount10" ColumnName="ItemAmount10" />
-                <ScalarProperty Name="ItemLength10" ColumnName="ItemLength10" />
-                <ScalarProperty Name="ItemAmount11" ColumnName="ItemAmount11" />
-                <ScalarProperty Name="ItemLength11" ColumnName="ItemLength11" />
-                <ScalarProperty Name="ItemAmount12" ColumnName="ItemAmount12" />
-                <ScalarProperty Name="ItemLength12" ColumnName="ItemLength12" />
-                <ScalarProperty Name="ItemAmount13" ColumnName="ItemAmount13" />
-                <ScalarProperty Name="ItemLength13" ColumnName="ItemLength13" />
-                <ScalarProperty Name="ItemAmount14" ColumnName="ItemAmount14" />
-                <ScalarProperty Name="ItemLength14" ColumnName="ItemLength14" />
-                <ScalarProperty Name="ItemAmount15" ColumnName="ItemAmount15" />
-                <ScalarProperty Name="ItemLength15" ColumnName="ItemLength15" />
-                <ScalarProperty Name="RecipeNumber" ColumnName="RecipeNumber" />
-                <ScalarProperty Name="PipeBatch" ColumnName="PipeBatch" />
-                <ScalarProperty Name="PipeNumber" ColumnName="PipeNumber" />
-                <ScalarProperty Name="PipeHeat" ColumnName="PipeHeat" />
-                <ScalarProperty Name="PipeSteel" ColumnName="PipeSteel" />
-                <ScalarProperty Name="PipeDiameter" ColumnName="PipeDiameter" />
-                <ScalarProperty Name="PipeThickness" ColumnName="PipeThickness" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="PipeThickness" ColumnName="PipeThickness" />
+                <ScalarProperty Name="PipeDiameter" ColumnName="PipeDiameter" />
+                <ScalarProperty Name="PipeSteel" ColumnName="PipeSteel" />
+                <ScalarProperty Name="PipeHeat" ColumnName="PipeHeat" />
+                <ScalarProperty Name="PipeNumber" ColumnName="PipeNumber" />
+                <ScalarProperty Name="PipeBatch" ColumnName="PipeBatch" />
+                <ScalarProperty Name="RecipeNumber" ColumnName="RecipeNumber" />
+                <ScalarProperty Name="ItemLength" ColumnName="ItemLength" />
+                <ScalarProperty Name="ItemTargetAmount" ColumnName="ItemTargetAmount" />
+                <ScalarProperty Name="ItemBeginSerial" ColumnName="ItemBeginSerial" />
+                <ScalarProperty Name="ItemBatch" ColumnName="ItemBatch" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

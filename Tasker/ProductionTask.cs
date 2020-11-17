@@ -20,36 +20,8 @@ namespace Tasker
         public string Item { get; set; }
         public string ItemBatch { get; set; }
         public string ItemBeginSerial { get; set; }
-        public Nullable<int> ItemAmount1 { get; set; }
-        public Nullable<int> ItemLength1 { get; set; }
-        public Nullable<int> ItemAmount2 { get; set; }
-        public Nullable<int> ItemLength2 { get; set; }
-        public Nullable<int> ItemAmount3 { get; set; }
-        public Nullable<int> ItemLenth3 { get; set; }
-        public Nullable<int> ItemAmount4 { get; set; }
-        public Nullable<int> ItemLength4 { get; set; }
-        public Nullable<int> ItemAmount5 { get; set; }
-        public Nullable<int> ItemLength5 { get; set; }
-        public Nullable<int> ItemAmount6 { get; set; }
-        public Nullable<int> ItemLength6 { get; set; }
-        public Nullable<int> ItemAmount7 { get; set; }
-        public Nullable<int> ItemLength7 { get; set; }
-        public Nullable<int> ItemAmount8 { get; set; }
-        public Nullable<int> ItemLength8 { get; set; }
-        public Nullable<int> ItemAmount9 { get; set; }
-        public Nullable<int> ItemLength9 { get; set; }
-        public Nullable<int> ItemAmount10 { get; set; }
-        public Nullable<int> ItemLength10 { get; set; }
-        public Nullable<int> ItemAmount11 { get; set; }
-        public Nullable<int> ItemLength11 { get; set; }
-        public Nullable<int> ItemAmount12 { get; set; }
-        public Nullable<int> ItemLength12 { get; set; }
-        public Nullable<int> ItemAmount13 { get; set; }
-        public Nullable<int> ItemLength13 { get; set; }
-        public Nullable<int> ItemAmount14 { get; set; }
-        public Nullable<int> ItemLength14 { get; set; }
-        public Nullable<int> ItemAmount15 { get; set; }
-        public Nullable<int> ItemLength15 { get; set; }
+        public Nullable<int> ItemTargetAmount { get; set; }
+        public Nullable<int> ItemLength { get; set; }
         public string RecipeNumber { get; set; }
         public string PipeBatch { get; set; }
         public string PipeNumber { get; set; }

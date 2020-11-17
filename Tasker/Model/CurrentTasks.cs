@@ -67,11 +67,14 @@ namespace Tasker.Model
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
+                task.CreatedAt = DateTime.Now;
+                task.State = "Создано";
                 db.ProductionTasks.Add(task);
                 db.SaveChanges();
             }
-            return task;
             RefreshTaskList();
+            return task;
+
         }
 
     }

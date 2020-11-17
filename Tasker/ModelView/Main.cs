@@ -37,15 +37,7 @@ namespace Tasker.ModelView
             };
             //Работа с ПЛК
             plc = new Plc();
-            RefreshTaskList = new DelegateCommand(currentTasks.RefreshTaskList);
-            SendToPlc = new DelegateCommand(() => plc.SendTask(new ProductionTask()
-            {
-                Id = 123,
-                PipeDiameter = 44,
-                PipeThickness = 55,
-                ItemAmount1 = 20,
-                ItemLength1 = 204                
-            }));
+            RefreshTaskList = new DelegateCommand(currentTasks.RefreshTaskList);            
 
             OpenNewTaskWindow = new DelegateCommand(()=>
             {

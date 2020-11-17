@@ -8,7 +8,7 @@
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
         Icon="image\promatisLogo.png"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="Управление заданиями" Height="450" Width="1098">
     <Window.DataContext>
         <modelView:Main/>
     </Window.DataContext>
@@ -32,7 +32,6 @@
             <Button Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
             <Button Grid.Column="1" Content="История заданий" Margin="5" Height="50" Width="120"/>
             <Button Command="{Binding RefreshTaskList}" Grid.Column="2" Content="RefreshList" Margin="5" Height="50" Width="120"/>
-            <Button Command="{Binding SendToPlc}" Grid.Column="3" Content="SendToPlc" Margin="5" Height="50" Width="120"/>
         </Grid>
         <!--Centre Content-->
         <main:TaskTable Grid.Row ="1"/>

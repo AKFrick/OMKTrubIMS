@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Tasker.View.Main"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1082">
     <Grid>
         <DataGrid Name="taskTable1" 
                   Width="Auto"
@@ -25,14 +25,15 @@
                   FontSize="16"
                   MinRowHeight="35"     
                   HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Center"
+                  VerticalContentAlignment="Center"                  
                   CurrentItem="{Binding SelectedTask}"
                   ItemsSource="{Binding TaskList}">
+
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="FontWeight"  Value="Bold" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
                 </Style>
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
@@ -40,9 +41,10 @@
                 <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreatedAt}"/>
                 <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ItemBatch}"/>
                 <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding PipeSteel}"/>
-                <DataGridTextColumn Header="Номер трубы" Width="150" Binding="{Binding PipeNumber}"/>
-                <DataGridTextColumn Header="Диаметер трубы" Width="100" Binding="{Binding PipeDiameter}"/>
-                <DataGridTextColumn Header="Количество" Width="100" Binding="{Binding ItemAmount1}"/>
+                <DataGridTextColumn Header="Толщина&#x0a;  стенки" Width="150" Binding="{Binding PipeThickness}"/>
+                <DataGridTextColumn Header="Диаметр&#x0a;  трубы" Width="100" Binding="{Binding PipeDiameter}"/>
+                <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding ItemLength}"/>
+                <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding ItemTargetAmount}"/>
                 <DataGridTextColumn Header="Статус" Width="150" Binding="{Binding State}"/>
             </DataGrid.Columns>
         </DataGrid>

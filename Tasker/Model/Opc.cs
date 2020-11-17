@@ -25,8 +25,8 @@ namespace Tasker.Model
                                         (Int16)task.Id,
                                         (Int16)task.PipeDiameter,
                                         (Int16)task.PipeThickness,
-                                        (float)task.ItemLength1,
-                                        (Int16)task.ItemAmount1    
+                                        (float)task.ItemLength,
+                                        (Int16)task.ItemTargetAmount    
                                         );
             }
         }
