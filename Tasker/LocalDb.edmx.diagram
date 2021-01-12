@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7ea4964292394662a1cf6df7a3328205" Name="Diagram1" ZoomLevel="116">
-        <EntityTypeShape EntityType="Trubodetal189Model.ProductionTask" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Trubodetal189Model.TaskResult" Width="1.5" PointX="3.375" PointY="0.75" />
+      <Diagram DiagramId="ac34ea511bd14602954d6cc508e2dc75" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="Trubodetal189Model.ProductionTask" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

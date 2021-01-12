@@ -42,14 +42,14 @@
             
             <DataGrid.Columns>
                 <!--Показать эти колонки-->
-                <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreatedAt}"/>
-                <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ItemBatch}"/>
-                <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding PipeSteel}"/>
-                <DataGridTextColumn Header="Толщина&#x0a;  стенки" Width="150" Binding="{Binding PipeThickness}"/>
-                <DataGridTextColumn Header="Диаметр&#x0a;  трубы" Width="100" Binding="{Binding PipeDiameter}"/>
-                <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding ItemLength}"/>
-                <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding ItemTargetAmount}"/>
-                <DataGridTextColumn Header="Статус" Width="150" Binding="{Binding State}"/>
+                <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreationDate}"/>
+                <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ProductBatchNumber}"/>
+                <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding SteelType}"/>
+                <DataGridTextColumn Header="Толщина&#x0a;  стенки" Width="150" Binding="{Binding Thickness}"/>
+                <DataGridTextColumn Header="Диаметр&#x0a;  трубы" Width="100" Binding="{Binding Diameter}"/>
+                <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding PieceLength}"/>
+                <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding PieceQuantity}"/>
+                <DataGridTextColumn Header="Статус" Width="150" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

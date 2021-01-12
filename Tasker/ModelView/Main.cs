@@ -49,7 +49,7 @@ namespace Tasker.ModelView
             });
             FinishTask = new DelegateCommand(() =>
             {
-                TaskResult taskResult = plc.GetCurrentTaskResult();
+                ProductionTask taskResult = plc.GetCurrentTaskResult();
                 taskResult.FinishDate = DateTime.Now;
                 currentTasks.LoadTaskResult(taskResult);                
             });

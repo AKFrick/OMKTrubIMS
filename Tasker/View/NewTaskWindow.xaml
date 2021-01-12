@@ -35,22 +35,22 @@
             </Grid.RowDefinitions>
 
             <Label Content="Номер задания" Grid.Column="0" Grid.Row="0" Margin="10,10,2,2"/>
-            <TextBox Text="{Binding task.Number}" Grid.Column="1" Grid.Row="0" Margin="2,10,10,2"/>
+            <TextBox Text="{Binding task.TaskNumber}" Grid.Column="1" Grid.Row="0" Margin="2,10,10,2"/>
             
             <Label Content="Наименование изделия" Grid.Column="0" Grid.Row="1" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Item}" Grid.Column="1" Grid.Row="1" Margin="2,2,10,2"/>
+            <TextBox Text="{Binding task.Product}" Grid.Column="1" Grid.Row="1" Margin="2,2,10,2"/>
             
             <Label Content="Длина изделия" Grid.Column="0" Grid.Row="2" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.ItemLength}" Grid.Column="1" Grid.Row="2" Margin="2,2,10,2"/>
+            <TextBox Text="{Binding task.PieceLength}" Grid.Column="1" Grid.Row="2" Margin="2,2,10,2"/>
             
             <Label Content="Количество изделий" Grid.Column="0" Grid.Row="3" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.ItemTargetAmount}" Grid.Column="1" Grid.Row="3" Margin="2,2,10,2"/>
+            <TextBox Text="{Binding task.PieceQuantity}" Grid.Column="1" Grid.Row="3" Margin="2,2,10,2"/>
             
             <Label Content="Толщина стенки трубы" Grid.Column="0" Grid.Row="4" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PipeThickness}" Grid.Column="1" Grid.Row="4" Margin="2,2,10,2"/>
+            <TextBox Text="{Binding task.Thickness}" Grid.Column="1" Grid.Row="4" Margin="2,2,10,2"/>
 
             <Label Content="Диаметр трубы" Grid.Column="0" Grid.Row="5" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PipeDiameter}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2"/>
+            <TextBox Text="{Binding task.Dieameter}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2"/>
         </Grid>
 
         <!--Btm content-->

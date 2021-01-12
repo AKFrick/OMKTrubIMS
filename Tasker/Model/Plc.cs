@@ -36,7 +36,7 @@ namespace Tasker.Model
             //    return false;
             //}
         }
-        public TaskResult GetCurrentTaskResult()
+        public ProductionTask GetCurrentTaskResult()
         {
             return opc.GetCurrentTaskResult();
         }

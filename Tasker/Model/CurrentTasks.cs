@@ -51,16 +51,16 @@ namespace Tasker.Model
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
                 IQueryable<ProductionTask> query = from b in db.ProductionTasks
-                                                   where b.State != "Завершено"
+                                                   where b.Status != "s" && b.Status != "e"
                                                    select b;
                 foreach (ProductionTask task in query)
                 {
-                    if (!currentTaskCollection.Any(item => item.Id == task.Id))
+                    if (!currentTaskCollection.Any(item => item.ID == task.ID))
                         currentTaskCollection.Add(task);
                 }
                 currentTaskCollection.ToList().ForEach(task =>
                 {
-                    if (!query.Any(item => item.Id == task.Id))
+                    if (!query.Any(item => item.ID == task.ID))
                         currentTaskCollection.Remove(task);
                 });
             }
@@ -76,36 +76,24 @@ namespace Tasker.Model
             return task;
 
         }
-        public void LoadTaskResult(TaskResult taskResult)
+        public void LoadTaskResult(ProductionTask taskResult)
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
-                db.TaskResults.Add(taskResult);
+                var result = db.ProductionTasks.SingleOrDefault(b => b.ID == taskResult.ID);
+
+                result.PiceAmount = taskResult.PiceAmount;
+                result.Operator = taskResult.Operator;
+                result.FinishDate = taskResult.FinishDate;
+                result.StartDate = taskResult.StartDate;
+
+                result.Status = "s";
+
                 db.SaveChanges();
-            }
-            UpdateTaskState(taskResult.ProductionTask_Id, "Завершено");
+            }            
             RefreshTaskList();
 
-        }
-        void UpdateTaskState(int? id, string state)
-        {
-            using (Trubodetal189Entities db = new Trubodetal189Entities())
-            {
-                IQueryable<ProductionTask> query = from b in db.ProductionTasks select b;
-                foreach (ProductionTask task in query)
-                {
-                    if (task.Id == id)
-                    {                        
-                        task.State = state;
-                        break;
-                    }
-                }
-                db.SaveChanges();
-
-
-
-            }
-        }
+        }               
 
     }
 }

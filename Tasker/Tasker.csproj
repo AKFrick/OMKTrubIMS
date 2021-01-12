@@ -181,36 +181,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ASUTP.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
+    <Compile Include="LocalDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>LocalDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.cs">
+    <Compile Include="LocalDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>LocalDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Designer.cs">
+    <Compile Include="LocalDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>LocalDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="ModelView\NewTask.cs" />
     <Compile Include="ModelView\ErrorScroller.cs" />
     <Compile Include="ModelView\Main.cs" />
+    <Compile Include="Model\CheckForNewTasks.cs" />
     <Compile Include="Model\CurrentTasks.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\Opc.cs" />
     <Compile Include="Model\Plc.cs" />
     <Compile Include="ProductionTask.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>LocalDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Task.cs">
       <DependentUpon>ASUTP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TaskResult.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="View\NewTaskWindow.xaml.cs">
       <DependentUpon>NewTaskWindow.xaml</DependentUpon>
@@ -264,10 +262,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <EntityDeploy Include="ASUTP.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ASUTP.Designer.cs</LastGenOutput>
@@ -275,8 +269,12 @@
     <None Include="ASUTP.edmx.diagram">
       <DependentUpon>ASUTP.edmx</DependentUpon>
     </None>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <EntityDeploy Include="LocalDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LocalDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LocalDb.edmx.diagram">
+      <DependentUpon>LocalDb.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -306,15 +304,15 @@
       <DependentUpon>ASUTP.edmx</DependentUpon>
       <LastGenOutput>ASUTP.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.Context.tt">
+    <Content Include="LocalDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>LocalDb.edmx</DependentUpon>
+      <LastGenOutput>LocalDb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="LocalDb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>LocalDb.edmx</DependentUpon>
+      <LastGenOutput>LocalDb.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
