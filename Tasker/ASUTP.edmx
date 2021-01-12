@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ASUTPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="TaskPosition" Type="int" />
+          <Property Name="Product" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductBatchNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="StartSerialNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProductsAmount" Type="int" />
+          <Property Name="PipeBatchNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="PipeNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="Heat" Type="nvarchar" MaxLength="25" />
+          <Property Name="SteelType" Type="nvarchar" MaxLength="25" />
+          <Property Name="Diameter" Type="int" />
+          <Property Name="Thickness" Type="int" />
+          <Property Name="PieceLength" Type="int" />
+          <Property Name="PieceQuantity" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="FinishDate" Type="datetime" />
+          <Property Name="Source" Type="nvarchar" MaxLength="30" />
+          <Property Name="PiceAmount" Type="int" />
+          <Property Name="Operator" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="1" />
+          <Property Name="PieceLength1" Type="int" />
+          <Property Name="PieceQuantity1" Type="int" />
+          <Property Name="Labeling1Piece1" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece1" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength2" Type="int" />
+          <Property Name="PieceQuantity2" Type="int" />
+          <Property Name="Labeling1Piece2" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece2" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength3" Type="int" />
+          <Property Name="PieceQuantity3" Type="int" />
+          <Property Name="Labeling1Piece3" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece3" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength4" Type="int" />
+          <Property Name="PieceQuantity4" Type="int" />
+          <Property Name="Labeling1Piece4" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece4" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength5" Type="int" />
+          <Property Name="PieceQuantity5" Type="int" />
+          <Property Name="Labeling1Piece5" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece5" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength6" Type="int" />
+          <Property Name="PieceQuantity6" Type="int" />
+          <Property Name="Labeling1Piece6" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece6" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength7" Type="int" />
+          <Property Name="PieceQuantity7" Type="int" />
+          <Property Name="Labeling1Piece7" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece7" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength8" Type="int" />
+          <Property Name="PieceQuantity8" Type="int" />
+          <Property Name="Labeling1Piece8" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece8" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength9" Type="int" />
+          <Property Name="PieceQuantity9" Type="int" />
+          <Property Name="Labeling1Piece9" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece9" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength10" Type="int" />
+          <Property Name="PieceQuantity10" Type="int" />
+          <Property Name="Labeling1Piece10" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece10" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength11" Type="int" />
+          <Property Name="PieceQuantity11" Type="int" />
+          <Property Name="Labeling1Piece11" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece11" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength12" Type="int" />
+          <Property Name="PieceQuantity12" Type="int" />
+          <Property Name="Labeling1Piece12" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece12" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength13" Type="int" />
+          <Property Name="PieceQuantity13" Type="int" />
+          <Property Name="Labeling1Piece13" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece13" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength14" Type="int" />
+          <Property Name="PieceQuantity14" Type="int" />
+          <Property Name="Labeling1Piece14" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece14" Type="nvarchar" MaxLength="23" />
+          <Property Name="PieceLength15" Type="int" />
+          <Property Name="PieceQuantity15" Type="int" />
+          <Property Name="Labeling1Piece15" Type="nvarchar" MaxLength="23" />
+          <Property Name="Labeling2Piece15" Type="nvarchar" MaxLength="23" />
+        </EntityType>
+        <EntityContainer Name="ASUTPModelStoreContainer">
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ASUTPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TaskPosition" Type="Int32" />
+          <Property Name="Product" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductBatchNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="StartSerialNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProductsAmount" Type="Int32" />
+          <Property Name="PipeBatchNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PipeNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Heat" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SteelType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Diameter" Type="Int32" />
+          <Property Name="Thickness" Type="Int32" />
+          <Property Name="PieceLength" Type="Int32" />
+          <Property Name="PieceQuantity" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="Source" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PiceAmount" Type="Int32" />
+          <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength1" Type="Int32" />
+          <Property Name="PieceQuantity1" Type="Int32" />
+          <Property Name="Labeling1Piece1" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece1" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength2" Type="Int32" />
+          <Property Name="PieceQuantity2" Type="Int32" />
+          <Property Name="Labeling1Piece2" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece2" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength3" Type="Int32" />
+          <Property Name="PieceQuantity3" Type="Int32" />
+          <Property Name="Labeling1Piece3" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece3" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength4" Type="Int32" />
+          <Property Name="PieceQuantity4" Type="Int32" />
+          <Property Name="Labeling1Piece4" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece4" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength5" Type="Int32" />
+          <Property Name="PieceQuantity5" Type="Int32" />
+          <Property Name="Labeling1Piece5" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece5" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength6" Type="Int32" />
+          <Property Name="PieceQuantity6" Type="Int32" />
+          <Property Name="Labeling1Piece6" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece6" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength7" Type="Int32" />
+          <Property Name="PieceQuantity7" Type="Int32" />
+          <Property Name="Labeling1Piece7" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece7" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength8" Type="Int32" />
+          <Property Name="PieceQuantity8" Type="Int32" />
+          <Property Name="Labeling1Piece8" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece8" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength9" Type="Int32" />
+          <Property Name="PieceQuantity9" Type="Int32" />
+          <Property Name="Labeling1Piece9" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece9" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength10" Type="Int32" />
+          <Property Name="PieceQuantity10" Type="Int32" />
+          <Property Name="Labeling1Piece10" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece10" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength11" Type="Int32" />
+          <Property Name="PieceQuantity11" Type="Int32" />
+          <Property Name="Labeling1Piece11" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece11" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength12" Type="Int32" />
+          <Property Name="PieceQuantity12" Type="Int32" />
+          <Property Name="Labeling1Piece12" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece12" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength13" Type="Int32" />
+          <Property Name="PieceQuantity13" Type="Int32" />
+          <Property Name="Labeling1Piece13" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece13" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength14" Type="Int32" />
+          <Property Name="PieceQuantity14" Type="Int32" />
+          <Property Name="Labeling1Piece14" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece14" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PieceLength15" Type="Int32" />
+          <Property Name="PieceQuantity15" Type="Int32" />
+          <Property Name="Labeling1Piece15" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Labeling2Piece15" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="ASUTPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ASUTPModelStoreContainer" CdmEntityContainer="ASUTPEntities">
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="ASUTPModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TaskNumber" ColumnName="TaskNumber" />
+                <ScalarProperty Name="TaskPosition" ColumnName="TaskPosition" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ProductBatchNumber" ColumnName="ProductBatchNumber" />
+                <ScalarProperty Name="StartSerialNumber" ColumnName="StartSerialNumber" />
+                <ScalarProperty Name="ProductsAmount" ColumnName="ProductsAmount" />
+                <ScalarProperty Name="PipeBatchNumber" ColumnName="PipeBatchNumber" />
+                <ScalarProperty Name="PipeNumber" ColumnName="PipeNumber" />
+                <ScalarProperty Name="Heat" ColumnName="Heat" />
+                <ScalarProperty Name="SteelType" ColumnName="SteelType" />
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="PieceLength" ColumnName="PieceLength" />
+                <ScalarProperty Name="PieceQuantity" ColumnName="PieceQuantity" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="PiceAmount" ColumnName="PiceAmount" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PieceLength1" ColumnName="PieceLength1" />
+                <ScalarProperty Name="PieceQuantity1" ColumnName="PieceQuantity1" />
+                <ScalarProperty Name="Labeling1Piece1" ColumnName="Labeling1Piece1" />
+                <ScalarProperty Name="Labeling2Piece1" ColumnName="Labeling2Piece1" />
+                <ScalarProperty Name="PieceLength2" ColumnName="PieceLength2" />
+                <ScalarProperty Name="PieceQuantity2" ColumnName="PieceQuantity2" />
+                <ScalarProperty Name="Labeling1Piece2" ColumnName="Labeling1Piece2" />
+                <ScalarProperty Name="Labeling2Piece2" ColumnName="Labeling2Piece2" />
+                <ScalarProperty Name="PieceLength3" ColumnName="PieceLength3" />
+                <ScalarProperty Name="PieceQuantity3" ColumnName="PieceQuantity3" />
+                <ScalarProperty Name="Labeling1Piece3" ColumnName="Labeling1Piece3" />
+                <ScalarProperty Name="Labeling2Piece3" ColumnName="Labeling2Piece3" />
+                <ScalarProperty Name="PieceLength4" ColumnName="PieceLength4" />
+                <ScalarProperty Name="PieceQuantity4" ColumnName="PieceQuantity4" />
+                <ScalarProperty Name="Labeling1Piece4" ColumnName="Labeling1Piece4" />
+                <ScalarProperty Name="Labeling2Piece4" ColumnName="Labeling2Piece4" />
+                <ScalarProperty Name="PieceLength5" ColumnName="PieceLength5" />
+                <ScalarProperty Name="PieceQuantity5" ColumnName="PieceQuantity5" />
+                <ScalarProperty Name="Labeling1Piece5" ColumnName="Labeling1Piece5" />
+                <ScalarProperty Name="Labeling2Piece5" ColumnName="Labeling2Piece5" />
+                <ScalarProperty Name="PieceLength6" ColumnName="PieceLength6" />
+                <ScalarProperty Name="PieceQuantity6" ColumnName="PieceQuantity6" />
+                <ScalarProperty Name="Labeling1Piece6" ColumnName="Labeling1Piece6" />
+                <ScalarProperty Name="Labeling2Piece6" ColumnName="Labeling2Piece6" />
+                <ScalarProperty Name="PieceLength7" ColumnName="PieceLength7" />
+                <ScalarProperty Name="PieceQuantity7" ColumnName="PieceQuantity7" />
+                <ScalarProperty Name="Labeling1Piece7" ColumnName="Labeling1Piece7" />
+                <ScalarProperty Name="Labeling2Piece7" ColumnName="Labeling2Piece7" />
+                <ScalarProperty Name="PieceLength8" ColumnName="PieceLength8" />
+                <ScalarProperty Name="PieceQuantity8" ColumnName="PieceQuantity8" />
+                <ScalarProperty Name="Labeling1Piece8" ColumnName="Labeling1Piece8" />
+                <ScalarProperty Name="Labeling2Piece8" ColumnName="Labeling2Piece8" />
+                <ScalarProperty Name="PieceLength9" ColumnName="PieceLength9" />
+                <ScalarProperty Name="PieceQuantity9" ColumnName="PieceQuantity9" />
+                <ScalarProperty Name="Labeling1Piece9" ColumnName="Labeling1Piece9" />
+                <ScalarProperty Name="Labeling2Piece9" ColumnName="Labeling2Piece9" />
+                <ScalarProperty Name="PieceLength10" ColumnName="PieceLength10" />
+                <ScalarProperty Name="PieceQuantity10" ColumnName="PieceQuantity10" />
+                <ScalarProperty Name="Labeling1Piece10" ColumnName="Labeling1Piece10" />
+                <ScalarProperty Name="Labeling2Piece10" ColumnName="Labeling2Piece10" />
+                <ScalarProperty Name="PieceLength11" ColumnName="PieceLength11" />
+                <ScalarProperty Name="PieceQuantity11" ColumnName="PieceQuantity11" />
+                <ScalarProperty Name="Labeling1Piece11" ColumnName="Labeling1Piece11" />
+                <ScalarProperty Name="Labeling2Piece11" ColumnName="Labeling2Piece11" />
+                <ScalarProperty Name="PieceLength12" ColumnName="PieceLength12" />
+                <ScalarProperty Name="PieceQuantity12" ColumnName="PieceQuantity12" />
+                <ScalarProperty Name="Labeling1Piece12" ColumnName="Labeling1Piece12" />
+                <ScalarProperty Name="Labeling2Piece12" ColumnName="Labeling2Piece12" />
+                <ScalarProperty Name="PieceLength13" ColumnName="PieceLength13" />
+                <ScalarProperty Name="PieceQuantity13" ColumnName="PieceQuantity13" />
+                <ScalarProperty Name="Labeling1Piece13" ColumnName="Labeling1Piece13" />
+                <ScalarProperty Name="Labeling2Piece13" ColumnName="Labeling2Piece13" />
+                <ScalarProperty Name="PieceLength14" ColumnName="PieceLength14" />
+                <ScalarProperty Name="PieceQuantity14" ColumnName="PieceQuantity14" />
+                <ScalarProperty Name="Labeling1Piece14" ColumnName="Labeling1Piece14" />
+                <ScalarProperty Name="Labeling2Piece14" ColumnName="Labeling2Piece14" />
+                <ScalarProperty Name="PieceLength15" ColumnName="PieceLength15" />
+                <ScalarProperty Name="PieceQuantity15" ColumnName="PieceQuantity15" />
+                <ScalarProperty Name="Labeling1Piece15" ColumnName="Labeling1Piece15" />
+                <ScalarProperty Name="Labeling2Piece15" ColumnName="Labeling2Piece15" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

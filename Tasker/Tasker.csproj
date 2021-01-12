@@ -166,6 +166,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ASUTP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ASUTP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ASUTP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ASUTP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ASUTP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ASUTP.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +205,9 @@
     <Compile Include="Model\Plc.cs" />
     <Compile Include="ProductionTask.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Task.cs">
+      <DependentUpon>ASUTP.tt</DependentUpon>
     </Compile>
     <Compile Include="TaskResult.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -250,6 +268,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="ASUTP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ASUTP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ASUTP.edmx.diagram">
+      <DependentUpon>ASUTP.edmx</DependentUpon>
+    </None>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -271,6 +296,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ASUTP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ASUTP.edmx</DependentUpon>
+      <LastGenOutput>ASUTP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ASUTP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ASUTP.edmx</DependentUpon>
+      <LastGenOutput>ASUTP.cs</LastGenOutput>
+    </Content>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
