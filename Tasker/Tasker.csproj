@@ -204,6 +204,7 @@
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\Opc.cs" />
     <Compile Include="Model\Plc.cs" />
+    <Compile Include="Model\ProductTaskExtended.cs" />
     <Compile Include="ProductionTask.cs">
       <DependentUpon>LocalDb.tt</DependentUpon>
     </Compile>

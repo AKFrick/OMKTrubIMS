@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="TaskNumber" Type="nvarchar" MaxLength="15" />
           <Property Name="TaskPosition" Type="int" />
           <Property Name="Product" Type="nvarchar" MaxLength="150" />
@@ -104,7 +104,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="TaskNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="TaskPosition" Type="Int32" />
           <Property Name="Product" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />

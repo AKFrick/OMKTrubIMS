@@ -19,6 +19,8 @@ namespace Tasker.ModelView
             errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
             // Работа с SQL
             currentTasks = new CurrentTasks(errorScroller);
+            checkForNewTasks = new CheckForNewTasks(errorScroller);
+
             TaskList = new ObservableCollection<ProductionTask>(currentTasks.TaskList);
             ((INotifyCollectionChanged)currentTasks.TaskList).CollectionChanged += (s, a) =>
             {
@@ -57,6 +59,7 @@ namespace Tasker.ModelView
         public ProductionTask SelectedTask { get; set; }
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
+        CheckForNewTasks checkForNewTasks;
         Plc plc;
         public DelegateCommand OpenNewTaskWindow { get; private set; }
         public DelegateCommand StartTask { get; private set; }
