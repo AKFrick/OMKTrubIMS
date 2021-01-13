@@ -85,8 +85,8 @@ namespace Tasker.Model
                             Status = task.Status
                         };
                         local.ProductionTasks.Add(productionTask);
-                        local.SaveChanges();
                     }
+                    local.SaveChanges();
                 }
                 
             }
