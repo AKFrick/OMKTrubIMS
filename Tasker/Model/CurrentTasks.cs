@@ -51,7 +51,7 @@ namespace Tasker.Model
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
                 IQueryable<ProductionTask> query = from b in db.ProductionTasks
-                                                   where b.Status != "s" && b.Status != "e"
+                                                   where b.Status != "s" && b.Status != "e" && b.Status != "f"
                                                    select b;
                 foreach (ProductionTask task in query)
                 {
@@ -69,6 +69,8 @@ namespace Tasker.Model
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
+                int MinID = db.ProductionTasks.Min(e => e.ID);                
+                task.ID = --MinID;
                 db.ProductionTasks.Add(task);
                 db.SaveChanges();                
             }

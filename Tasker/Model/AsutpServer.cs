@@ -58,7 +58,7 @@ namespace Tasker.Model
                 using (ASUTPEntities asutp = new ASUTPEntities() )
                 {
                     IQueryable<Tasker.Task> query = from b in asutp.Tasks
-                                                       where b.ID > LastID
+                                                       where b.ID > LastID && b.Status == "0"
                                                        select b;
 
                     foreach (Task task in query)
@@ -70,12 +70,15 @@ namespace Tasker.Model
                     asutp.SaveChanges();
                     foreach (ProductionTask productionTask in currentTasks)
                     {
-                        
-                        Task task = asutp.Tasks.SingleOrDefault(t => t.ID == productionTask.ID);
-                        if (task.Status != "1")
+                        try
                         {
-                            productionTask.Status = task.Status;                        
+                            Task task = asutp.Tasks.Single(t => t.ID == productionTask.ID);
+                            if (task.Status != "1")
+                            {
+                                productionTask.Status = task.Status;
+                            }
                         }
+                        catch { }
                     }
                     local.SaveChanges();                    
                 }
@@ -102,7 +105,8 @@ namespace Tasker.Model
                         }
                         catch (InvalidOperationException)
                         {
-                            Task newTask = 
+                            task.Status = "s";
+                            asutp.Tasks.Add(new TaskExtended(task).Task);                            
                         }
                     }
 
