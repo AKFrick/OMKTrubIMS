@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tasker.View"
         mc:Ignorable="d"
+        Icon="image\promatisLogo.png"
         Title="Создание нового задания" Height="600" Width="546">
     <Grid>
         <Grid.RowDefinitions>
