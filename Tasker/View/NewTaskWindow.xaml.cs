@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tasker.ModelView;
+using System.Text.RegularExpressions;
 
 namespace Tasker.View
 {
@@ -25,6 +26,15 @@ namespace Tasker.View
             DataContext = newTask;
             newTask.TaskCreated += Close;
             InitializeComponent();
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void ComboBox_Selected(object sender, RoutedEventArgs e)
+        {
+            (DataContext as NewTask).task.Diameter = Int32.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);           
         }
     }
 }

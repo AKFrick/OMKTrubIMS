@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tasker.View"
         mc:Ignorable="d"
-        Title="Создание нового задания" Height="374" Width="546">
+        Title="Создание нового задания" Height="600" Width="546">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,26 +31,86 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
+                
+                
+                
+                
+                
+                
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Label Content="Номер задания" Grid.Column="0" Grid.Row="0" Margin="10,10,2,2"/>
-            <TextBox Text="{Binding task.TaskNumber}" Grid.Column="1" Grid.Row="0" Margin="2,10,10,2"/>
+            <TextBox Text="{Binding task.TaskNumber}" Grid.Column="1" Grid.Row="0" Margin="2,10,10,2" MaxLength="15"/>
             
             <Label Content="Наименование изделия" Grid.Column="0" Grid.Row="1" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Product}" Grid.Column="1" Grid.Row="1" Margin="2,2,10,2"/>
-            
-            <Label Content="Длина изделия" Grid.Column="0" Grid.Row="2" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PieceLength}" Grid.Column="1" Grid.Row="2" Margin="2,2,10,2"/>
-            
-            <Label Content="Количество изделий" Grid.Column="0" Grid.Row="3" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PieceQuantity}" Grid.Column="1" Grid.Row="3" Margin="2,2,10,2"/>
-            
-            <Label Content="Толщина стенки трубы" Grid.Column="0" Grid.Row="4" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Thickness}" Grid.Column="1" Grid.Row="4" Margin="2,2,10,2"/>
+            <TextBox Text="{Binding task.Product}" Grid.Column="1" Grid.Row="1" Margin="2,2,10,2" MaxLength="150"/>
 
-            <Label Content="Диаметр трубы" Grid.Column="0" Grid.Row="5" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Diameter}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2"/>
+            <Label Content="Партия изделия" Grid.Column="0" Grid.Row="2" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.ProductBatchNumber}" Grid.Column="1" Grid.Row="2" Margin="2,2,10,2" MaxLength="25"/>
+
+            <Label Content="Партия трубы" Grid.Column="0" Grid.Row="3" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PipeBatchNumber}" Grid.Column="1" Grid.Row="3" Margin="2,2,10,2" MaxLength="25"/>
+
+            <Label Content="Номер трубы" Grid.Column="0" Grid.Row="4" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="4" Margin="2,2,10,2" MaxLength="15"/>
+
+            <Label Content="Плавка" Grid.Column="0" Grid.Row="5" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2" MaxLength="25"/>
+
+            <Label Content="Сталь" Grid.Column="0" Grid.Row="6" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="6" Margin="2,2,10,2" MaxLength="25"/>
+
+            <Label Content="Данные для выполнения задания" Grid.Column="0" Grid.Row="7" Margin="10,2,2,2" FontSize="15"/>
+
+            <Label Content="Диаметр трубы" Grid.Column="0" Grid.Row="8" Margin="10,2,2,2"/>
+
+            <ComboBox Name="phonesList" Height="30" VerticalAlignment="Top" Grid.Row="8" Grid.Column="1" SelectionChanged="ComboBox_Selected" >
+                <TextBlock>45</TextBlock>
+                <TextBlock>57</TextBlock>
+                <TextBlock>60</TextBlock>
+                <TextBlock>70</TextBlock>
+                <TextBlock>76</TextBlock>
+                <TextBlock>83</TextBlock>
+                <TextBlock>89</TextBlock>
+                <TextBlock>102</TextBlock>
+                <TextBlock>114</TextBlock>
+                <TextBlock>121</TextBlock>
+                <TextBlock>127</TextBlock>
+                <TextBlock>133</TextBlock>
+                <TextBlock>159</TextBlock>
+                <TextBlock>168</TextBlock>
+                <TextBlock>194</TextBlock>
+                <TextBlock>219</TextBlock>
+                <TextBlock>245</TextBlock>
+                <TextBlock>273</TextBlock>
+                <TextBlock>325</TextBlock>
+                <TextBlock>377</TextBlock>
+                <TextBlock>426</TextBlock>
+            </ComboBox>
+                       
+            <Label Content="Толщина стенки трубы" Grid.Column="0" Grid.Row="9" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Thickness}" Grid.Column="1" Grid.Row="9" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
+
+            <Label Content="Длина изделия" Grid.Column="0" Grid.Row="10" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PieceLength}" Grid.Column="1" Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+            
+            <Label Content="Количество изделий" Grid.Column="0" Grid.Row="11" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PieceQuantity}" Grid.Column="1" Grid.Row="11" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+            <Label Content="Начальный серийный номер" Grid.Column="0" Grid.Row="12" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.StartSerialNumber}" Grid.Column="1" Grid.Row="12" Margin="2,2,10,2" MaxLength="15" />
+
+            <Label Content="Текст маркировки" Grid.Column="0" Grid.Row="13" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Labeling1Piece1}" Grid.Column="1" Grid.Row="13" Margin="2,2,10,2" MaxLength="25" />
+
         </Grid>
 
         <!--Btm content-->
@@ -60,8 +120,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding Create}" Grid.Column="1" Margin="5" Width="80" Height="40" Content="Создать" />
-            <Button Grid.Column="2" Margin="5, 5, 10, 5" Width="80" Height="40" Content="Отменить"/>
+            <Button Command="{Binding Create}" Grid.Column="1" Margin="5" Width="160" Height="40" Content="Создать" />
         </Grid>
 
     </Grid>
