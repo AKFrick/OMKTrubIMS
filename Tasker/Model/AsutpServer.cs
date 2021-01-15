@@ -64,32 +64,8 @@ namespace Tasker.Model
                     foreach (Task task in query)
                     {
                         task.Status = "1";
-                        ProductionTask productionTask = new ProductionTask()
-                        {
-                            ID = task.ID,
-                            TaskNumber = task.TaskNumber,
-                            TaskPosition = task.TaskPosition,
-                            Product = task.Product,
-                            ProductBatchNumber = task.ProductBatchNumber,
-                            StartSerialNumber = task.StartSerialNumber,
-                            ProductsAmount = task.ProductsAmount,
-                            PipeBatchNumber = task.PipeBatchNumber,
-                            PipeNumber = task.PipeNumber,
-                            Heat = task.Heat,
-                            SteelType = task.SteelType,
-                            Diameter = task.Diameter,
-                            Thickness = task.Thickness,
-                            PieceLength = task.PieceLength,
-                            PieceQuantity = task.PieceQuantity,
-                            CreationDate = task.CreationDate,
-                            StartDate = task.StartDate,
-                            FinishDate = task.FinishDate,
-                            Source = task.Source,
-                            PiceAmount = task.PiceAmount,
-                            Operator = task.Operator,
-                            Status = task.Status
-                        };
-                        local.ProductionTasks.Add(productionTask);
+                        ProductionTaskExtended productionTask = new ProductionTaskExtended(task);
+                        local.ProductionTasks.Add(productionTask.Task);
                     }
                     asutp.SaveChanges();
                     foreach (ProductionTask productionTask in currentTasks)
