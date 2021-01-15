@@ -199,11 +199,12 @@
     <Compile Include="ModelView\NewTask.cs" />
     <Compile Include="ModelView\ErrorScroller.cs" />
     <Compile Include="ModelView\Main.cs" />
-    <Compile Include="Model\CheckForNewTasks.cs" />
+    <Compile Include="Model\AsutpServer.cs" />
     <Compile Include="Model\CurrentTasks.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\Opc.cs" />
     <Compile Include="Model\Plc.cs" />
+    <Compile Include="Model\ProductionTaskExtended.cs" />
     <Compile Include="Model\ProductTaskExtended.cs" />
     <Compile Include="ProductionTask.cs">
       <DependentUpon>LocalDb.tt</DependentUpon>

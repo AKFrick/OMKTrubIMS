@@ -87,7 +87,7 @@ namespace Tasker.Model
                 result.FinishDate = taskResult.FinishDate;
                 result.StartDate = taskResult.StartDate;
 
-                result.Status = "s";
+                result.Status = "f";
 
                 db.SaveChanges();
             }            

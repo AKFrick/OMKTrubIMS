@@ -10,19 +10,19 @@ using System.Configuration;
 
 namespace Tasker.Model
 {
-    public class CheckForNewTasks
+    public class AsutpServer
     {
         Thread trackingThread;
         ErrorScroller errorScroller;
         ErrorItem connectionError = new ErrorItem("Ошибка подключения к серверу АСУТП");
 
-        public CheckForNewTasks()
+        public AsutpServer()
         {
             trackingThread = new Thread(threadTask) { IsBackground = true };
             trackingThread.Start();
 
         }
-        public CheckForNewTasks(ErrorScroller errorScroller) : this()
+        public AsutpServer(ErrorScroller errorScroller) : this()
         {
             this.errorScroller = errorScroller;
         }
@@ -51,6 +51,10 @@ namespace Tasker.Model
             {
                 int LastID = local.ProductionTasks.Max(p => p.ID);
 
+                IQueryable<ProductionTask> currentTasks = from b in local.ProductionTasks
+                                                          where b.Status == "1"
+                                                          select b;
+
                 using (ASUTPEntities asutp = new ASUTPEntities() )
                 {
                     IQueryable<Tasker.Task> query = from b in asutp.Tasks
@@ -59,6 +63,7 @@ namespace Tasker.Model
 
                     foreach (Task task in query)
                     {
+                        task.Status = "1";
                         ProductionTask productionTask = new ProductionTask()
                         {
                             ID = task.ID,
@@ -86,7 +91,17 @@ namespace Tasker.Model
                         };
                         local.ProductionTasks.Add(productionTask);
                     }
-                    local.SaveChanges();
+                    asutp.SaveChanges();
+                    foreach (ProductionTask productionTask in currentTasks)
+                    {
+                        
+                        Task task = asutp.Tasks.SingleOrDefault(t => t.ID == productionTask.ID);
+                        if (task.Status != "1")
+                        {
+                            productionTask.Status = task.Status;                        
+                        }
+                    }
+                    local.SaveChanges();                    
                 }
                 
             }
@@ -111,7 +126,7 @@ namespace Tasker.Model
                         }
                         catch (InvalidOperationException)
                         {
-
+                            Task newTask = 
                         }
                     }
 
