@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ASUTPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CuttingСonveyorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Tasks">
           <Key>
             <PropertyRef Name="ID" />
@@ -92,14 +92,14 @@
           <Property Name="Labeling1Piece15" Type="nvarchar" MaxLength="23" />
           <Property Name="Labeling2Piece15" Type="nvarchar" MaxLength="23" />
         </EntityType>
-        <EntityContainer Name="ASUTPModelStoreContainer">
+        <EntityContainer Name="CuttingСonveyorModelStoreContainer">
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ASUTPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CuttingСonveyorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="ID" />
@@ -195,9 +195,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ASUTPModelStoreContainer" CdmEntityContainer="ASUTPEntities">
+        <EntityContainerMapping StorageEntityContainer="CuttingСonveyorModelStoreContainer" CdmEntityContainer="ASUTPEntities">
           <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="ASUTPModel.Task">
+            <EntityTypeMapping TypeName="CuttingСonveyorModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TaskNumber" ColumnName="TaskNumber" />

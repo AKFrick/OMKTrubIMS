@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c730d4183bef48198922dbda0ea5f8f2" Name="Diagram1" ZoomLevel="109">
-        <EntityTypeShape EntityType="ASUTPModel.Task" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="4a65636dc5454f49958b748b87e6ffef" Name="Diagram1" ZoomLevel="25">
+        <EntityTypeShape EntityType="CuttingСonveyorModel.Task" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

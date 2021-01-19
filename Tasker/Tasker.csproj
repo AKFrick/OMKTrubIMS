@@ -266,6 +266,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="LocalDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LocalDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="ASUTP.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ASUTP.Designer.cs</LastGenOutput>
@@ -273,10 +277,6 @@
     <None Include="ASUTP.edmx.diagram">
       <DependentUpon>ASUTP.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="LocalDb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LocalDb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="LocalDb.edmx.diagram">
       <DependentUpon>LocalDb.edmx</DependentUpon>
     </None>

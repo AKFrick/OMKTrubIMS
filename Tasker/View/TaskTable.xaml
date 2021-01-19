@@ -47,8 +47,8 @@
                 <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding SteelType}"/>
                 <DataGridTextColumn Header="Толщина&#x0a;  стенки" Width="150" Binding="{Binding Thickness}"/>
                 <DataGridTextColumn Header="Диаметр&#x0a;  трубы" Width="100" Binding="{Binding Diameter}"/>
-                <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding PieceLength}"/>
-                <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding PieceQuantity}"/>
+                <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding PieceLength1}"/>
+                <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding PieceQuantity1}"/>
                 <DataGridTextColumn Header="Статус" Width="150" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
