@@ -206,7 +206,6 @@
     <Compile Include="Model\ParsedSerialLabel.cs" />
     <Compile Include="Model\Plc.cs" />
     <Compile Include="Model\ProductionTaskExtended.cs" />
-    <Compile Include="Model\ProductTaskExtended.cs" />
     <Compile Include="Model\TaskExtended.cs" />
     <Compile Include="ProductionTask.cs">
       <DependentUpon>LocalDb.tt</DependentUpon>

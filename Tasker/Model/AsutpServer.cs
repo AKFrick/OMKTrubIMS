@@ -51,9 +51,7 @@ namespace Tasker.Model
             {
                 int LastID = local.ProductionTasks.Max(p => p.ID);
 
-                IQueryable<ProductionTask> currentTasks = from b in local.ProductionTasks
-                                                          where b.Status == "1"
-                                                          select b;
+
 
                 using (ASUTPEntities asutp = new ASUTPEntities() )
                 {
@@ -65,9 +63,14 @@ namespace Tasker.Model
                     {
                         task.Status = "1";
                         ProductionTaskExtended productionTask = new ProductionTaskExtended(task);
+                        Log.logThis($"Считали идентификатор: {task.ID}");
                         local.ProductionTasks.Add(productionTask.Task);
                     }
                     asutp.SaveChanges();
+
+                    IQueryable<ProductionTask> currentTasks = from b in local.ProductionTasks
+                                                              where b.Status == "1"
+                                                              select b;
                     foreach (ProductionTask productionTask in currentTasks)
                     {
                         try
@@ -106,7 +109,13 @@ namespace Tasker.Model
                         catch (InvalidOperationException)
                         {
                             task.Status = "s";
-                            asutp.Tasks.Add(new TaskExtended(task).Task);                            
+                            try
+                            {
+                                asutp.Tasks.Add(new TaskExtended(task).Task);
+                            }   catch(Exception e)
+                            {
+                                Log.logThis(e.Message);
+                            }
                         }
                     }
 

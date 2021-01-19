@@ -14,7 +14,8 @@ namespace Tasker.Model
             Task = new Task()
             {
                 CreationDate = prodTask.CreationDate,
-                Diameter = prodTask.Diameter
+                Diameter = prodTask.Diameter,
+                Status = prodTask.Status
             };
         }
     }
