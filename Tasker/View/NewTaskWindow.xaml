@@ -64,10 +64,10 @@
             <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="4" Margin="2,2,10,2" MaxLength="15"/>
 
             <Label Content="Плавка" Grid.Column="0" Grid.Row="5" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2" MaxLength="25"/>
+            <TextBox Text="{Binding task.Heat}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2" MaxLength="25"/>
 
             <Label Content="Сталь" Grid.Column="0" Grid.Row="6" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="6" Margin="2,2,10,2" MaxLength="25"/>
+            <TextBox Text="{Binding task.SteelType}" Grid.Column="1" Grid.Row="6" Margin="2,2,10,2" MaxLength="25"/>
 
             <Label Content="Данные для выполнения задания" Grid.Column="0" Grid.Row="7" Margin="10,2,2,2" FontSize="15"/>
 
@@ -101,10 +101,10 @@
             <TextBox Text="{Binding task.Thickness}" Grid.Column="1" Grid.Row="9" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
 
             <Label Content="Длина изделия" Grid.Column="0" Grid.Row="10" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PieceLength}" Grid.Column="1" Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+            <TextBox Text="{Binding task.PieceLength1}" Grid.Column="1" Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
             
             <Label Content="Количество изделий" Grid.Column="0" Grid.Row="11" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PieceQuantity}" Grid.Column="1" Grid.Row="11" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+            <TextBox Text="{Binding task.PieceQuantity1}" Grid.Column="1" Grid.Row="11" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
 
             <Label Content="Начальный серийный номер" Grid.Column="0" Grid.Row="12" Margin="10,2,2,2"/>
             <TextBox Text="{Binding task.StartSerialNumber}" Grid.Column="1" Grid.Row="12" Margin="2,2,10,2" MaxLength="15" />

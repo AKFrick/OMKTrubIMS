@@ -26,8 +26,11 @@ namespace Tasker.Model
                                         (string)task.TaskNumber,
                                         (Int16)task.Diameter,
                                         (Int16)task.Thickness,
-                                        (float)task.PieceLength,
-                                        (Int16)task.PieceQuantity    
+                                        (float)task.PieceLength1,
+                                        (Int16)task.PieceQuantity1,
+                                        (string)task.StartSerialNumber,
+                                        (string)task.Labeling1Piece1,
+                                        (string)task.Labeling2Piece1
                                         );
             }
         }
