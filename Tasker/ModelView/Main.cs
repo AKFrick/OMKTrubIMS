@@ -46,7 +46,7 @@ namespace Tasker.ModelView
             });
             StartTask = new DelegateCommand(() =>
             {
-                plc.SendTask(SelectedTask);
+                plc.SendTask(new ProductionTaskExtended(SelectedTask));
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
             FinishTask = new DelegateCommand(() =>

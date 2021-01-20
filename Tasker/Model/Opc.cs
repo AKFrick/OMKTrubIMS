@@ -14,7 +14,7 @@ namespace Tasker.Model
         /// <summary>
         /// отправить в ПЛК задание
         /// </summary>
-        public void SendTask(ProductionTask task)
+        public void SendTask(ProductionTaskExtended task)
         {            
             using (OpcClient client = new OpcClient(endpoint))
             {                
@@ -22,15 +22,16 @@ namespace Tasker.Model
                 object[] result = client.CallMethod(
                                         "ns=3;s=\"OpcUaMethodSendNewTask\"",
                                         "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
-                                        (Int32)task.ID,
-                                        (string)task.TaskNumber,
-                                        (Int16)task.Diameter,
-                                        (Int16)task.Thickness,
-                                        (float)task.PieceLength1,
-                                        (Int16)task.PieceQuantity1,
-                                        (string)task.StartSerialNumber,
-                                        (string)task.Labeling1Piece1,
-                                        (string)task.Labeling2Piece1
+                                        (Int32)task.Task.ID,
+                                        (string)task.Task.TaskNumber,
+                                        (Int16)task.Task.Diameter,
+                                        (Int16)task.Task.Thickness,
+                                        (float)task.Task.PieceLength1,
+                                        (Int16)task.Task.PieceQuantity1,
+                                        (Int16)task.serialLabel.StartSerial,
+                                        (string)task.Task.Labeling1Piece1,
+                                        (string)task.Task.Labeling2Piece1,
+                                        (string)task.serialLabel.EndLabel
                                         );
             }
         }

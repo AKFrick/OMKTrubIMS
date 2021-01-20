@@ -9,6 +9,11 @@ namespace Tasker.Model
     public class ProductionTaskExtended
     {
         public ProductionTask Task { get; set; }
+        public ProductionTaskExtended(ProductionTask task)
+        {
+            Task = task;
+            serialLabel = new ParsedSerialLabel(Task.StartSerialNumber);
+        }
         public ProductionTaskExtended(Task task)
         {
             Task = new ProductionTask()
@@ -36,6 +41,9 @@ namespace Tasker.Model
                 Operator = task.Operator,
                 Status = task.Status
             };
+            serialLabel = new ParsedSerialLabel(Task.StartSerialNumber);
         }
+        public ParsedSerialLabel serialLabel { get; set; }
+
     }
 }

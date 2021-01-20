@@ -19,7 +19,7 @@ namespace Tasker.Model
         }
         ErrorItem plcConnectionError = new ErrorItem("Ошибка подключения к ПЛК");
         /// <summary> Отправить задание в ПЛК </summary>
-        public bool SendTask(ProductionTask task)
+        public bool SendTask(ProductionTaskExtended task)
         {
             opc.SendTask(task);
             return true;

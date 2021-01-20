@@ -14,9 +14,9 @@ namespace Tasker.Model
             Regex regex = new Regex(@"[^0-9]*/[^0-9]*");
             string[] splitted = StartSerialNumber.Split('/');
             StartSerial = int.Parse(splitted[0]);
-            FinishLabel = splitted[0];
+            EndLabel = splitted[1];
         }
         public int StartSerial { get; private set; }
-        public string FinishLabel { get; private set; }
+        public string EndLabel { get; private set; }
     }
 }
