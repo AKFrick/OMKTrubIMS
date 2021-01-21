@@ -15,24 +15,32 @@ namespace Tasker.Model
         /// отправить в ПЛК задание
         /// </summary>
         public void SendTask(ProductionTaskExtended task)
-        {            
+        {
+            Log.logThis($"SendTask: {task.Task.TaskNumber}");
             using (OpcClient client = new OpcClient(endpoint))
-            {                
-                client.Connect();
-                object[] result = client.CallMethod(
-                                        "ns=3;s=\"OpcUaMethodSendNewTask\"",
-                                        "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
-                                        (Int32)task.Task.ID,
-                                        (string)task.Task.TaskNumber,
-                                        (Int16)task.Task.Diameter,
-                                        (Int16)task.Task.Thickness,
-                                        (float)task.Task.PieceLength1,
-                                        (Int16)task.Task.PieceQuantity1,
-                                        (Int16)task.serialLabel.StartSerial,
-                                        (string)task.Task.Labeling1Piece1,
-                                        (string)task.Task.Labeling2Piece1,
-                                        (string)task.serialLabel.EndLabel
-                                        );
+            {
+                try
+                {
+                    client.Connect();
+                    object[] result = client.CallMethod(
+                                            "ns=3;s=\"OpcUaMethodSendNewTask\"",
+                                            "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
+                                            (Int32)task.Task.ID,
+                                            (string)task.Task.TaskNumber,
+                                            (Int16)task.Task.Diameter,
+                                            (Int16)task.Task.Thickness,
+                                            (float)task.Task.PieceLength1,
+                                            (Int16)task.Task.PieceQuantity1,
+                                            (Int16)task.serialLabel.StartSerial,
+                                            (string)task.Task.Labeling1Piece1,
+                                            (string)task.Task.Labeling2Piece1,
+                                            (string)task.serialLabel.EndLabel
+                                            );
+                }
+                catch (Exception e)
+                {
+                    Log.logThis(e.Message);
+                }
             }
         }
         public ProductionTask GetCurrentTaskResult()

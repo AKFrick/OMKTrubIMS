@@ -46,7 +46,14 @@ namespace Tasker.ModelView
             });
             StartTask = new DelegateCommand(() =>
             {
-                plc.SendTask(new ProductionTaskExtended(SelectedTask));
+                try
+                {
+                    plc.SendTask(new ProductionTaskExtended(SelectedTask));
+                }
+                catch (Exception e)
+                {
+                    Log.logThis(e.Message);
+                }
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
             FinishTask = new DelegateCommand(() =>
@@ -64,5 +71,5 @@ namespace Tasker.ModelView
         public DelegateCommand OpenNewTaskWindow { get; private set; }
         public DelegateCommand StartTask { get; private set; }
         public DelegateCommand FinishTask { get; private set; }
-    }  
+    }
 }
