@@ -7,6 +7,7 @@ using Tasker.ModelView;
 using System.Threading;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows;
 
 namespace Tasker.Model
 {
@@ -32,10 +33,9 @@ namespace Tasker.Model
             }
             catch (EntityException ex)
             {
-                errorScroller?.AddError(connectionError);
-                Log.logThis(ex.Message);
+                errorScroller?.AddError(connectionError);                
                 Thread.Sleep(10000);
-                threadTask();
+                threadTask();                          
             }
         }
         ErrorScroller errorScroller;

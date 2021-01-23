@@ -39,7 +39,6 @@ namespace Tasker.Model
             catch (EntityException ex)
             {
                 errorScroller?.AddError(connectionError);
-                Log.logThis(ex.Message);
                 Thread.Sleep(10000);
                 threadTask();
             }

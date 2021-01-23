@@ -60,7 +60,7 @@ namespace Tasker.ModelView
             {
                 ProductionTask taskResult = plc.GetCurrentTaskResult();
                 taskResult.FinishDate = DateTime.Now;
-                currentTasks.LoadTaskResult(taskResult);                
+                currentTasks.LoadTaskResult(taskResult);
             });
         }
         public ProductionTask SelectedTask { get; set; }
