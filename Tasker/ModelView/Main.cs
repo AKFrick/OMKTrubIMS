@@ -49,6 +49,7 @@ namespace Tasker.ModelView
                 try
                 {
                     plc.SendTask(new ProductionTaskExtended(SelectedTask));
+                    currentTasks.UpdateStartDate(SelectedTask.ID);
                 }
                 catch (Exception e)
                 {
@@ -58,9 +59,16 @@ namespace Tasker.ModelView
             });
             FinishTask = new DelegateCommand(() =>
             {
-                ProductionTask taskResult = plc.GetCurrentTaskResult();
-                taskResult.FinishDate = DateTime.Now;
-                currentTasks.LoadTaskResult(taskResult);
+                try
+                {
+                    ProductionTask taskResult = plc.GetCurrentTaskResult();
+                    taskResult.FinishDate = DateTime.Now;
+                    currentTasks.LoadTaskResult(taskResult);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             });
         }
         public ProductionTask SelectedTask { get; set; }

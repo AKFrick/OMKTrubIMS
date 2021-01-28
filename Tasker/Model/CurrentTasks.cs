@@ -65,6 +65,16 @@ namespace Tasker.Model
                 });
             }
         }
+        public void UpdateStartDate (int taskID)
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                ProductionTask task = db.ProductionTasks.SingleOrDefault(b => b.ID == taskID);
+                task.StartDate = DateTime.Now;
+                db.SaveChanges();
+            }
+        }
+
         public ProductionTask InsertNewTask(ProductionTask task)
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
@@ -87,7 +97,6 @@ namespace Tasker.Model
                 result.PiceAmount = taskResult.PiceAmount;
                 result.Operator = taskResult.Operator;
                 result.FinishDate = taskResult.FinishDate;
-                result.StartDate = taskResult.StartDate;
 
                 result.Status = "f";
 

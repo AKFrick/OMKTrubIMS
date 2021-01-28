@@ -58,12 +58,17 @@ namespace Tasker.Model
                                         );
                 success = Convert.ToBoolean(result[0]);
                 message = Convert.ToString(result[1]);
-                taskResult.ID = Convert.ToInt32(result[2]);
-                taskResult.PieceQuantity = Convert.ToInt16(result[3]);
-                taskResult.Operator = Convert.ToString(result[10]);
+                if (success)
+                {
+                    
+                    taskResult.ID = Convert.ToInt32(result[2]);
+                    taskResult.PiceAmount = Convert.ToInt16(result[3]);
+                    taskResult.Operator = Convert.ToString(result[4]);
 
-                //taskResult.StartDate = 
-                //taskResult.FinishDate = 
+                    taskResult.FinishDate = DateTime.Now;
+                }
+                else
+                    throw new Exception(message);
             }
 
                 return taskResult;
