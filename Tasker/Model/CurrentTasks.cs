@@ -22,6 +22,12 @@ namespace Tasker.Model
             trackingThread = new Thread(threadTask) { IsBackground = true };
             trackingThread.Start();            
         }
+        public CurrentTasks(ErrorScroller errorScroller) : this()
+        {
+            this.errorScroller = errorScroller;
+        }
+        ErrorScroller errorScroller;
+        ErrorItem connectionError = new ErrorItem("Ошибка подключения к SQL");
         void threadTask()
         {
             try
@@ -35,15 +41,11 @@ namespace Tasker.Model
             {
                 errorScroller?.AddError(connectionError);                
                 Thread.Sleep(10000);
-                threadTask();                          
+                threadTask();
+                MessageBox.Show("Unsuccessful connect to SQL");
             }
         }
-        ErrorScroller errorScroller;
-        ErrorItem connectionError = new ErrorItem("Ошибка подключения к SQL");
-        public CurrentTasks(ErrorScroller errorScroller) : this()
-        {
-            this.errorScroller = errorScroller;
-        }        
+
         ObservableCollection<ProductionTask> currentTaskCollection;
         public ReadOnlyObservableCollection<ProductionTask> TaskList { get; private set; }
         public void RefreshTaskList()

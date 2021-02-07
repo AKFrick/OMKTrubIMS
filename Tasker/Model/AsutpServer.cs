@@ -110,7 +110,7 @@ namespace Tasker.Model
                             task.Status = "s";
                             try
                             {
-                                asutp.Tasks.Add(new TaskExtended(task).Task);
+                                asutp.Tasks.Add(new NewAsutpTask(task).Task);
                             }   catch(Exception e)
                             {
                                 Log.logThis(e.Message);

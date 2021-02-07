@@ -2,6 +2,7 @@
 using System.Configuration;
 using Opc.UaFx.Client;
 using Opc.UaFx;
+using System.Windows;
 
 namespace Tasker.Model
 {
@@ -48,6 +49,8 @@ namespace Tasker.Model
             bool success;
             string message;
 
+
+            
             ProductionTask taskResult = new ProductionTask();
             using (OpcClient client = new OpcClient(endpoint))
             {
@@ -66,7 +69,7 @@ namespace Tasker.Model
                 //taskResult.FinishDate = 
             }
 
-                return taskResult;
+            return taskResult;
         }
         
     }

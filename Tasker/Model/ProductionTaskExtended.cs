@@ -39,7 +39,11 @@ namespace Tasker.Model
                 Source = task.Source,
                 PiceAmount = task.PiceAmount,
                 Operator = task.Operator,
-                Status = task.Status
+                Status = task.Status,
+                PieceLength1 = task.PieceLength1,
+                PieceQuantity1 = task.PieceQuantity1,
+                Labeling1Piece1 = task.Labeling1Piece1,
+                Labeling2Piece1 = task.Labeling2Piece1                               
             };
             serialLabel = new ParsedSerialLabel(Task.StartSerialNumber);
         }
