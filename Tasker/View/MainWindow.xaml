@@ -8,7 +8,7 @@
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
         Icon="image\promatisLogo.png"
-        Title="Управление заданиями" Height="676" Width="1128">
+        Title="Управление заданиями" Height="676" Width="1294.5">
     <Window.DataContext>
         <modelView:Main/>
     </Window.DataContext>

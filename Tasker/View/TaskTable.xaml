@@ -42,6 +42,7 @@
             
             <DataGrid.Columns>
                 <!--Показать эти колонки-->
+                <DataGridTextColumn Header="Номер задания" Width="180" Binding="{Binding TaskNumber}"/>
                 <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreationDate}"/>
                 <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ProductBatchNumber}"/>
                 <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding SteelType}"/>
@@ -50,6 +51,7 @@
                 <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding PieceLength1}"/>
                 <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding PieceQuantity1}"/>
                 <DataGridTextColumn Header="Статус" Width="150" Binding="{Binding Status}"/>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
