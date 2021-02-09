@@ -48,8 +48,6 @@ namespace Tasker.Model
         {
             bool success;
             string message;
-
-
             
             ProductionTask taskResult = new ProductionTask();
             using (OpcClient client = new OpcClient(endpoint))
@@ -62,8 +60,7 @@ namespace Tasker.Model
                 success = Convert.ToBoolean(result[0]);
                 message = Convert.ToString(result[1]);
                 if (success)
-                {
-                    
+                {                    
                     taskResult.ID = Convert.ToInt32(result[2]);
                     taskResult.PiceAmount = Convert.ToInt16(result[3]);
                     taskResult.Operator = Convert.ToString(result[4]);

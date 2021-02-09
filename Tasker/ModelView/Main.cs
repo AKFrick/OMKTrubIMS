@@ -44,6 +44,7 @@ namespace Tasker.ModelView
                 NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
                 newTaskWindow.ShowDialog();
             });
+            
             StartTask = new DelegateCommand(() =>
             {
                 try
@@ -63,8 +64,15 @@ namespace Tasker.ModelView
                 {
                     ProductionTask taskResult = plc.GetCurrentTaskResult();
                     taskResult.FinishDate = DateTime.Now;
-                    currentTasks.LoadTaskResult(taskResult);
-                }
+                    try
+                    {
+                        currentTasks.LoadTaskResult(taskResult);
+                    }
+                    catch (TaskNotCreatedException)
+                    {
+                        NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks, taskResult));
+                    }
+                }                
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);

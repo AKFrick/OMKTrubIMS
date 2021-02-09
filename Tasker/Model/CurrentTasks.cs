@@ -9,8 +9,9 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows;
 
-namespace Tasker.Model
+namespace Tasker.Model    
 {
+    public class TaskNotCreatedException : Exception { }
     public class CurrentTasks
     {
         Thread trackingThread;
@@ -93,16 +94,22 @@ namespace Tasker.Model
         public void LoadTaskResult(ProductionTask taskResult)
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
-            {
-                var result = db.ProductionTasks.SingleOrDefault(b => b.ID == taskResult.ID);
+            {                
+                try
+                {
+                    var result = db.ProductionTasks.Single(b => b.ID == taskResult.ID);
 
-                result.PiceAmount = taskResult.PiceAmount;
-                result.Operator = taskResult.Operator;
-                result.FinishDate = taskResult.FinishDate;
+                    result.PiceAmount = taskResult.PiceAmount;
+                    result.Operator = taskResult.Operator;
+                    result.FinishDate = taskResult.FinishDate;
+                    result.Status = "f";
+                    db.SaveChanges();
+                }
+                catch (InvalidOperationException)
+                {
+                    throw new TaskNotCreatedException();
+                }
 
-                result.Status = "f";
-
-                db.SaveChanges();
             }            
             RefreshTaskList();
 
