@@ -55,6 +55,8 @@ namespace Tasker.ModelView
                 catch (Exception e)
                 {
                     Log.logThis(e.Message);
+                    MessageBox.Show("Нет подключения к ПЛК");
+
                 }
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
