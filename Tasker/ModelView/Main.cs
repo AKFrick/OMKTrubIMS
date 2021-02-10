@@ -82,10 +82,6 @@ namespace Tasker.ModelView
             });
             ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; } );
             ShowFinishedTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = true; });
-
-
-
-
         }
         public ProductionTask SelectedTask { get; set; }
         public ErrorItem CurrentError => errorScroller.CurrentError;
