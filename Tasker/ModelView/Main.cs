@@ -13,6 +13,7 @@ namespace Tasker.ModelView
     {
         public ErrorScroller errorScroller { get; }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
+        public ObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
         public Main()
         {
             errorScroller = new ErrorScroller();
@@ -37,6 +38,25 @@ namespace Tasker.ModelView
                             TaskList.Remove(task);
                     }));
             };
+
+            FinishedTaskList = new ObservableCollection<ProductionTask>(currentTasks.FinishedTaskList);
+            ((INotifyCollectionChanged)currentTasks.FinishedTaskList).CollectionChanged += (s, a) =>
+            {
+                if (a.NewItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (ProductionTask task in a.NewItems)
+                            FinishedTaskList.Add(task);
+                    }));
+                if (a.OldItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (ProductionTask task in a.OldItems)
+                            FinishedTaskList.Remove(task);
+                    }));
+            };
+
+
             //Работа с ПЛК
             plc = new Plc();
             OpenNewTaskWindow = new DelegateCommand(() =>

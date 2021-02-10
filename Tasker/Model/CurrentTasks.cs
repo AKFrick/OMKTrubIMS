@@ -20,6 +20,9 @@ namespace Tasker.Model
             currentTaskCollection = new ObservableCollection<ProductionTask>();
             TaskList = new ReadOnlyObservableCollection<ProductionTask>(currentTaskCollection);
 
+            finishedTaskCollection = new ObservableCollection<ProductionTask>();
+            FinishedTaskList = new ReadOnlyObservableCollection<ProductionTask>(finishedTaskCollection);
+
             trackingThread = new Thread(threadTask) { IsBackground = true };
             trackingThread.Start();            
         }
@@ -34,6 +37,7 @@ namespace Tasker.Model
             try
             {
                 RefreshTaskList();
+                RefreshFinishedTaskList();
                 errorScroller?.RemoveError(connectionError);
                 Thread.Sleep(20000);
                 threadTask();
@@ -68,6 +72,27 @@ namespace Tasker.Model
                 });
             }
         }
+
+        public void RefreshFinishedTaskList()
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                IQueryable<ProductionTask> query = from b in db.ProductionTasks
+                                                   where (b.Status == "s" || b.Status == "f")
+                                                   select b;
+                foreach (ProductionTask task in query)
+                {
+                    if (!finishedTaskCollection.Any(item => item.ID == task.ID))
+                        finishedTaskCollection.Add(task);
+                }
+                finishedTaskCollection.ToList().ForEach(task =>
+                {
+                    if (!query.Any(item => item.ID == task.ID))
+                        finishedTaskCollection.Remove(task);
+                });
+            }
+        }
+
         public void UpdateStartDate (int taskID)
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
@@ -113,7 +138,10 @@ namespace Tasker.Model
             }            
             RefreshTaskList();
 
-        }               
+        }
+
+        ObservableCollection<ProductionTask> finishedTaskCollection;
+        public ReadOnlyObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
 
     }
 }
