@@ -9,6 +9,9 @@
         mc:Ignorable="d"
         Icon="image\promatisLogo.png"
         Title="Управление заданиями" Height="676" Width="1294.5">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </Window.Resources>
     <Window.DataContext>
         <modelView:Main/>
     </Window.DataContext>
@@ -29,11 +32,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
-            <Button Grid.Column="1" Content="История заданий" Margin="5" Height="50" Width="120"/>
+            <Button Command="{Binding ShowCurrentTask}"  Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
+            <Button Command="{Binding ShowFinishedTask}" Grid.Column="1" Content="Завершенные&#x0a;   заданий" Margin="5" Height="50" Width="120"/>
         </Grid>
         <!--Centre Content-->
-        <main:TaskTable Grid.Row ="1"/>
+        <main:TaskTable Grid.Row ="1" Visibility="{Binding Path=VisibleCurrentTask, Converter={StaticResource BoolToVisConverter}}"/>
+        
         <!--Bottom panel-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

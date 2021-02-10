@@ -80,14 +80,29 @@ namespace Tasker.ModelView
                     MessageBox.Show(e.Message);
                 }
             });
+            ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; } );
+            ShowFinishedTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = true; });
+
+
+
+
         }
         public ProductionTask SelectedTask { get; set; }
         public ErrorItem CurrentError => errorScroller.CurrentError;
         CurrentTasks currentTasks;
         AsutpServer checkForNewTasks;
         Plc plc;
+
+
+        public bool VisibleFinishedTask { get { return visibleFinishedTask; } set { visibleFinishedTask = value; RaisePropertyChanged("VisibleFinishedTask"); } }
+        bool visibleFinishedTask;
+        public bool VisibleCurrentTask { get { return visibleCurrentTask; } set { visibleCurrentTask = value; RaisePropertyChanged("VisibleCurrentTask"); } }
+        bool visibleCurrentTask;
         public DelegateCommand OpenNewTaskWindow { get; private set; }
-        public DelegateCommand StartTask { get; private set; }
-        public DelegateCommand FinishTask { get; private set; }
+        public DelegateCommand StartTask { get; }
+        public DelegateCommand FinishTask { get; }
+        public DelegateCommand ShowFinishedTask { get; }
+        public DelegateCommand ShowCurrentTask { get; }
+
     }
 }

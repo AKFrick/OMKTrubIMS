@@ -213,6 +213,9 @@
     <Compile Include="Task.cs">
       <DependentUpon>ASUTP.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\FinishedTaskTable.xaml.cs">
+      <DependentUpon>FinishedTaskTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NewTaskWindow.xaml.cs">
       <DependentUpon>NewTaskWindow.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,10 @@
     <Compile Include="View\TaskTable.xaml.cs">
       <DependentUpon>TaskTable.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\FinishedTaskTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
