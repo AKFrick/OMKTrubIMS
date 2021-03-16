@@ -104,6 +104,9 @@ namespace Tasker.Model
                             targetTask.PiceAmount = task.PiceAmount;
                             targetTask.Status = "s";
                             task.Status = "s";
+                            targetTask.StartDate = task.StartDate;
+                            targetTask.FinishDate = task.FinishDate;
+                            targetTask.Operator = task.Operator;
                         }
                         catch (InvalidOperationException)
                         {

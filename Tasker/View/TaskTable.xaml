@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Tasker.View.Main"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1400">
+    
     <Grid>
         <DataGrid Name="taskTable1" 
                   Width="Auto"
@@ -24,14 +25,11 @@
                   SelectionUnit="FullRow"
                   AutoGenerateColumns="False"
                   FontSize="16"
-                  MinRowHeight="35"     
-                  HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Center"                  
+                  MinRowHeight="35"                     
                   ItemsSource="{Binding TaskList}"
                   IsSynchronizedWithCurrentItem="False"
                   SelectedItem="{Binding SelectedTask}"
                   >
-
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="FontWeight"  Value="Bold" />
@@ -39,6 +37,12 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                 </Style>
             </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                </Style>
+            </DataGrid.CellStyle>
+            
             
             <DataGrid.Columns>
                 <!--Показать эти колонки-->

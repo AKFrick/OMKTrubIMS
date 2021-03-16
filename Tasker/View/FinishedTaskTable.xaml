@@ -43,7 +43,7 @@
                 <!--Показать эти колонки-->
                 <DataGridTextColumn Header="Номер задания" Width="180" Binding="{Binding TaskNumber}"/>
                 <DataGridTextColumn Header="Оператор" Width="180" Binding="{Binding Operator}"/>
-                <DataGridTextColumn Header="Дата завершения" Width="170" Binding="{Binding FinishnDate}"/>
+                <DataGridTextColumn Header="Дата завершения" Width="170" Binding="{Binding FinishDate}"/>
                 <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ProductBatchNumber}"/>
                 <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding SteelType}"/>
                 <DataGridTextColumn Header="Толщина&#x0a;  стенки" Width="150" Binding="{Binding Thickness}"/>
