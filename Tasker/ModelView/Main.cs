@@ -92,7 +92,9 @@ namespace Tasker.ModelView
                     }
                     catch (TaskNotCreatedException)
                     {
+                        MessageBox.Show("Задание не найдено. Введите параметры");
                         NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks, taskResult));
+                        newTaskWindow.ShowDialog();
                     }
                 }                
                 catch (Exception e)

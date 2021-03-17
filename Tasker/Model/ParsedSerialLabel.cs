@@ -20,12 +20,10 @@ namespace Tasker.Model
             }
             else
             {
-                StartSerial = 0;
+                StartSerial = 1;
                 EndLabel = $"/{DateTime.Now:yy}";
                 Log.logThis($"Неверный формат серийного номер: {StartSerialNumber}");
             }
-
-
         }
         public int StartSerial { get; private set; }
         public string EndLabel { get; private set; }
