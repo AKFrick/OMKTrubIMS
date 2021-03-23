@@ -55,7 +55,7 @@ namespace Tasker.Model
                 using (ASUTPEntities asutp = new ASUTPEntities() )
                 {
                     IQueryable<Tasker.Task> query = from b in asutp.Tasks
-                                                       where b.ID > LastID && b.Status == "0"
+                                                       where b.ID > LastID && (b.Status == "0" || b.Status == "1")
                                                        select b;
 
                     foreach (Task task in query)
