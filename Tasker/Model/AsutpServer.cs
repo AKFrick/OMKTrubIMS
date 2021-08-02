@@ -63,7 +63,14 @@ namespace Tasker.Model
                         task.Status = "1";
                         ProductionTaskExtended productionTask = new ProductionTaskExtended(task);
                         Log.logThis($"Считали идентификатор: {task.ID}");
-                        local.ProductionTasks.Add(productionTask.Task);
+                        try
+                        {
+                            local.ProductionTasks.Add(productionTask.Task);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.logThis(e.Message);
+                        }
                     }
                     asutp.SaveChanges();
 

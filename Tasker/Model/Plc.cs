@@ -21,20 +21,9 @@ namespace Tasker.Model
         /// <summary> Отправить задание в ПЛК </summary>
         public bool SendTask(ProductionTaskExtended task)
         {
-            opc.SendTask(task);
+            //opc.SendTask(task);
+            opc.SendItemLenSet(task);
             return true;
-            //try
-            //{
-            //    opc.SendTask(task);
-            //    errorScroller?.RemoveError(plcConnectionError);
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    errorScroller?.AddError(plcConnectionError);
-            //    Log.logThis(ex.Message);
-            //    return false;
-            //}
         }
         
         public ProductionTask GetCurrentTaskResult()

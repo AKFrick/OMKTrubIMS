@@ -201,6 +201,7 @@
     <Compile Include="ModelView\Main.cs" />
     <Compile Include="Model\AsutpServer.cs" />
     <Compile Include="Model\CurrentTasks.cs" />
+    <Compile Include="Model\ItemLenSet.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\Opc.cs" />
     <Compile Include="Model\ParsedSerialLabel.cs" />

@@ -44,6 +44,37 @@ namespace Tasker.Model
                 }
             }
         }
+        public void SendItemLenSet(ProductionTaskExtended task)
+        {
+            Log.logThis($"SendTask item len set: {task.Task.TaskNumber}");
+
+            ItemLenSet itemLenSet = new ItemLenSet(task);
+
+            using (OpcClient client = new OpcClient(endpoint))
+            {
+                try
+                {
+                    client.Connect();
+                    for (int i = 0; i <= 14 ; i++ )
+                    {                        
+                        object[] result = client.CallMethod(
+                                                "ns=3;s=\"OpcUaMethodSendItemLenSet\"",
+                                                "ns=3;s=\"OpcUaMethodSendItemLenSet\".Method",
+                                                (float)itemLenSet.itemLenData[i].ItemLen,
+                                                (Int16)itemLenSet.itemLenData[i].ItemAmount,                                                
+                                                (string)itemLenSet.itemLenData[i].Labeling1,
+                                                (string)itemLenSet.itemLenData[i].Labeling2
+                                                );
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.logThis(e.Message);
+                }
+            }
+        }
+
+
         public ProductionTask GetCurrentTaskResult()
         {
             bool success;
