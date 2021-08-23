@@ -118,24 +118,34 @@ namespace Tasker.Model
         }
         public void LoadTaskResult(ProductionTask taskResult)
         {
-            using (Trubodetal189Entities db = new Trubodetal189Entities())
-            {                
-                try
+            if (taskResult.ID != 0)
+            {
+                using (Trubodetal189Entities db = new Trubodetal189Entities())
                 {
-                    var result = db.ProductionTasks.Single(b => b.ID == taskResult.ID);
+                    try
+                    {
+                        var result = db.ProductionTasks.Single(b => b.ID == taskResult.ID);
 
-                    result.PiceAmount = taskResult.PiceAmount;
-                    result.Operator = taskResult.Operator;
-                    result.FinishDate = taskResult.FinishDate;
-                    result.Status = "f";
-                    db.SaveChanges();
-                }
-                catch (InvalidOperationException)
-                {
-                    throw new TaskNotCreatedException();
-                }
+                        result.PiceAmount = taskResult.PiceAmount;
+                        result.Operator = taskResult.Operator;
+                        result.FinishDate = taskResult.FinishDate;
+                        result.BandBrand = taskResult.BandBrand;
+                        result.BandSpeed = taskResult.BandSpeed;
+                        result.BandType = taskResult.BandType;
+                        result.SawDownSpeed = taskResult.SawDownSpeed;
 
-            }            
+                        result.Status = "f";
+                        db.SaveChanges();
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        throw new TaskNotCreatedException();
+                    }
+
+                }
+            }
+            else throw new TaskNotCreatedException();
+
             RefreshTaskList();
 
         }

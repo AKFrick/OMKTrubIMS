@@ -37,7 +37,12 @@ namespace Tasker.Model
                 PieceLength1 = prodTask.PieceLength1,
                 PieceQuantity1 = prodTask.PieceQuantity1,
                 Labeling1Piece1 = prodTask.Labeling1Piece1,
-                Labeling2Piece1 = prodTask.Labeling2Piece1                
+                Labeling2Piece1 = prodTask.Labeling2Piece1,
+
+                BandBrand = prodTask.BandBrand,
+                BandType = prodTask.BandType,
+                BandSpeed = prodTask.BandSpeed,
+                SawDownSpeed = prodTask.SawDownSpeed
             };
         }
     }

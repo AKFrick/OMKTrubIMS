@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Trubodetal189Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Trubodetal189Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ProductionTasks">
           <Key>
             <PropertyRef Name="ID" />
@@ -91,12 +91,15 @@
           <Property Name="PieceQuantity15" Type="int" />
           <Property Name="Labeling1Piece15" Type="nvarchar" MaxLength="23" />
           <Property Name="Labeling2Piece15" Type="nvarchar" MaxLength="23" />
+          <Property Name="BandBrand" Type="nvarchar" MaxLength="23" />
+          <Property Name="BandType" Type="nvarchar" MaxLength="23" />
+          <Property Name="BandSpeed" Type="float" />
+          <Property Name="SawDownSpeed" Type="float" />
         </EntityType>
         <EntityContainer Name="Trubodetal189ModelStoreContainer">
           <EntitySet Name="ProductionTasks" EntityType="Self.ProductionTasks" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Trubodetal189Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -186,6 +189,10 @@
           <Property Name="PieceQuantity15" Type="Int32" />
           <Property Name="Labeling1Piece15" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
           <Property Name="Labeling2Piece15" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="BandBrand" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="BandType" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="BandSpeed" Type="Double" />
+          <Property Name="SawDownSpeed" Type="Double" />
         </EntityType>
         <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ProductionTasks" EntityType="Self.ProductionTask" />
@@ -199,6 +206,10 @@
           <EntitySetMapping Name="ProductionTasks">
             <EntityTypeMapping TypeName="Trubodetal189Model.ProductionTask">
               <MappingFragment StoreEntitySet="ProductionTasks">
+                <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
+                <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />
+                <ScalarProperty Name="BandType" ColumnName="BandType" />
+                <ScalarProperty Name="BandBrand" ColumnName="BandBrand" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TaskNumber" ColumnName="TaskNumber" />
                 <ScalarProperty Name="TaskPosition" ColumnName="TaskPosition" />

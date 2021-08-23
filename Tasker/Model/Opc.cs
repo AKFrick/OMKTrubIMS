@@ -33,14 +33,15 @@ namespace Tasker.Model
                                             (float)task.Task.PieceLength1,
                                             (Int16)task.Task.PieceQuantity1,
                                             (Int16)task.serialLabel.StartSerial,
-                                            (string)task.Task.Labeling1Piece1,
-                                            (string)task.Task.Labeling2Piece1,
+                                            (string)task.Task.Labeling1Piece1 ?? "",
+                                            (string)task.Task.Labeling2Piece1 ?? "",
                                             (string)task.serialLabel.EndLabel
                                             );
                 }
                 catch (Exception e)
                 {
                     Log.logThis(e.Message);
+                    throw;
                 }
             }
         }
@@ -62,14 +63,15 @@ namespace Tasker.Model
                                                 "ns=3;s=\"OpcUaMethodSendItemLenSet\".Method",
                                                 (float)itemLenSet.itemLenData[i].ItemLen,
                                                 (Int16)itemLenSet.itemLenData[i].ItemAmount,                                                
-                                                (string)itemLenSet.itemLenData[i].Labeling1,
-                                                (string)itemLenSet.itemLenData[i].Labeling2
+                                                (string)itemLenSet.itemLenData[i].Labeling1 ?? "",
+                                                (string)itemLenSet.itemLenData[i].Labeling2 ?? ""
                                                 );
                     }
                 }
                 catch (Exception e)
                 {
                     Log.logThis(e.Message);
+                    throw;
                 }
             }
         }
@@ -95,6 +97,11 @@ namespace Tasker.Model
                     taskResult.ID = Convert.ToInt32(result[2]);
                     taskResult.PiceAmount = Convert.ToInt16(result[3]);
                     taskResult.Operator = Convert.ToString(result[4]);
+                    taskResult.BandType = Convert.ToString(result[8]);
+                    taskResult.BandBrand = Convert.ToString(result[9]);
+                    taskResult.BandSpeed = Convert.ToSingle(result[10]);
+                    taskResult.SawDownSpeed = Convert.ToSingle(result[11]);
+
 
                     taskResult.FinishDate = DateTime.Now;
                 }

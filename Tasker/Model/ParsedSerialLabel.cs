@@ -16,7 +16,7 @@ namespace Tasker.Model
             {
 
 
-                if (regex.IsMatch(StartSerialNumber))
+                if (false && regex.IsMatch(StartSerialNumber))
                 {
                     string[] splitted = StartSerialNumber.Split('/');
                     StartSerial = int.Parse(splitted[0]);
@@ -28,6 +28,11 @@ namespace Tasker.Model
                     EndLabel = $"/{DateTime.Now:yy}";
                     Log.logThis($"Неверный формат серийного номер: {StartSerialNumber}");
                 }
+            }
+            else
+            {
+                StartSerial = 0;
+                EndLabel = "";
             }
         }
         public int StartSerial { get; private set; }

@@ -69,6 +69,7 @@ namespace Tasker.Model
                         }
                         catch (Exception e)
                         {
+                            task.Status = "e";
                             Log.logThis(e.Message);
                         }
                     }
@@ -114,6 +115,11 @@ namespace Tasker.Model
                             targetTask.StartDate = task.StartDate;
                             targetTask.FinishDate = task.FinishDate;
                             targetTask.Operator = task.Operator;
+
+                            targetTask.BandBrand = task.BandBrand;
+                            targetTask.BandType = task.BandType;
+                            targetTask.BandSpeed = task.BandSpeed;
+                            targetTask.SawDownSpeed = task.SawDownSpeed;
                         }
                         catch (InvalidOperationException)
                         {

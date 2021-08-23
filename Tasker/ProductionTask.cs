@@ -96,5 +96,9 @@ namespace Tasker
         public Nullable<int> PieceQuantity15 { get; set; }
         public string Labeling1Piece15 { get; set; }
         public string Labeling2Piece15 { get; set; }
+        public string BandBrand { get; set; }
+        public string BandType { get; set; }
+        public Nullable<double> BandSpeed { get; set; }
+        public Nullable<double> SawDownSpeed { get; set; }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using Tasker.ModelView;
+using System.Configuration;
 
 namespace Tasker.Model
 {
     /// <summary> Обмен данными с PLC </summary>
     public class Plc
     {
-        
+        readonly string lineNumber = ConfigurationManager.AppSettings.Get("LineNumber");
+
         Opc opc;
         public Plc()
         {
@@ -21,8 +23,10 @@ namespace Tasker.Model
         /// <summary> Отправить задание в ПЛК </summary>
         public bool SendTask(ProductionTaskExtended task)
         {
-            //opc.SendTask(task);
-            opc.SendItemLenSet(task);
+            
+
+            opc.SendTask(task);
+            if (lineNumber == "189") opc.SendItemLenSet(task);
             return true;
         }
         
