@@ -48,9 +48,15 @@ namespace Tasker.Model
         {
             using (Trubodetal189Entities local = new Trubodetal189Entities())
             {
-                int LastID = local.ProductionTasks.Max(p => p.ID);
-
-
+                int LastID;
+                try
+                {
+                    LastID = local.ProductionTasks.Max(p => p.ID);
+                }
+                catch 
+                {
+                    LastID = 0;
+                }
 
                 using (ASUTPEntities asutp = new ASUTPEntities() )
                 {
@@ -62,7 +68,7 @@ namespace Tasker.Model
                     {
                         task.Status = "1";
                         ProductionTaskExtended productionTask = new ProductionTaskExtended(task);
-                        Log.logThis($"Считали идентификатор: {task.ID}");
+                        //Log.logThis($"Считали идентификатор: {task.ID}");
                         try
                         {
                             local.ProductionTasks.Add(productionTask.Task);
@@ -120,6 +126,7 @@ namespace Tasker.Model
                             targetTask.BandType = task.BandType;
                             targetTask.BandSpeed = task.BandSpeed;
                             targetTask.SawDownSpeed = task.SawDownSpeed;
+                            targetTask.IDNumberOperator = task.IDOperatorNumber;
                         }
                         catch (InvalidOperationException)
                         {

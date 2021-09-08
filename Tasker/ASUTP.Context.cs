@@ -26,5 +26,6 @@ namespace Tasker
         }
     
         public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
     }
 }

@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CuttingСonveyorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CuttingConveyor.dbo.Logins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Login" Type="varchar" MaxLength="30" />
+          <Property Name="IDNumber" Type="int" />
+          <Property Name="FIO" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tasks">
           <Key>
             <PropertyRef Name="ID" />
@@ -30,6 +41,7 @@
           <Property Name="Source" Type="nvarchar" MaxLength="30" />
           <Property Name="PiceAmount" Type="int" />
           <Property Name="Operator" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumberOperator" Type="int" />
           <Property Name="Status" Type="nvarchar" MaxLength="1" />
           <Property Name="BandBrand" Type="nvarchar" MaxLength="23" />
           <Property Name="BandType" Type="nvarchar" MaxLength="23" />
@@ -98,6 +110,14 @@
         </EntityType>
         <EntityContainer Name="CuttingСonveyorModelStoreContainer">
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Logins].[Login] AS [Login], 
+    [Logins].[IDNumber] AS [IDNumber], 
+    [Logins].[FIO] AS [FIO], 
+    [Logins].[ID] AS [ID]
+    FROM [dbo].[Logins] AS [Logins]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -193,10 +213,21 @@
           <Property Name="BandType" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
           <Property Name="BandSpeed" Type="Double" />
           <Property Name="SawDownSpeed" Type="Double" />
+          <Property Name="IDNumberOperator" Type="Int32" />
         </EntityType>
         <EntityContainer Name="ASUTPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Logins" EntityType="CuttingСonveyorModel.Login" />
         </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Login1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IDNumber" Type="Int32" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,6 +237,7 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="CuttingСonveyorModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="IDNumberOperator" ColumnName="IDNumberOperator" />
                 <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
                 <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />
                 <ScalarProperty Name="BandType" ColumnName="BandType" />
@@ -292,6 +324,16 @@
                 <ScalarProperty Name="PieceQuantity15" ColumnName="PieceQuantity15" />
                 <ScalarProperty Name="Labeling1Piece15" ColumnName="Labeling1Piece15" />
                 <ScalarProperty Name="Labeling2Piece15" ColumnName="Labeling2Piece15" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="CuttingСonveyorModel.Login">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Login1" ColumnName="Login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -196,10 +196,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalDb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <DependentUpon>ASUTP.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelView\NewTask.cs" />
     <Compile Include="ModelView\ErrorScroller.cs" />
     <Compile Include="ModelView\Main.cs" />
     <Compile Include="Model\AsutpServer.cs" />
+    <Compile Include="Model\AsutpServerLogins.cs" />
+    <Compile Include="Model\CardReader.cs" />
     <Compile Include="Model\CurrentTasks.cs" />
     <Compile Include="Model\ItemLenSet.cs" />
     <Compile Include="Model\Log.cs" />

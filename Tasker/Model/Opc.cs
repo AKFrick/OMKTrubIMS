@@ -96,7 +96,7 @@ namespace Tasker.Model
                 {                    
                     taskResult.ID = Convert.ToInt32(result[2]);
                     taskResult.PiceAmount = Convert.ToInt16(result[3]);
-                    taskResult.Operator = Convert.ToString(result[4]);
+                    //taskResult.Operator = Convert.ToString(result[4]);
                     taskResult.BandType = Convert.ToString(result[8]);
                     taskResult.BandBrand = Convert.ToString(result[9]);
                     taskResult.BandSpeed = Convert.ToSingle(result[10]);

@@ -126,13 +126,12 @@ namespace Tasker.Model
                     {
                         var result = db.ProductionTasks.Single(b => b.ID == taskResult.ID);
 
-                        result.PiceAmount = taskResult.PiceAmount;
-                        result.Operator = taskResult.Operator;
+                        result.PiceAmount = taskResult.PiceAmount;                        
                         result.FinishDate = taskResult.FinishDate;
                         result.BandBrand = taskResult.BandBrand;
                         result.BandSpeed = taskResult.BandSpeed;
                         result.BandType = taskResult.BandType;
-                        result.SawDownSpeed = taskResult.SawDownSpeed;
+                        result.SawDownSpeed = taskResult.SawDownSpeed;                        
 
                         result.Status = "f";
                         db.SaveChanges();
@@ -147,6 +146,22 @@ namespace Tasker.Model
             else throw new TaskNotCreatedException();
 
             RefreshTaskList();
+
+        }
+
+        public void UpdateTask(ProductionTask task)
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                ProductionTask prodtask = db.ProductionTasks.SingleOrDefault(b => b.ID == task.ID);
+                prodtask.StartDate = task.StartDate;
+                prodtask.Operator = task.Operator;
+                prodtask.IDOperatorNumber = task.IDOperatorNumber;
+                db.SaveChanges();
+
+                currentTaskCollection.Remove(currentTaskCollection.Where(w => w.ID == task.ID).Single());
+                RefreshTaskList();
+            }
 
         }
 

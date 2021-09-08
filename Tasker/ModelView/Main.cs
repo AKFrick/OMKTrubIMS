@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Tasker.Model;
 using Tasker.View;
+using System.Linq;
 
 namespace Tasker.ModelView
 {
@@ -14,6 +15,8 @@ namespace Tasker.ModelView
         public ErrorScroller errorScroller { get; }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         public ObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
+        public ObservableCollection<Login> logins { get; private set; }
+        public Login SelectedLogin { get; set; }
         public Main()
         {
             errorScroller = new ErrorScroller();
@@ -57,6 +60,12 @@ namespace Tasker.ModelView
             };
 
 
+            AsutpServerLogins AsutpLogins = new AsutpServerLogins();
+            logins = new ObservableCollection<Login>(AsutpLogins.Logins);
+
+            //CardReader cardReader = new CardReader();
+            //cardReader.NewCardRead += ReadCard;
+
             //Работа с ПЛК
             plc = new Plc();
             OpenNewTaskWindow = new DelegateCommand(() =>
@@ -67,16 +76,27 @@ namespace Tasker.ModelView
             
             StartTask = new DelegateCommand(() =>
             {
-                try
+                if (SelectedLogin != null)
                 {
-                    plc.SendTask(new ProductionTaskExtended(SelectedTask));
-                    currentTasks.UpdateStartDate(SelectedTask.ID);
-                }
-                catch (Exception e)
-                {
-                    Log.logThis(e.Message);
-                    MessageBox.Show("Нет подключения к ПЛК");
+                    try
+                    {
+                        plc.SendTask(new ProductionTaskExtended(SelectedTask));
 
+                        SelectedTask.StartDate = DateTime.Now;
+                        SelectedTask.Operator = SelectedLogin.FIO;
+                        SelectedTask.IDOperatorNumber = SelectedLogin.IDNumber;
+                        currentTasks.UpdateTask(SelectedTask);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.logThis(e.Message);
+                        MessageBox.Show("Нет подключения к ПЛК");
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Выберите пользователя");
                 }
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
@@ -111,6 +131,21 @@ namespace Tasker.ModelView
         AsutpServer checkForNewTasks;
         Plc plc;
 
+        void ReadCard(long ID)
+        {
+            if (ID != 0)
+            {
+                try
+                {
+                    SelectedLogin = logins.Where(w => w.IDNumber == ID).Single();
+                    RaisePropertyChanged("SelectedLogin");
+                }
+                catch
+                {
+                    MessageBox.Show($"Пользователь {ID} не найден");
+                }
+            }
+        }
 
         public bool VisibleFinishedTask { get { return visibleFinishedTask; } set { visibleFinishedTask = value; RaisePropertyChanged("VisibleFinishedTask"); } }
         bool visibleFinishedTask;

@@ -30,6 +30,7 @@
           <Property Name="Source" Type="nvarchar" MaxLength="30" />
           <Property Name="PiceAmount" Type="int" />
           <Property Name="Operator" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDOperatorNumber" Type="int" />
           <Property Name="Status" Type="nvarchar" MaxLength="1" />
           <Property Name="PieceLength1" Type="int" />
           <Property Name="PieceQuantity1" Type="int" />
@@ -193,6 +194,7 @@
           <Property Name="BandType" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
           <Property Name="BandSpeed" Type="Double" />
           <Property Name="SawDownSpeed" Type="Double" />
+          <Property Name="IDOperatorNumber" Type="Int32" />
         </EntityType>
         <EntityContainer Name="Trubodetal189Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ProductionTasks" EntityType="Self.ProductionTask" />
@@ -206,6 +208,7 @@
           <EntitySetMapping Name="ProductionTasks">
             <EntityTypeMapping TypeName="Trubodetal189Model.ProductionTask">
               <MappingFragment StoreEntitySet="ProductionTasks">
+                <ScalarProperty Name="IDOperatorNumber" ColumnName="IDOperatorNumber" />
                 <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
                 <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />
                 <ScalarProperty Name="BandType" ColumnName="BandType" />

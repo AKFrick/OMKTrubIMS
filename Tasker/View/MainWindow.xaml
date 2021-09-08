@@ -9,7 +9,7 @@
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
         Icon="image\promatisLogo.png"
-        Title="Управление заданиями" Height="676" Width="1294.5">
+        Title="Управление заданиями" Height="676" Width="1600.0">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </Window.Resources>
@@ -30,11 +30,15 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding ShowCurrentTask}"  Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
             <Button Command="{Binding ShowFinishedTask}" Grid.Column="1" Content="Завершенные&#x0a;   заданий" Margin="5" Height="50" Width="120"/>
+            <TextBox Text="Оператор:" Grid.Column="5" FontSize="18" Margin="5" VerticalAlignment="Center" BorderThickness="0"/>
+            <ComboBox Grid.Column="6" Width="400" Height="30" Margin="5" FontSize="16" VerticalContentAlignment="Center"
+                      ItemsSource="{Binding logins}" DisplayMemberPath="FIO" SelectedItem="{Binding SelectedLogin}"/>
         </Grid>
         <!--Centre Content-->
         <main:TaskTable Grid.Row ="1" Visibility="{Binding Path=VisibleCurrentTask, Converter={StaticResource BoolToVisConverter}}"/>
