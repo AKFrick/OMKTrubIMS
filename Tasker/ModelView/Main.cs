@@ -73,7 +73,7 @@ namespace Tasker.ModelView
                 NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
                 newTaskWindow.ShowDialog();
             });
-            
+
             StartTask = new DelegateCommand(() =>
             {
                 if (SelectedLogin != null)
@@ -116,13 +116,13 @@ namespace Tasker.ModelView
                         NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks, taskResult));
                         newTaskWindow.ShowDialog();
                     }
-                }                
+                }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
             });
-            ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; } );
+            ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; });
             ShowFinishedTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = true; });
         }
         public ProductionTask SelectedTask { get; set; }

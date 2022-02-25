@@ -42,7 +42,7 @@ namespace Tasker.Model
                 Thread.Sleep(20000);
                 threadTask();
             }
-            catch (EntityException ex)
+            catch (Exception ex)
             {
                 errorScroller?.AddError(connectionError);                
                 Thread.Sleep(10000);
@@ -57,19 +57,21 @@ namespace Tasker.Model
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
-                IQueryable<ProductionTask> query = from b in db.ProductionTasks
-                                                   where b.Status != "s" && b.Status != "e" && b.Status != "f"
-                                                   select b;
-                foreach (ProductionTask task in query)
-                {
-                    if (!currentTaskCollection.Any(item => item.ID == task.ID))
-                        currentTaskCollection.Add(task);
-                }
-                currentTaskCollection.ToList().ForEach(task =>
-                {
-                    if (!query.Any(item => item.ID == task.ID))
-                        currentTaskCollection.Remove(task);
-                });
+
+                    IQueryable<ProductionTask> query = from b in db.ProductionTasks
+                                                       where b.Status != "s" && b.Status != "e" && b.Status != "f"
+                                                       select b;
+                    foreach (ProductionTask task in query)
+                    {
+                        if (!currentTaskCollection.Any(item => item.ID == task.ID))
+                            currentTaskCollection.Add(task);
+                    }
+                    currentTaskCollection.ToList().ForEach(task =>
+                    {
+                        if (!query.Any(item => item.ID == task.ID))
+                            currentTaskCollection.Remove(task);
+                    });
+                                
             }
         }
 
