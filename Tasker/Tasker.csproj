@@ -225,6 +225,7 @@
     <Compile Include="Model\ItemLenSet.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\Opc.cs" />
+    <Compile Include="Model\OutputLog.cs" />
     <Compile Include="Model\ParsedSerialLabel.cs" />
     <Compile Include="Model\Plc.cs" />
     <Compile Include="Model\ProductionTaskExtended.cs" />
@@ -237,6 +238,9 @@
     </Compile>
     <Compile Include="View\FinishedTaskTable.xaml.cs">
       <DependentUpon>FinishedTaskTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LogView.xaml.cs">
+      <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NewTaskWindow.xaml.cs">
       <DependentUpon>NewTaskWindow.xaml</DependentUpon>
@@ -251,6 +255,10 @@
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Page Include="View\FinishedTaskTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

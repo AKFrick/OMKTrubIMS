@@ -17,8 +17,29 @@ namespace Tasker.ModelView
         public ObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
         public ObservableCollection<Login> logins { get; private set; }
         public Login SelectedLogin { get; set; }
+        public ObservableCollection<OutputLog.LogItem> LogItems { get; set; }
         public Main()
         {
+            #region LOG
+            LogItems = new ObservableCollection<OutputLog.LogItem>(OutputLog.GetInstance().LogItems);
+            ((INotifyCollectionChanged)OutputLog.GetInstance().LogItems).CollectionChanged += (s, a) =>
+            {
+                if (a.NewItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (OutputLog.LogItem item in a.NewItems)
+                            LogItems.Insert(0, item);
+                    }));
+                if (a.OldItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (OutputLog.LogItem item in a.OldItems)
+                            LogItems.Remove(item);
+                    }));
+            };
+            #endregion
+            OutputLog.That($"TEST LOG!!!111");
+
             errorScroller = new ErrorScroller();
             errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
             // Работа с SQL
