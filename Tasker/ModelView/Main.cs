@@ -23,7 +23,7 @@ namespace Tasker.ModelView
 
         public Main()
         {
-            
+
             #region LOG
             LogItems = new ObservableCollection<OutputLog.LogItem>(OutputLog.GetInstance().LogItems);
             ((INotifyCollectionChanged)OutputLog.GetInstance().LogItems).CollectionChanged += (s, a) =>
@@ -42,7 +42,7 @@ namespace Tasker.ModelView
                     }));
             };
             #endregion
-            
+
             // Работа с SQL
             #region Задания локальной базы
             currentTasks = new CurrentTasks();
@@ -108,7 +108,7 @@ namespace Tasker.ModelView
                     }
                     catch (Exception e)
                     {
-                        OutputLog.That(e.Message);                        
+                        OutputLog.That(e.Message);
                     }
                 }
                 else

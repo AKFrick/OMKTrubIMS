@@ -29,7 +29,6 @@ namespace Tasker.Model
             trackingThread = new Thread(threadTask) { IsBackground = true };
             trackingThread.Start();            
         }
-        //ErrorItem connectionError = new ErrorItem("Ошибка подключения к SQL");
         void threadTask()
         {
             while (true)
@@ -81,7 +80,6 @@ namespace Tasker.Model
                 catch (Exception e)
                 {
                     OutputLog.That($"Не удалось обновить список заданий: {e.Message}");
-                    OutputLog.That($"Строка подключения: {db.Database.Connection.ConnectionString}");
                 }
                                                     
             }

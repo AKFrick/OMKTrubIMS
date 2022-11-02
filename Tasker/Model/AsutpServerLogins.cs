@@ -24,21 +24,27 @@ namespace Tasker.Model
 
         public void GetLoginList()
         {
-            using (ASUTPEntities db = new ASUTPEntities())
+            bool loginsLoaded = false;
+            while (!loginsLoaded)
             {
-                try
+                using (ASUTPEntities db = new ASUTPEntities())
                 {
-                    IQueryable<Login> query = from b in db.Logins
-                                              select b;
-                    foreach (Login login in query)
+                    try
                     {
-                        logins.Add(login);
+                        IQueryable<Login> query = from b in db.Logins
+                                                  select b;
+                        foreach (Login login in query)
+                        {
+                            logins.Add(login);
+                        }
+                        loginsLoaded = true;
+                    }
+                    catch (Exception e)
+                    {
+                        OutputLog.That($"Не удалось считать список операторов: {e.Message}");
                     }
                 }
-                catch (Exception e)
-                {
-                    OutputLog.That($"Не удалось считать список операторов: {e.Message}");
-                }
+                Thread.Sleep(20000);
             }
         }
 

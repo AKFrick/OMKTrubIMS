@@ -18,7 +18,7 @@ namespace Tasker.Model
         {
             return lazy.Value;
             //if(instance == null)
-            //    instance = new Log();
+            //    instance = new OutputLog();
             //return instance;
         }
         private OutputLog()
@@ -56,6 +56,10 @@ namespace Tasker.Model
             {
                 GetInstance().logItems.Add(new LogItem($"Не удалась запись в лог файл: {ex.Message}"));
             }
+        }  
+        public static void DoNothing()
+        {
+
         }
     }
 }
