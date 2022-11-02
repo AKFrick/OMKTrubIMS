@@ -12,14 +12,18 @@ namespace Tasker.ModelView
 {
     class Main : BindableBase
     {
-        public ErrorScroller errorScroller { get; }
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         public ObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
         public ObservableCollection<Login> logins { get; private set; }
         public Login SelectedLogin { get; set; }
         public ObservableCollection<OutputLog.LogItem> LogItems { get; set; }
+        public ProductionTask SelectedTask { get; set; }
+        CurrentTasks currentTasks;
+        AsutpServer checkForNewTasks;
+
         public Main()
         {
+            
             #region LOG
             LogItems = new ObservableCollection<OutputLog.LogItem>(OutputLog.GetInstance().LogItems);
             ((INotifyCollectionChanged)OutputLog.GetInstance().LogItems).CollectionChanged += (s, a) =>
@@ -28,7 +32,7 @@ namespace Tasker.ModelView
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         foreach (OutputLog.LogItem item in a.NewItems)
-                            LogItems.Insert(0, item);
+                            LogItems.Add(item);
                     }));
                 if (a.OldItems?.Count >= 1)
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
@@ -38,14 +42,10 @@ namespace Tasker.ModelView
                     }));
             };
             #endregion
-            OutputLog.That($"TEST LOG!!!111");
-
-            errorScroller = new ErrorScroller();
-            errorScroller.RaiseErrorChanged += () => RaisePropertyChanged(nameof(CurrentError));
+            
             // Работа с SQL
-            currentTasks = new CurrentTasks(errorScroller);
-            checkForNewTasks = new AsutpServer(errorScroller);
-
+            #region Задания локальной базы
+            currentTasks = new CurrentTasks();
             TaskList = new ObservableCollection<ProductionTask>(currentTasks.TaskList);
             ((INotifyCollectionChanged)currentTasks.TaskList).CollectionChanged += (s, a) =>
             {
@@ -79,13 +79,11 @@ namespace Tasker.ModelView
                             FinishedTaskList.Remove(task);
                     }));
             };
+            #endregion
 
-
+            checkForNewTasks = new AsutpServer();
             AsutpServerLogins AsutpLogins = new AsutpServerLogins();
             logins = new ObservableCollection<Login>(AsutpLogins.Logins);
-
-            //CardReader cardReader = new CardReader();
-            //cardReader.NewCardRead += ReadCard;
 
             //Работа с ПЛК
             plc = new Plc();
@@ -110,9 +108,7 @@ namespace Tasker.ModelView
                     }
                     catch (Exception e)
                     {
-                        Log.logThis(e.Message);
-                        MessageBox.Show("Нет подключения к ПЛК");
-
+                        OutputLog.That(e.Message);                        
                     }
                 }
                 else
@@ -146,31 +142,12 @@ namespace Tasker.ModelView
             ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; });
             ShowFinishedTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = true; });
         }
-        public ProductionTask SelectedTask { get; set; }
-        public ErrorItem CurrentError => errorScroller.CurrentError;
-        CurrentTasks currentTasks;
-        AsutpServer checkForNewTasks;
+
         Plc plc;
 
-        void ReadCard(long ID)
-        {
-            if (ID != 0)
-            {
-                try
-                {
-                    SelectedLogin = logins.Where(w => w.IDNumber == ID).Single();
-                    RaisePropertyChanged("SelectedLogin");
-                }
-                catch
-                {
-                    MessageBox.Show($"Пользователь {ID} не найден");
-                }
-            }
-        }
-
-        public bool VisibleFinishedTask { get { return visibleFinishedTask; } set { visibleFinishedTask = value; RaisePropertyChanged("VisibleFinishedTask"); } }
+        public bool VisibleFinishedTask { get { return visibleFinishedTask; } set { visibleFinishedTask = value; RaisePropertyChanged(nameof(VisibleFinishedTask)); } }
         bool visibleFinishedTask;
-        public bool VisibleCurrentTask { get { return visibleCurrentTask; } set { visibleCurrentTask = value; RaisePropertyChanged("VisibleCurrentTask"); } }
+        public bool VisibleCurrentTask { get { return visibleCurrentTask; } set { visibleCurrentTask = value; RaisePropertyChanged(nameof(VisibleCurrentTask)); } }
         bool visibleCurrentTask;
         public DelegateCommand OpenNewTaskWindow { get; private set; }
         public DelegateCommand StartTask { get; }

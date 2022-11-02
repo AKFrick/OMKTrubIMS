@@ -12,13 +12,14 @@ namespace Tasker.Model
 {    
     public class AsutpServerLogins
     {
-
+        Thread thread;
         public AsutpServerLogins()
         {
             logins = new ObservableCollection<Login>();
             Logins = new ReadOnlyObservableCollection<Login>(logins);
-            GetLoginList();
 
+            thread = new Thread(GetLoginList) { IsBackground = true };
+            thread.Start();
         }
 
         public void GetLoginList()
@@ -34,7 +35,10 @@ namespace Tasker.Model
                         logins.Add(login);
                     }
                 }
-                catch { }
+                catch (Exception e)
+                {
+                    OutputLog.That($"Не удалось считать список операторов: {e.Message}");
+                }
             }
         }
 

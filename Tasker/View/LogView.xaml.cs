@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.Specialized;
 
 namespace Tasker.View
 {
@@ -23,6 +24,11 @@ namespace Tasker.View
         public LogView()
         {
             InitializeComponent();
+            ((INotifyCollectionChanged)Log.Items).CollectionChanged += (s, e) =>
+            {
+                if (Log.Items.Count > 0)
+                    Log.ScrollIntoView(Log.Items[Log.Items.Count - 1]);
+            };
         }
     }
 }

@@ -13,8 +13,7 @@ namespace Tasker.Model
     public class AsutpServer
     {
         Thread trackingThread;
-        ErrorScroller errorScroller;
-        ErrorItem connectionError = new ErrorItem("Ошибка подключения к серверу АСУТП");
+        //ErrorItem connectionError = new ErrorItem("Ошибка подключения к серверу АСУТП");
 
         public AsutpServer()
         {
@@ -22,23 +21,18 @@ namespace Tasker.Model
             trackingThread.Start();
 
         }
-        public AsutpServer(ErrorScroller errorScroller) : this()
-        {
-            this.errorScroller = errorScroller;
-        }
         void threadTask()
         {
             try
             {
                 Check();
-                UpdateTaskResult();
-                errorScroller?.RemoveError(connectionError);
+                UpdateTaskResult();               
                 Thread.Sleep(20000);
                 threadTask();
             }
             catch (Exception ex)
             {
-                errorScroller?.AddError(connectionError);
+                OutputLog.That("Соединение с базой АСУТП не удалось. Следующая попытка через 10с");
                 Thread.Sleep(10000);
                 threadTask();
             }

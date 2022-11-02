@@ -216,7 +216,6 @@
       <DependentUpon>ASUTP.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelView\NewTask.cs" />
-    <Compile Include="ModelView\ErrorScroller.cs" />
     <Compile Include="ModelView\Main.cs" />
     <Compile Include="Model\AsutpServer.cs" />
     <Compile Include="Model\AsutpServerLogins.cs" />
@@ -245,9 +244,6 @@
     <Compile Include="View\NewTaskWindow.xaml.cs">
       <DependentUpon>NewTaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\StatusBar.xaml.cs">
-      <DependentUpon>StatusBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\TaskTable.xaml.cs">
       <DependentUpon>TaskTable.xaml</DependentUpon>
     </Compile>
@@ -275,10 +271,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\NewTaskWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StatusBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

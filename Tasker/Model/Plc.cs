@@ -14,12 +14,7 @@ namespace Tasker.Model
         {
             opc = new Opc();
         }
-        ErrorScroller errorScroller;
-        public Plc(ErrorScroller errorScroller) : this()
-        {
-            this.errorScroller = errorScroller;
-        }
-        ErrorItem plcConnectionError = new ErrorItem("Ошибка подключения к ПЛК");
+        //ErrorItem plcConnectionError = new ErrorItem("Ошибка подключения к ПЛК");
         /// <summary> Отправить задание в ПЛК </summary>
         public bool SendTask(ProductionTaskExtended task)
         {
