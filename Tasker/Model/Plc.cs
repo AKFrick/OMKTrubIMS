@@ -17,17 +17,15 @@ namespace Tasker.Model
         //ErrorItem plcConnectionError = new ErrorItem("Ошибка подключения к ПЛК");
         /// <summary> Отправить задание в ПЛК </summary>
         public bool SendTask(ProductionTaskExtended task)
-        {
-            
-
+        {           
             opc.SendTask(task);
-            if (lineNumber == "189") opc.SendItemLenSet(task);
+            //if (lineNumber == "189") opc.SendItemLenSet(task);
             return true;
         }
         
         public ProductionTask GetCurrentTaskResult()
         {
-            return opc.GetCurrentTaskResult();
+            return null; //opc.GetCurrentTaskResult();
         }
     }
 }

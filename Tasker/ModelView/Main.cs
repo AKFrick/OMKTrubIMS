@@ -7,6 +7,7 @@ using Prism.Mvvm;
 using Tasker.Model;
 using Tasker.View;
 using System.Linq;
+using System.Drawing;
 
 namespace Tasker.ModelView
 {
@@ -113,26 +114,25 @@ namespace Tasker.ModelView
 
             StartTask = new DelegateCommand(() =>
             {
-                if (SelectedLogin != null)
-                {
+            //    if (SelectedLogin != null)
+            //    {
                     try
                     {
-                        plc.SendTask(new ProductionTaskExtended(SelectedTask));
-
+                        plc.SendTask(new ProductionTaskExtended(SelectedTask));                       
                         SelectedTask.StartDate = DateTime.Now;
-                        SelectedTask.Operator = SelectedLogin.FIO;
-                        SelectedTask.IDOperatorNumber = SelectedLogin.IDNumber;
+                        //SelectedTask.Operator = SelectedLogin.FIO;
+                        //SelectedTask.IDOperatorNumber = SelectedLogin.IDNumber;
                         currentTasks.UpdateTask(SelectedTask);
                     }
                     catch (Exception e)
                     {
                         OutputLog.That(e.Message);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Выберите пользователя");
-                }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Выберите пользователя");
+                //}
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
             FinishTask = new DelegateCommand(() =>
@@ -186,7 +186,6 @@ namespace Tasker.ModelView
         public DelegateCommand UnhideTask { get; }
         public DelegateCommand ShowFinishedTask { get; }
         public DelegateCommand ShowCurrentTask { get; }
-        public DelegateCommand ShowHiddenTask { get; }
-
+        public DelegateCommand ShowHiddenTask { get; }                
     }
 }
