@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Threading;
 using Opc.Ua;
 using Opc.Ua.Client;
 using Opc.Ua.Configuration;
@@ -20,8 +22,9 @@ namespace Tasker.Model
 
         private string sendTaskID = "ns=3;s=\"OpcUaMethodSendNewTask\"";
         private string sendTaskMethodID = "ns=3;s=\"OpcUaMethodSendNewTask\".Method";
-        private NodeId sendTaskNodeID;
-        private NodeId sendTaskMethodNodeID;
+
+        private string getTaskResultID = "ns=3;s=\"OpcUaMethodGetTaskResult\"";
+        private string getTaskResultMethodID = "ns=3;s=\"OpcUaMethodGetTaskResult\".Method";
 
         public Opc()
         {
@@ -32,8 +35,6 @@ namespace Tasker.Model
                 ApplicationType = ApplicationType.Client,
                 ConfigSectionName = "Client"
             };
-            sendTaskNodeID = new NodeId(sendTaskID);
-            sendTaskMethodNodeID = new NodeId(sendTaskMethodID);
         }
 
         public async void SendTask(ProductionTaskExtended task)
@@ -66,44 +67,11 @@ namespace Tasker.Model
                     (string)task.serialLabel.EndLabel
                 };
 
-                CallMethod(sendTaskNodeID, sendTaskMethodNodeID, inputs);
-            }
-
-
-
-
-            //    using (OpcClient client = new OpcClient(endpoint))
-            //{
-            //    try
-            //    {
-            //        client.Connect();
-            //        object[] result = client.CallMethod(
-            //                                "ns=3;s=\"OpcUaMethodSendNewTask\"",
-            //                                "ns=3;s=\"OpcUaMethodSendNewTask\".Method",
-            //                                (Int32)(task.Task.ID),
-            //                                (string)(task.Task.TaskNumber ?? "БЕЗ НОМЕРА") ,
-            //                                (Int16)(task.Task.Diameter ?? 0),
-            //                                (Int16)(task.Task.Thickness ?? 0),
-            //                                (float)(task.Task.PieceLength1 ?? 0),
-            //                                (Int16)(task.Task.PieceQuantity1 ?? 0),
-            //                                (Int16)(task.serialLabel.StartSerial),
-            //                                (string)task.Task.Labeling1Piece1 ?? "",
-            //                                (string)task.Task.Labeling2Piece1 ?? "",
-            //                                (string)task.serialLabel.EndLabel
-            //                                );
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Log.logThis(e.Message);
-            //        throw;
-            //    }
-            //}
+                IList<object> result = session.Call(new NodeId(sendTaskID), new NodeId(sendTaskMethodID), inputs);
+                OutputLog.That($"Задание отправлено: {result[0]} {result[1]}");
+            }            
         }
 
-        public void CallMethod(NodeId nodeId, NodeId methodId, object[] inputArgument)
-        {
-            session.Call(nodeId, methodId, inputArgument);
-        }
         //public void SendItemLenSet(ProductionTaskExtended task)
         //{
         //    Log.logThis($"SendTask item len set: {task.Task.TaskNumber}");
@@ -134,42 +102,61 @@ namespace Tasker.Model
         //        }
         //    }
         //}
-
-
-        //public ProductionTask GetCurrentTaskResult()
-        //{
-        //    bool success;
-        //    string message;
-            
-        //    ProductionTask taskResult = new ProductionTask();
-        //    using (OpcClient client = new OpcClient(endpoint))
-        //    {
-        //        client.Connect();
-        //        object[] result = client.CallMethod(
-        //                                "ns=3;s=\"OpcUaMethodGetTaskResult\"",
-        //                                "ns=3;s=\"OpcUaMethodGetTaskResult\".Method"
-        //                                );
-        //        success = Convert.ToBoolean(result[0]);
-        //        message = Convert.ToString(result[1]);
-        //        if (success)
-        //        {                    
-        //            taskResult.ID = Convert.ToInt32(result[2]);
-        //            taskResult.PiceAmount = Convert.ToInt16(result[3]);
-        //            //taskResult.Operator = Convert.ToString(result[4]);
-        //            taskResult.BandType = Convert.ToString(result[8]);
-        //            taskResult.BandBrand = Convert.ToString(result[9]);
-        //            taskResult.BandSpeed = Convert.ToSingle(result[10]);
-        //            taskResult.SawDownSpeed = Convert.ToSingle(result[11]);
-
-
-        //            taskResult.FinishDate = DateTime.Now;
-        //        }
-        //        else
-        //            throw new Exception(message);
-        //    }
-
-        //    return taskResult;
-        //}
         
+        public async System.Threading.Tasks.Task<ProductionTask> GetCurrentTaskResult()
+        {
+            bool success;
+            string message;
+            configuration = await application.LoadApplicationConfiguration(false);
+            var selectedEndpoint = CoreClientUtils.SelectEndpoint(URI, false, 15000);
+            var endpointConfiguration = EndpointConfiguration.Create(configuration);
+            var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
+
+            using (session = await Session.Create(configuration,
+                endpoint,
+                false,
+                "OPC UA Client",
+                60000,
+                new UserIdentity(new AnonymousIdentityToken()),
+                null))
+            {
+                ProductionTask taskResult = new ProductionTask();
+
+                IList<object> result = session.Call(new NodeId(getTaskResultID), new NodeId(getTaskResultMethodID));                                
+               
+                success = Convert.ToBoolean(result[0]);
+                message = Convert.ToString(result[1]);
+
+                if (success)
+                {
+                    taskResult.ID = Convert.ToInt32(result[2]);
+                    taskResult.PiceAmount = Convert.ToInt16(result[3]);
+                    taskResult.BandType = Convert.ToString(result[8]);
+                    taskResult.BandBrand = Convert.ToString(result[9]);
+                    taskResult.BandSpeed = Convert.ToSingle(result[10]);
+                    taskResult.SawDownSpeed = Convert.ToSingle(result[11]);
+
+                    taskResult.Diameter = Convert.ToInt32(result[12]);
+                    taskResult.Thickness = Convert.ToInt32(result[13]);
+                    taskResult.PieceLength1 = Convert.ToInt32(result[14]);
+                    if (taskResult.ID != 0)
+                    {
+                        OutputLog.That($"Считано загруженное в панель ID: {taskResult.ID} Диаметр: {taskResult.Diameter} длина детали: {taskResult.PieceLength1} отрезано: {taskResult.PiceAmount} ");
+
+                    }
+                    else
+                        OutputLog.That($"Считано задание созданное на панели: Диаметр: {taskResult.Diameter} длина детали: {taskResult.PieceLength1} отрезано: {taskResult.PiceAmount} ");
+
+                    taskResult.FinishDate = DateTime.Now;
+                }
+                else
+                    throw new TaskNotFoundException();                
+                return taskResult;
+            }
+        }
+        
+    }
+    public class TaskNotFoundException : Exception
+    {           
     }
 }

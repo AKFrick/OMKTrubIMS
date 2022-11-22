@@ -13,6 +13,7 @@ namespace Tasker.Model
     public class AsutpServer
     {
         Thread trackingThread;
+        readonly string lineNumber = ConfigurationManager.AppSettings.Get("LineNumber");
         //ErrorItem connectionError = new ErrorItem("Ошибка подключения к серверу АСУТП");
 
         public AsutpServer()
@@ -30,6 +31,8 @@ namespace Tasker.Model
                 Thread.Sleep(20000);
             }
         }
+
+        public event Action<bool> ConnectionEstablished;
 
         public void Check()
         {
@@ -90,10 +93,12 @@ namespace Tasker.Model
                             catch { }
                         }
                         local.SaveChanges();
+                        ConnectionEstablished?.Invoke(true);
                     }
                     catch (Exception e)
                     {
                         OutputLog.That($"Не удалось получить список заданий от сервера АСУТП: {e.Message}");
+                        ConnectionEstablished?.Invoke(false);
                     }
                 }
                 
@@ -147,6 +152,7 @@ namespace Tasker.Model
                             catch (Exception e)
                             {
                                 OutputLog.That($"Не удалось загрузить задание {task.TaskNumber} на сервер АСУТП: {e.Message}");
+                                break;
                             }
                         }
                         asutp.SaveChanges();

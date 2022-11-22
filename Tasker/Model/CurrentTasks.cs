@@ -178,7 +178,7 @@ namespace Tasker.Model
 
                     
                 }
-                catch (ArgumentException e)
+                catch (ArgumentNullException e)
                 {                   
                     task.ID = -1;
                     db.ProductionTasks.Add(task);
@@ -197,33 +197,35 @@ namespace Tasker.Model
         }
         public void LoadTaskResult(ProductionTask taskResult)
         {
-            if (taskResult.ID != 0)
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
-                using (Trubodetal189Entities db = new Trubodetal189Entities())
+                try
                 {
-                    try
-                    {
-                        var result = db.ProductionTasks.Single(b => b.ID == taskResult.ID);
+                    var result = db.ProductionTasks.Single(b => b.ID == taskResult.ID);
 
-                        result.PiceAmount = taskResult.PiceAmount;                        
-                        result.FinishDate = taskResult.FinishDate;
-                        result.BandBrand = taskResult.BandBrand;
-                        result.BandSpeed = taskResult.BandSpeed;
-                        result.BandType = taskResult.BandType;
-                        result.SawDownSpeed = taskResult.SawDownSpeed;                        
+                    result.PiceAmount = taskResult.PiceAmount;                        
+                    result.FinishDate = taskResult.FinishDate;
+                    result.BandBrand = taskResult.BandBrand;
+                    result.BandSpeed = taskResult.BandSpeed;
+                    result.BandType = taskResult.BandType;
+                    result.SawDownSpeed = taskResult.SawDownSpeed;                        
 
-                        result.Status = "f";
-                        db.SaveChanges();
-                        RefreshTaskList();
-                    }
-                    catch (Exception e)
-                    {
-                        OutputLog.That($"Не удалось загрузить результаты задания: {e.Message}");
-                    }
-
+                    result.Status = "f";
+                    db.SaveChanges();
+                    RefreshTaskList();
                 }
-            }
-            else throw new TaskNotCreatedException();
+                catch(InvalidOperationException e)
+                {
+                    taskResult.Status = "f";
+                    InsertNewTask(taskResult);
+                    OutputLog.That("Задание с заданным ID не найдено. Создано новое задание");
+                }
+                catch (Exception e)
+                {
+                    OutputLog.That($"Не удалось загрузить результаты задания: {e.Message}");
+                }
+
+            }                     
         }
 
         public void UpdateTask(ProductionTask task)

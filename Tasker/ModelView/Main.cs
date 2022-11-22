@@ -7,7 +7,7 @@ using Prism.Mvvm;
 using Tasker.Model;
 using Tasker.View;
 using System.Linq;
-using System.Drawing;
+using System.Windows.Media;
 
 namespace Tasker.ModelView
 {
@@ -101,11 +101,20 @@ namespace Tasker.ModelView
             #endregion
 
             checkForNewTasks = new AsutpServer();
+            checkForNewTasks.ConnectionEstablished += (b) =>
+             {
+                 if (!b)
+                     BackColor = Brushes.Red;
+                 else
+                     BackColor = Brushes.White;
+                 OutputLog.That($"!! {b}");
+
+             };
             AsutpServerLogins AsutpLogins = new AsutpServerLogins();
             logins = new ObservableCollection<Login>(AsutpLogins.Logins);
 
             //Работа с ПЛК
-            plc = new Plc();
+            plc = new Plc(currentTasks);
             OpenNewTaskWindow = new DelegateCommand(() =>
             {
                 NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
@@ -134,28 +143,6 @@ namespace Tasker.ModelView
                 //    MessageBox.Show("Выберите пользователя");
                 //}
                 //RaisePropertyChanged(nameof(SelectedTask));
-            });
-            FinishTask = new DelegateCommand(() =>
-            {
-                try
-                {
-                    ProductionTask taskResult = plc.GetCurrentTaskResult();
-                    taskResult.FinishDate = DateTime.Now;
-                    try
-                    {
-                        currentTasks.LoadTaskResult(taskResult);
-                    }
-                    catch (TaskNotCreatedException)
-                    {
-                        MessageBox.Show("Задание не найдено. Введите параметры");
-                        NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks, taskResult));
-                        newTaskWindow.ShowDialog();
-                    }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
             });
             HideTask = new DelegateCommand(() =>
             {
@@ -186,6 +173,8 @@ namespace Tasker.ModelView
         public DelegateCommand UnhideTask { get; }
         public DelegateCommand ShowFinishedTask { get; }
         public DelegateCommand ShowCurrentTask { get; }
-        public DelegateCommand ShowHiddenTask { get; }                
+        public DelegateCommand ShowHiddenTask { get; }
+        public Brush BackColor { get { return backColor; } set { backColor = value; RaisePropertyChanged(nameof(BackColor)); }  }
+        Brush backColor;
     }
 }
