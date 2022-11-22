@@ -101,5 +101,6 @@ namespace Tasker
         public Nullable<double> BandSpeed { get; set; }
         public Nullable<double> SawDownSpeed { get; set; }
         public Nullable<int> IDNumberOperator { get; set; }
+        public string LineNumber { get; set; }
     }
 }

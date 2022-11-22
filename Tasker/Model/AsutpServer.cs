@@ -134,15 +134,17 @@ namespace Tasker.Model
                                 targetTask.BandSpeed = task.BandSpeed;
                                 targetTask.SawDownSpeed = task.SawDownSpeed;
                                 targetTask.IDNumberOperator = task.IDOperatorNumber;
-
+                                targetTask.LineNumber = lineNumber;
+                                OutputLog.That($"Данные о задании загружены на сервер АСУТП {task.ID} {task.TaskNumber}");
                             }
                             catch (InvalidOperationException)
                             {
                                 task.Status = "s";
                                 try
                                 {
-                                    asutp.Tasks.Add(new NewAsutpTask(task).Task);
+                                    asutp.Tasks.Add(new NewAsutpTask(task, lineNumber).Task);
                                     asutp.SaveChanges();
+                                    OutputLog.That($"Новое задание создано на сервере АСУТП {task.ID} {task.TaskNumber}");
                                 }
                                 catch (Exception e)
                                 {

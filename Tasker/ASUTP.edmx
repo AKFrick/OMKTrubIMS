@@ -42,7 +42,8 @@ warning 6002: The table/view 'CuttingConveyor.dbo.Logins' does not have a primar
           <Property Name="PiceAmount" Type="int" />
           <Property Name="Operator" Type="nvarchar" MaxLength="50" />
           <Property Name="IDNumberOperator" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="1" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="LineNumber" Type="varchar" MaxLength="20" />
           <Property Name="BandBrand" Type="nvarchar" MaxLength="23" />
           <Property Name="BandType" Type="nvarchar" MaxLength="23" />
           <Property Name="BandSpeed" Type="float" />
@@ -148,7 +149,7 @@ warning 6002: The table/view 'CuttingConveyor.dbo.Logins' does not have a primar
           <Property Name="Source" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="PiceAmount" Type="Int32" />
           <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="PieceLength1" Type="Int32" />
           <Property Name="PieceQuantity1" Type="Int32" />
           <Property Name="Labeling1Piece1" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
@@ -214,6 +215,7 @@ warning 6002: The table/view 'CuttingConveyor.dbo.Logins' does not have a primar
           <Property Name="BandSpeed" Type="Double" />
           <Property Name="SawDownSpeed" Type="Double" />
           <Property Name="IDNumberOperator" Type="Int32" />
+          <Property Name="LineNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ASUTPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Tasks" EntityType="Self.Task" />
@@ -237,6 +239,7 @@ warning 6002: The table/view 'CuttingConveyor.dbo.Logins' does not have a primar
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="CuttingСonveyorModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
                 <ScalarProperty Name="IDNumberOperator" ColumnName="IDNumberOperator" />
                 <ScalarProperty Name="SawDownSpeed" ColumnName="SawDownSpeed" />
                 <ScalarProperty Name="BandSpeed" ColumnName="BandSpeed" />

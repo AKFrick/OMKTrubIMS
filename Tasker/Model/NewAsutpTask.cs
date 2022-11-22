@@ -9,7 +9,7 @@ namespace Tasker.Model
     public class NewAsutpTask
     {
         public Task Task { get; set; }
-        public NewAsutpTask(ProductionTask prodTask)
+        public NewAsutpTask(ProductionTask prodTask, string Line)
         {
             Task = new Task()
             {
@@ -42,7 +42,8 @@ namespace Tasker.Model
                 BandBrand = prodTask.BandBrand,
                 BandType = prodTask.BandType,
                 BandSpeed = prodTask.BandSpeed,
-                SawDownSpeed = prodTask.SawDownSpeed
+                SawDownSpeed = prodTask.SawDownSpeed,
+                LineNumber = Line                
             };
         }
     }

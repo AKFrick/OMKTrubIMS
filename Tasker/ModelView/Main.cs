@@ -107,11 +107,25 @@ namespace Tasker.ModelView
                      BackColor = Brushes.Red;
                  else
                      BackColor = Brushes.White;
-                 OutputLog.That($"!! {b}");
 
              };
             AsutpServerLogins AsutpLogins = new AsutpServerLogins();
             logins = new ObservableCollection<Login>(AsutpLogins.Logins);
+            ((INotifyCollectionChanged)AsutpLogins.Logins).CollectionChanged += (s, a) =>
+            {
+                if (a.NewItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (Login login in a.NewItems)
+                            logins.Add(login);
+                    }));
+                if (a.OldItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (Login login in a.OldItems)
+                            logins.Remove(login);
+                    }));
+            };
 
             //Работа с ПЛК
             plc = new Plc(currentTasks);
@@ -123,25 +137,25 @@ namespace Tasker.ModelView
 
             StartTask = new DelegateCommand(() =>
             {
-            //    if (SelectedLogin != null)
-            //    {
+                if (SelectedLogin != null)
+                {
                     try
                     {
                         plc.SendTask(new ProductionTaskExtended(SelectedTask));                       
                         SelectedTask.StartDate = DateTime.Now;
-                        //SelectedTask.Operator = SelectedLogin.FIO;
-                        //SelectedTask.IDOperatorNumber = SelectedLogin.IDNumber;
+                        SelectedTask.Operator = SelectedLogin.FIO;
+                        SelectedTask.IDOperatorNumber = SelectedLogin.IDNumber;
                         currentTasks.UpdateTask(SelectedTask);
                     }
                     catch (Exception e)
                     {
                         OutputLog.That(e.Message);
                     }
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Выберите пользователя");
-                //}
+                }
+                else
+                {
+                    MessageBox.Show("Выберите пользователя");
+                }
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
             HideTask = new DelegateCommand(() =>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4a65636dc5454f49958b748b87e6ffef" Name="Diagram1" ZoomLevel="29">
+      <Diagram DiagramId="4a65636dc5454f49958b748b87e6ffef" Name="Diagram1" ZoomLevel="50">
         <EntityTypeShape EntityType="CuttingСonveyorModel.Task" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CuttingСonveyorModel.Login" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
