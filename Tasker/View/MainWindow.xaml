@@ -35,30 +35,36 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding ShowCurrentTask}"  Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
-                <Button Command="{Binding ShowFinishedTask}" Grid.Column="1" Content="Завершенные&#x0a;   заданий" Margin="5" Height="50" Width="120"/>
-                <TextBox Text="Оператор:" Grid.Column="5" FontSize="18" Margin="5" VerticalAlignment="Center" BorderThickness="0"/>
+                <Button Command="{Binding ShowFinishedTask}" Grid.Column="1" Content="Завершенные&#x0a;задания" Margin="5" Height="50" Width="120"/>
+                <Button Command="{Binding ShowHiddenTask}" Grid.Column="2" Content="Скрытые&#x0a;задания" Margin="5" Height="50" Width="120"/>
+                <TextBox Text="Оператор:" Grid.Column="6" FontSize="18" Margin="5" VerticalAlignment="Center" BorderThickness="0"/>
                 <ComboBox Grid.Column="6" Width="400" Height="30" Margin="5" FontSize="16" VerticalContentAlignment="Center"
                           ItemsSource="{Binding logins}" DisplayMemberPath="FIO" SelectedItem="{Binding SelectedLogin}"/>
             </Grid>
             <!--Centre Content-->
             <main:TaskTable Grid.Row ="1" Visibility="{Binding Path=VisibleCurrentTask, Converter={StaticResource BoolToVisConverter}}"/>
-            <view:FinishedTaskTable Grid.Row ="1" Visibility="{Binding Path=VisibleFinishedTask, Converter={StaticResource BoolToVisConverter}}"/>        
+            <view:FinishedTaskTable Grid.Row ="1" Visibility="{Binding Path=VisibleFinishedTask, Converter={StaticResource BoolToVisConverter}}"/>
+            <view:HiddenTaskTable Grid.Row ="1" Visibility="{Binding Path=VisibleHiddenTask, Converter={StaticResource BoolToVisConverter}}"/>
             <!--Bottom panel-->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding FinishTask}" Grid.Column="0" Content="Завешить задание" Margin="5,5,5,5" Width="120" Height="50"/>
-                <Button Command="{Binding StartTask}" Grid.Column="2" Content="Начать задание" Margin="5,5,5,5" Width="120" Height="50"/>
-                <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="3" Content="Создать задание" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding HideTask}" Visibility="{Binding Path=VisibleCurrentTask, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1" Content="Скрыть задание" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding UnhideTask}" Visibility="{Binding Path=VisibleHiddenTask, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1" Content="Вернурть задание" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding StartTask}" Grid.Column="3" Content="Начать задание" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="4" Content="Создать задание" Margin="5,5,5,5" Width="120" Height="50"/>
             </Grid>
         </Grid>
         <!--Log output-->

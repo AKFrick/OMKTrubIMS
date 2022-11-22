@@ -238,6 +238,9 @@
     <Compile Include="View\FinishedTaskTable.xaml.cs">
       <DependentUpon>FinishedTaskTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\HiddenTaskTable.xaml.cs">
+      <DependentUpon>HiddenTaskTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Page Include="View\FinishedTaskTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HiddenTaskTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

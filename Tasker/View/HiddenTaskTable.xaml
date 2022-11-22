@@ -1,13 +1,13 @@
-﻿<UserControl x:Class="Tasker.View.FinishedTaskTable"
+﻿<UserControl x:Class="Tasker.View.HiddenTaskTable"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Tasker.View.Main"
+             xmlns:local="clr-namespace:Tasker.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1400">
+             d:DesignHeight="450" d:DesignWidth="1600">
     <Grid>
-        <DataGrid Name="finishedTaskTable1" 
+        <DataGrid Name="taskTable1" 
                   Width="Auto"
                   Height="Auto"
                   RowBackground="White" AlternatingRowBackground="#f7f6f2"
@@ -24,34 +24,39 @@
                   SelectionUnit="FullRow"
                   AutoGenerateColumns="False"
                   FontSize="16"
-                  MinRowHeight="35"     
-                  HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Center"                  
-                  ItemsSource="{Binding FinishedTaskList}"
+                  MinRowHeight="35"                     
+                  ItemsSource="{Binding HiddenTaskList}"
                   IsSynchronizedWithCurrentItem="False"
+                  SelectedItem="{Binding SelectedHiddenTask}"
                   >
-
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="FontWeight"  Value="Bold" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Background" Value="Gray"/>
                 </Style>
             </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                </Style>
+            </DataGrid.CellStyle>
+
 
             <DataGrid.Columns>
                 <!--Показать эти колонки-->
-                <DataGridTextColumn Header="Номер задания" Width="180" Binding="{Binding TaskNumber}"/>
-                <DataGridTextColumn Header="Оператор" Width="380" Binding="{Binding Operator}"/>
-                <DataGridTextColumn Header="Дата завершения" Width="170" Binding="{Binding FinishDate}"/>
+                <DataGridTextColumn Header="Номер1 задания" Width="180" Binding="{Binding TaskNumber}"/>
+                <DataGridTextColumn Header="Дата получения" Width="170" Binding="{Binding CreationDate}"/>
                 <DataGridTextColumn Header="Партия" Width="150" Binding="{Binding ProductBatchNumber}"/>
                 <DataGridTextColumn Header="Сталь" Width="150" Binding="{Binding SteelType}"/>
                 <DataGridTextColumn Header="Толщина&#x0a;  стенки" Width="150" Binding="{Binding Thickness}"/>
                 <DataGridTextColumn Header="Диаметр&#x0a;  трубы" Width="100" Binding="{Binding Diameter}"/>
                 <DataGridTextColumn Header=" Длина&#x0a;изделия" Width="100" Binding="{Binding PieceLength1}"/>
                 <DataGridTextColumn Header="Количество&#x0a;  изделий" Width="120" Binding="{Binding PieceQuantity1}"/>
-                <DataGridTextColumn Header="Отрезано" Width="120" Binding="{Binding PiceAmount}"/>
+                <DataGridTextColumn Header="Оператор" Width="350" Binding="{Binding Operator}"/>
+
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -14,10 +14,12 @@ namespace Tasker.ModelView
     {
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         public ObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
+        public ObservableCollection<ProductionTask> HiddenTaskList { get; private set; }
         public ObservableCollection<Login> logins { get; private set; }
         public Login SelectedLogin { get; set; }
         public ObservableCollection<OutputLog.LogItem> LogItems { get; set; }
         public ProductionTask SelectedTask { get; set; }
+        public ProductionTask SelectedHiddenTask { get; set; }
         CurrentTasks currentTasks;
         AsutpServer checkForNewTasks;
 
@@ -77,6 +79,22 @@ namespace Tasker.ModelView
                     {
                         foreach (ProductionTask task in a.OldItems)
                             FinishedTaskList.Remove(task);
+                    }));
+            };
+            HiddenTaskList = new ObservableCollection<ProductionTask>(currentTasks.HiddenTaskList);
+            ((INotifyCollectionChanged)currentTasks.HiddenTaskList).CollectionChanged += (s, a) =>
+            {
+                if (a.NewItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (ProductionTask task in a.NewItems)
+                            HiddenTaskList.Add(task);
+                    }));
+                if (a.OldItems?.Count >= 1)
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        foreach (ProductionTask task in a.OldItems)
+                            HiddenTaskList.Remove(task);
                     }));
             };
             #endregion
@@ -139,8 +157,18 @@ namespace Tasker.ModelView
                     MessageBox.Show(e.Message);
                 }
             });
-            ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; });
-            ShowFinishedTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = true; });
+            HideTask = new DelegateCommand(() =>
+            {
+                currentTasks.HideTask(SelectedTask);
+            }) ;
+            UnhideTask = new DelegateCommand(() =>
+            {
+                currentTasks.UnhideTask(SelectedHiddenTask);
+            });
+            ShowCurrentTask = new DelegateCommand(() => { VisibleCurrentTask = true; VisibleFinishedTask = false; VisibleHiddenTask = false; });
+            ShowFinishedTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = true; VisibleHiddenTask = false; });
+            ShowHiddenTask = new DelegateCommand(() => { VisibleCurrentTask = false; VisibleFinishedTask = false; VisibleHiddenTask = true; });
+            ShowCurrentTask.Execute();
         }
 
         Plc plc;
@@ -149,11 +177,16 @@ namespace Tasker.ModelView
         bool visibleFinishedTask;
         public bool VisibleCurrentTask { get { return visibleCurrentTask; } set { visibleCurrentTask = value; RaisePropertyChanged(nameof(VisibleCurrentTask)); } }
         bool visibleCurrentTask;
+        public bool VisibleHiddenTask { get { return visibleHiddenTask; } set { visibleHiddenTask = value; RaisePropertyChanged(nameof(VisibleHiddenTask)); } }
+        bool visibleHiddenTask;
         public DelegateCommand OpenNewTaskWindow { get; private set; }
         public DelegateCommand StartTask { get; }
-        public DelegateCommand FinishTask { get; }
+        public DelegateCommand FinishTask { get; }       
+        public DelegateCommand HideTask { get; }
+        public DelegateCommand UnhideTask { get; }
         public DelegateCommand ShowFinishedTask { get; }
         public DelegateCommand ShowCurrentTask { get; }
+        public DelegateCommand ShowHiddenTask { get; }
 
     }
 }

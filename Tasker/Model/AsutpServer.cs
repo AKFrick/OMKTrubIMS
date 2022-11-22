@@ -62,11 +62,12 @@ namespace Tasker.Model
                             {
                                 task.Status = "1";
                                 local.ProductionTasks.Add(productionTask.Task);
+                                OutputLog.That($"Новое задание загружено {task.TaskNumber}");
                             }
                             catch (Exception e)
                             {
                                 task.Status = "e";
-                                OutputLog.That(e.Message);
+                                OutputLog.That($"Не удалось загрузить задание {task.TaskNumber}, заданию присвоен статус 'e' {e.Message}");
                             }
                         }
                         asutp.SaveChanges();

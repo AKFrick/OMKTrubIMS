@@ -17,6 +17,9 @@ namespace Tasker.Model
         ObservableCollection<ProductionTask> finishedTaskCollection;
         public ReadOnlyObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
 
+        ObservableCollection<ProductionTask> HiddenTaskCollection;
+        public ReadOnlyObservableCollection<ProductionTask> HiddenTaskList { get; private set; }
+
         Thread trackingThread;
         public CurrentTasks()
         {
@@ -25,6 +28,9 @@ namespace Tasker.Model
 
             finishedTaskCollection = new ObservableCollection<ProductionTask>();
             FinishedTaskList = new ReadOnlyObservableCollection<ProductionTask>(finishedTaskCollection);
+
+            HiddenTaskCollection = new ObservableCollection<ProductionTask>();
+            HiddenTaskList = new ReadOnlyObservableCollection<ProductionTask>(HiddenTaskCollection);
 
             trackingThread = new Thread(threadTask) { IsBackground = true };
             trackingThread.Start();            
@@ -48,7 +54,7 @@ namespace Tasker.Model
                 {
                     //Получим активные задания
                     IQueryable<ProductionTask> query = from b in db.ProductionTasks
-                                                       where b.Status != "s" && b.Status != "e" && b.Status != "f"
+                                                       where b.Status != "s" && b.Status != "e" && b.Status != "f" && b.Status != "h"
                                                        select b;
                     foreach (ProductionTask task in query)
                     {
@@ -74,6 +80,21 @@ namespace Tasker.Model
                     {
                         if (!query2.Any(item => item.ID == task.ID))
                             finishedTaskCollection.Remove(task);
+                    });
+
+                    //Получим скрытые задания
+                    IQueryable<ProductionTask> query3 = from b in db.ProductionTasks
+                                                        where (b.Status == "h")
+                                                        select b;
+                    foreach (ProductionTask task in query3)
+                    {
+                        if (!HiddenTaskCollection.Any(item => item.ID == task.ID))
+                            HiddenTaskCollection.Add(task);
+                    }
+                    HiddenTaskCollection.ToList().ForEach(task =>
+                    {
+                        if (!query3.Any(item => item.ID == task.ID))
+                            HiddenTaskCollection.Remove(task);
                     });
 
                 }
@@ -102,23 +123,76 @@ namespace Tasker.Model
             }
         }
 
+        public void HideTask (ProductionTask SelectedTask)
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                try
+                {
+                    ProductionTask task = db.ProductionTasks.SingleOrDefault(b => b.ID == SelectedTask.ID);
+                    task.Status = "h";
+                    db.SaveChanges();
+                    OutputLog.That($"Задание скрыто {task.ID}");
+                }
+                catch (Exception e)
+                {
+                    OutputLog.That($"Не уадлсоь скрыть задание: {e.Message}");
+                }
+                RefreshTaskList();
+            }
+        }
+        public void UnhideTask(ProductionTask SelectedTask)
+        {
+            using (Trubodetal189Entities db = new Trubodetal189Entities())
+            {
+                try
+                {
+                    ProductionTask task = db.ProductionTasks.SingleOrDefault(b => b.ID == SelectedTask.ID);
+                    task.Status = "1";
+                    db.SaveChanges();
+                    OutputLog.That($"Убрано сокрытие задания {task.ID}");
+                }
+                catch (Exception e)
+                {
+                    OutputLog.That($"Не уадлалось убрать сокрытие задание: {e.Message}");
+                }
+                RefreshTaskList();
+            }
+        }
         public ProductionTask InsertNewTask(ProductionTask task)
         {
             using (Trubodetal189Entities db = new Trubodetal189Entities())
             {
                 try
                 {
-                    int MinID = db.ProductionTasks.Min(e => e.ID);                
-                    task.ID = --MinID;
+                    int MinID = db.ProductionTasks.Min(e => e.ID);
+                    if (MinID < 0)
+                    {
+                        task.ID = --MinID;
+                        db.ProductionTasks.Add(task);
+                        db.SaveChanges();
+                        OutputLog.That($"Задание {task.ID} создано");
+                    }
+                    else
+                        throw new ArgumentNullException();
+
+                    
+                }
+                catch (ArgumentException e)
+                {                   
+                    task.ID = -1;
                     db.ProductionTasks.Add(task);
                     db.SaveChanges();
-                    RefreshTaskList();
-                    return task;
+                    OutputLog.That($"Задание {task.ID} создано");
+
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    OutputLog.That($"Не удалось создать задание {e.Message}");
                 }
+
+                RefreshTaskList();
+                return task;
             }                        
         }
         public void LoadTaskResult(ProductionTask taskResult)
