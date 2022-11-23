@@ -33,6 +33,8 @@ namespace Tasker.Model
         }
 
         public event Action<bool> ConnectionEstablished;
+        bool connectionEstablished = false;
+        bool firstAttempt = true;
 
         public void Check()
         {
@@ -74,7 +76,12 @@ namespace Tasker.Model
                             }
                         }
                         asutp.SaveChanges();
-
+                        if (!connectionEstablished)
+                        {
+                            connectionEstablished = true;
+                            firstAttempt = false;
+                            OutputLog.That($"Связь с сервером АСУТП установлена");
+                        }
 
                         //Обновим статус на локальной машине, если он был изменен на сервере
                         IQueryable<ProductionTask> currentTasks = from b in local.ProductionTasks
@@ -97,7 +104,13 @@ namespace Tasker.Model
                     }
                     catch (Exception e)
                     {
-                        OutputLog.That($"Не удалось получить список заданий от сервера АСУТП: {e.Message}");
+                        if (connectionEstablished || firstAttempt)
+                        {
+                            OutputLog.That($"Не удалось получить список заданий от сервера АСУТП: {e.Message}");
+                            connectionEstablished = false;
+                            firstAttempt = false;
+                        }
+
                         ConnectionEstablished?.Invoke(false);
                     }
                 }
@@ -106,64 +119,67 @@ namespace Tasker.Model
         }
         public void UpdateTaskResult()
         {
-
-            using (Trubodetal189Entities local = new Trubodetal189Entities())
+            if (connectionEstablished)
             {
-                try
-                {     
-                    IQueryable<Tasker.ProductionTask> query = from b in local.ProductionTasks
-                                                    where b.Status == "f"
-                                                    select b;
-
-                    using (ASUTPEntities asutp = new ASUTPEntities())
+                using (Trubodetal189Entities local = new Trubodetal189Entities())
+                {
+                    try
                     {
-                        foreach (ProductionTask task in query)
-                        {
-                            try
-                            {
-                                Task targetTask = asutp.Tasks.Single(e => e.ID == task.ID);
-                                targetTask.PiceAmount = task.PiceAmount;
-                                targetTask.Status = "s";
-                                task.Status = "s";
-                                targetTask.StartDate = task.StartDate;
-                                targetTask.FinishDate = task.FinishDate;
-                                targetTask.Operator = task.Operator;
+                        IQueryable<Tasker.ProductionTask> query = from b in local.ProductionTasks
+                                                                  where b.Status == "f"
+                                                                  select b;
 
-                                targetTask.BandBrand = task.BandBrand;
-                                targetTask.BandType = task.BandType;
-                                targetTask.BandSpeed = task.BandSpeed;
-                                targetTask.SawDownSpeed = task.SawDownSpeed;
-                                targetTask.IDNumberOperator = task.IDOperatorNumber;
-                                targetTask.LineNumber = lineNumber;
-                                OutputLog.That($"Данные о задании загружены на сервер АСУТП {task.ID} {task.TaskNumber}");
-                            }
-                            catch (InvalidOperationException)
+                        using (ASUTPEntities asutp = new ASUTPEntities())
+                        {
+                            foreach (ProductionTask task in query)
                             {
-                                task.Status = "s";
                                 try
                                 {
-                                    asutp.Tasks.Add(new NewAsutpTask(task, lineNumber).Task);
-                                    asutp.SaveChanges();
-                                    OutputLog.That($"Новое задание создано на сервере АСУТП {task.ID} {task.TaskNumber}");
+                                    Task targetTask = asutp.Tasks.Single(e => e.ID == task.ID);
+                                    targetTask.PiceAmount = task.PiceAmount;
+                                    targetTask.Status = "s";
+                                    task.Status = "s";
+                                    targetTask.StartDate = task.StartDate;
+                                    targetTask.FinishDate = task.FinishDate;
+                                    targetTask.Operator = task.Operator;
+
+                                    targetTask.BandBrand = task.BandBrand;
+                                    targetTask.BandType = task.BandType;
+                                    targetTask.BandSpeed = task.BandSpeed;
+                                    targetTask.SawDownSpeed = task.SawDownSpeed;
+                                    targetTask.IDNumberOperator = task.IDOperatorNumber;
+                                    targetTask.LineNumber = lineNumber;
+                                    OutputLog.That($"Данные о задании загружены на сервер АСУТП {task.ID} {task.TaskNumber}");
+                                }
+                                catch (InvalidOperationException)
+                                {
+                                    task.Status = "s";
+                                    try
+                                    {
+                                        asutp.Tasks.Add(new NewAsutpTask(task, lineNumber).Task);
+                                        asutp.SaveChanges();
+                                        OutputLog.That($"Новое задание создано на сервере АСУТП {task.ID} {task.TaskNumber}");
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        OutputLog.That($"Не удалось создать новое задание {task.TaskNumber} на сервере АСУТП: {e.Message} ");
+                                    }
                                 }
                                 catch (Exception e)
                                 {
-                                    OutputLog.That($"Не удалось создать новое задание {task.TaskNumber} на сервере АСУТП: {e.Message} ");
+                                    OutputLog.That($"Не удалось загрузить задание {task.TaskNumber} на сервер АСУТП: {e.Message}");
+                                    break;
                                 }
                             }
-                            catch (Exception e)
-                            {
-                                OutputLog.That($"Не удалось загрузить задание {task.TaskNumber} на сервер АСУТП: {e.Message}");
-                                break;
-                            }
+                            asutp.SaveChanges();
+                            local.SaveChanges();
                         }
-                        asutp.SaveChanges();
-                        local.SaveChanges();
                     }
-                }
-                catch (Exception e)
-                {
-                    OutputLog.That($"Не подключится к локальной базе данных: {e.Message}");
+                    catch (Exception e)
+                    {
+                        OutputLog.That($"Не удалось подключится к локальной базе данных: {e.Message}");
+                        return;
+                    }
                 }
             }
         }

@@ -21,7 +21,8 @@ namespace Tasker.Model
             thread = new Thread(GetLoginList) { IsBackground = true };
             thread.Start();
         }
-
+        bool connectionEstablished = false;
+        bool firstAttempt = true;
         public void GetLoginList()
         {
             bool loginsLoaded = false;
@@ -38,10 +39,17 @@ namespace Tasker.Model
                             logins.Add(login);
                         }
                         loginsLoaded = true;
+                        connectionEstablished = true;
+                        firstAttempt = false;
                     }
                     catch (Exception e)
                     {
-                        OutputLog.That($"Не удалось считать список операторов: {e.Message}");
+                        if (firstAttempt || connectionEstablished)
+                        {
+                            OutputLog.That($"Не удалось считать список операторов: {e.Message}");
+                            connectionEstablished = false;
+                            firstAttempt = false;
+                        }
                     }
                 }
                 Thread.Sleep(20000);

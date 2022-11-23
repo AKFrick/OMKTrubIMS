@@ -19,6 +19,8 @@ namespace Tasker.Model
 
         ObservableCollection<ProductionTask> HiddenTaskCollection;
         public ReadOnlyObservableCollection<ProductionTask> HiddenTaskList { get; private set; }
+        bool connectionEstablished = false;
+        bool firstAttempt = true;
 
         Thread trackingThread;
         public CurrentTasks()
@@ -35,6 +37,7 @@ namespace Tasker.Model
             trackingThread = new Thread(threadTask) { IsBackground = true };
             trackingThread.Start();            
         }
+
         void threadTask()
         {
             while (true)
@@ -96,11 +99,22 @@ namespace Tasker.Model
                         if (!query3.Any(item => item.ID == task.ID))
                             HiddenTaskCollection.Remove(task);
                     });
+                    if(firstAttempt || !connectionEstablished)
+                    {
+                        firstAttempt = false;
+                        connectionEstablished = true;
+                        OutputLog.That($"Соединение с локальной базой установлено");
+                    }
 
                 }
                 catch (Exception e)
                 {
-                    OutputLog.That($"Не удалось обновить список заданий: {e.Message}");
+                    if(firstAttempt || connectionEstablished)
+                    {
+                        OutputLog.That($"Не удалось обновить список заданий: {e.Message}");
+                        firstAttempt = false;
+                        connectionEstablished = false;
+                    }
                 }
                                                     
             }
@@ -217,8 +231,11 @@ namespace Tasker.Model
                 catch(InvalidOperationException e)
                 {
                     taskResult.Status = "f";
+                    OutputLog.That("Задание с заданным ID не найдено");
+                    taskResult.CreationDate = DateTime.Now;
+                    taskResult.StartDate = DateTime.Now;
+                    taskResult.TaskNumber = "НЕ ЗАДАН";
                     InsertNewTask(taskResult);
-                    OutputLog.That("Задание с заданным ID не найдено. Создано новое задание");
                 }
                 catch (Exception e)
                 {

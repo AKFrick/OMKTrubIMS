@@ -15,6 +15,8 @@ namespace Tasker.Model
 
         Opc opc;
         CurrentTasks currentTasks;
+        bool connectionEstablished = false;
+        bool firstAttempt = true;
         public Plc(CurrentTasks currentTasks)
         {
             opc = new Opc();
@@ -47,15 +49,32 @@ namespace Tasker.Model
             {
                 ProductionTask task = await opc.GetCurrentTaskResult();
                 currentTasks.LoadTaskResult(task);
-                
+                if (firstAttempt || !connectionEstablished)
+                {
+                    OutputLog.That("Связь с ПЛК установлена");
+                    connectionEstablished = true;
+                    firstAttempt = false;
+                }
+
             }
             catch (TaskNotFoundException ex)
             {
-                OutputLog.That("Нет завершенных заданий для считывания в ПЛК");
+                if (firstAttempt || !connectionEstablished)
+                {
+                    OutputLog.That("Связь с ПЛК установлена");
+                    connectionEstablished = true;
+                    firstAttempt = false;
+                }
+                return;
             }
             catch (Exception ex)
             {
-                OutputLog.That($"Не удалось подключиться к ПЛК: {ex.Message}");
+                if(firstAttempt || connectionEstablished)
+                {
+                    OutputLog.That($"Не удалось подключиться к ПЛК: {ex.Message}");
+                    connectionEstablished = false;
+                    firstAttempt = false;
+                }
             }
 
 

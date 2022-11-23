@@ -8,6 +8,7 @@
         xmlns:view="clr-namespace:Tasker.View"
         xmlns:modelView ="clr-namespace:Tasker.ModelView"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Icon="image\promatisLogo.png"
         Title="Управление заданиями" Height="676" Width="1600.0">
     <Window.Resources>
@@ -44,7 +45,7 @@
                 <Button Command="{Binding ShowCurrentTask}"  Grid.Column="0" Content="Текущие задания" Margin="5" Height="50" Width="120"/>
                 <Button Command="{Binding ShowFinishedTask}" Grid.Column="1" Content="Завершенные&#x0a;    задания" Margin="5" Height="50" Width="120"/>
                 <Button Command="{Binding ShowHiddenTask}" Grid.Column="2" Content="Скрытые задания" Margin="5" Height="50" Width="120"/>
-                <TextBox Text="НЕТ СВЯЗИ С АСУТП:" Grid.Column="6" FontWeight="Bold" Foreground="White" Background="Transparent" FontSize="23" Margin="5" VerticalAlignment="Center" BorderThickness="0" HorizontalAlignment="Center"/>
+                <TextBox Text="НЕТ СВЯЗИ С СЕРВЕРОМ" Grid.Column="6" FontWeight="Bold" Foreground="White" Background="Transparent" FontSize="23" Margin="5" VerticalAlignment="Center" BorderThickness="0" HorizontalAlignment="Center"/>
                 <TextBox Text="Оператор:" Grid.Column="7" FontSize="18" Margin="5" VerticalAlignment="Center" BorderThickness="0"/>
                 <ComboBox Grid.Column="8" Width="400" Height="30" Margin="5" FontSize="16" VerticalContentAlignment="Center"
                           ItemsSource="{Binding logins}" DisplayMemberPath="FIO" SelectedItem="{Binding SelectedLogin}"/>
