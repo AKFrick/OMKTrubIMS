@@ -8,6 +8,7 @@ using System.Threading;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows;
+using System.Data.Entity;
 
 namespace Tasker.Model    
 {
@@ -72,7 +73,7 @@ namespace Tasker.Model
 
                     //Получим завершенные задания
                     IQueryable<ProductionTask> query2 = from b in db.ProductionTasks
-                                                       where (b.Status == "s" || b.Status == "f")
+                                                       where (b.Status == "s" || b.Status == "f") && (b.FinishDate >= DbFunctions.AddMonths(DateTime.Now, -1))
                                                        select b;
                     foreach (ProductionTask task in query2)
                     {
