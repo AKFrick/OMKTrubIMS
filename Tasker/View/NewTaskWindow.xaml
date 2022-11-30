@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Tasker.View"
         mc:Ignorable="d"
         Icon="image\promatisLogo.png"
-        Title="Создание нового задания" Height="600" Width="546">
+        Title="Создание нового задания" Height="650" Width="546">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -49,32 +49,32 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Content="Номер задания" Grid.Column="0" Grid.Row="0" Margin="10,10,2,2"/>
-            <TextBox Text="{Binding task.TaskNumber}" Grid.Column="1" Grid.Row="0" Margin="2,10,10,2" MaxLength="15"/>
-            
-            <Label Content="Наименование изделия" Grid.Column="0" Grid.Row="1" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Product}" Grid.Column="1" Grid.Row="1" Margin="2,2,10,2" MaxLength="150"/>
+            <Label Content="Номер задания" Grid.Column="0" Grid.Row="0" FontSize="15" Margin="10,10,2,2"/>
+            <TextBox Text="{Binding task.TaskNumber}" Grid.Column="1" Grid.Row="0" FontSize="15"  Margin="2,10,10,2" MaxLength="15"/>
 
-            <Label Content="Партия изделия" Grid.Column="0" Grid.Row="2" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.ProductBatchNumber}" Grid.Column="1" Grid.Row="2" Margin="2,2,10,2" MaxLength="25"/>
+            <Label Content="Наименование изделия" Grid.Column="0" Grid.Row="1" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Product}" Grid.Column="1" Grid.Row="1" FontSize="15"  Margin="2,2,10,2" MaxLength="150"/>
 
-            <Label Content="Партия трубы" Grid.Column="0" Grid.Row="3" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PipeBatchNumber}" Grid.Column="1" Grid.Row="3" Margin="2,2,10,2" MaxLength="25"/>
+            <Label Content="Партия изделия" Grid.Column="0" Grid.Row="2" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.ProductBatchNumber}" Grid.Column="1" FontSize="15"  Grid.Row="2" Margin="2,2,10,2" MaxLength="25"/>
 
-            <Label Content="Номер трубы" Grid.Column="0" Grid.Row="4" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" Grid.Row="4" Margin="2,2,10,2" MaxLength="15"/>
+            <Label Content="Партия трубы" Grid.Column="0" Grid.Row="3" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PipeBatchNumber}" Grid.Column="1" FontSize="15"  Grid.Row="3" Margin="2,2,10,2" MaxLength="25"/>
 
-            <Label Content="Плавка" Grid.Column="0" Grid.Row="5" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Heat}" Grid.Column="1" Grid.Row="5" Margin="2,2,10,2" MaxLength="25"/>
+            <Label Content="Номер трубы" Grid.Column="0" Grid.Row="4" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PipeNumber}" Grid.Column="1" FontSize="15"  Grid.Row="4" Margin="2,2,10,2" MaxLength="15"/>
 
-            <Label Content="Сталь" Grid.Column="0" Grid.Row="6" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.SteelType}" Grid.Column="1" Grid.Row="6" Margin="2,2,10,2" MaxLength="25"/>
+            <Label Content="Плавка" Grid.Column="0" Grid.Row="5" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Heat}" Grid.Column="1" FontSize="15"  Grid.Row="5" Margin="2,2,10,2" MaxLength="25"/>
 
-            <Label Content="Данные для выполнения задания" Grid.Column="0" Grid.Row="7" Margin="10,2,2,2" FontSize="15"/>
+            <Label Content="Сталь" Grid.Column="0" Grid.Row="6" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.SteelType}" Grid.Column="1" FontSize="15"  Grid.Row="6" Margin="2,2,10,2" MaxLength="25"/>
 
-            <Label Content="Диаметр трубы" Grid.Column="0" Grid.Row="8" Margin="10,2,2,2"/>
+            <Label Content="Данные для выполнения задания" Grid.Column="0"  Grid.Row="7" Margin="10,2,2,2" FontSize="15" FontWeight="Bold"/>
 
-            <ComboBox Name="phonesList" Height="30" VerticalAlignment="Top" Grid.Row="8" Grid.Column="1" SelectionChanged="ComboBox_Selected" >
+            <Label Content="Диаметр трубы" Grid.Column="0" Grid.Row="8" FontSize="15"  Margin="10,2,2,2"/>
+
+            <ComboBox Name="phonesList" Height="30" VerticalAlignment="Top" FontSize="15"  Grid.Row="8" Grid.Column="1" SelectionChanged="ComboBox_Selected" >
                 <TextBlock>45</TextBlock>
                 <TextBlock>57</TextBlock>
                 <TextBlock>60</TextBlock>
@@ -97,24 +97,24 @@
                 <TextBlock>377</TextBlock>
                 <TextBlock>426</TextBlock>
             </ComboBox>
-                       
-            <Label Content="Толщина стенки трубы" Grid.Column="0" Grid.Row="9" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Thickness}" Grid.Column="1" Grid.Row="9" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
 
-            <Label Content="Длина изделия" Grid.Column="0" Grid.Row="10" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PieceLength1}" Grid.Column="1" Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
-            
-            <Label Content="Количество изделий" Grid.Column="0" Grid.Row="11" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.PieceQuantity1}" Grid.Column="1" Grid.Row="11" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+            <Label Content="Толщина стенки трубы" Grid.Column="0" FontSize="15"  Grid.Row="9" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Thickness}" Grid.Column="1" FontSize="15"  Grid.Row="9" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
 
-            <Label Content="Серийный номер в формате: номер/год" Grid.Column="0" Grid.Row="12" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.StartSerialNumber}" Grid.Column="1" Grid.Row="12" Margin="2,2,10,2" MaxLength="15" />
+            <Label Content="Длина изделия" Grid.Column="0" Grid.Row="10" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PieceLength1}" Grid.Column="1" FontSize="15"  Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
 
-            <Label Content="Текст маркировки 1" Grid.Column="0" Grid.Row="13" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Labeling1Piece1}" Grid.Column="1" Grid.Row="13" Margin="2,2,10,2" MaxLength="25" />
+            <Label Content="Количество изделий" Grid.Column="0" Grid.Row="11" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.PieceQuantity1}" Grid.Column="1" FontSize="15"  Grid.Row="11" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
 
-            <Label Content="Текст маркировки 2" Grid.Column="0" Grid.Row="14" Margin="10,2,2,2"/>
-            <TextBox Text="{Binding task.Labeling2Piece1}" Grid.Column="1" Grid.Row="14" Margin="2,2,10,2" MaxLength="25" />
+            <Label Content="Серийный номер в формате: номер/год" Grid.Column="0" FontSize="15"  Grid.Row="12" Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.StartSerialNumber}" Grid.Column="1" FontSize="15"  Grid.Row="12" Margin="2,2,10,2" MaxLength="15" />
+
+            <Label Content="Текст маркировки 1" Grid.Column="0" Grid.Row="13" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Labeling1Piece1}" Grid.Column="1" FontSize="15"  Grid.Row="13" Margin="2,2,10,2" MaxLength="25" />
+
+            <Label Content="Текст маркировки 2" Grid.Column="0" Grid.Row="14" FontSize="15"  Margin="10,2,2,2"/>
+            <TextBox Text="{Binding task.Labeling2Piece1}" Grid.Column="1" FontSize="15"  Grid.Row="14" Margin="2,2,10,2" MaxLength="25" />
 
         </Grid>
 

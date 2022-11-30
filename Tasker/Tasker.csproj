@@ -259,6 +259,9 @@
     <Compile Include="View\NewTaskWindow.xaml.cs">
       <DependentUpon>NewTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NewTaskWindowMultilen.xaml.cs">
+      <DependentUpon>NewTaskWindowMultilen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TaskTable.xaml.cs">
       <DependentUpon>TaskTable.xaml</DependentUpon>
     </Compile>
@@ -290,6 +293,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\NewTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewTaskWindowMultilen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

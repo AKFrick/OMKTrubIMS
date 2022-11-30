@@ -1,0 +1,216 @@
+﻿<Window x:Class="Tasker.View.NewTaskWindowMultilen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tasker.View"
+        mc:Ignorable="d"
+        Icon="image\promatisLogo.png"
+        Title="Создание нового задания" Height="650" Width="750">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Top content-->
+            <Label Grid.Row ="0" Content="Создать новое задание" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top"
+               FontSize="16"/>
+            <!--Centre content-->
+            <Border Grid.Row="1" BorderBrush="SteelBlue" BorderThickness="1" Margin="5" />
+            <Grid Grid.Row="1" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Номер задания" Grid.Column="0" Grid.Row="0" FontSize="15"  Margin="10,10,2,2"/>
+                <TextBox Text="{Binding task.TaskNumber}" Grid.Column="1" FontSize="15"  Grid.Row="0" Margin="2,10,10,2" MaxLength="15"/>
+
+                <Label Content="Наименование изделия" Grid.Column="0" FontSize="15"  Grid.Row="1" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.Product}" Grid.Column="1" FontSize="15"  Grid.Row="1" Margin="2,2,10,2" MaxLength="150"/>
+
+                <Label Content="Партия изделия" Grid.Column="0" FontSize="15"  Grid.Row="2" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.ProductBatchNumber}" FontSize="15"  Grid.Column="1" Grid.Row="2" Margin="2,2,10,2" MaxLength="25"/>
+
+                <Label Content="Партия трубы" Grid.Column="0" FontSize="15"  Grid.Row="3" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.PipeBatchNumber}" FontSize="15"  Grid.Column="1" Grid.Row="3" Margin="2,2,10,2" MaxLength="25"/>
+
+                <Label Content="Номер трубы" Grid.Column="0" FontSize="15"  Grid.Row="4" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.PipeNumber}" FontSize="15"  Grid.Column="1" Grid.Row="4" Margin="2,2,10,2" MaxLength="15"/>
+
+                <Label Content="Плавка" Grid.Column="0" FontSize="15"  Grid.Row="5" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.Heat}" FontSize="15"  Grid.Column="1" Grid.Row="5" Margin="2,2,10,2" MaxLength="25"/>
+
+                <Label Content="Сталь" Grid.Column="0" FontSize="15"  Grid.Row="6" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.SteelType}" FontSize="15"  Grid.Column="1" Grid.Row="6" Margin="2,2,10,2" MaxLength="25"/>
+
+                <Label Content="Данные для выполнения задания" Grid.Column="0" FontWeight="Bold" Grid.Row="7" Margin="10,2,2,2" FontSize="15"/>
+
+                <Label Content="Диаметр трубы" Grid.Column="0" FontSize="15"  Grid.Row="8" Margin="10,2,2,2"/>
+
+                <ComboBox Name="phonesList" Height="30" FontSize="15"  VerticalAlignment="Top" Grid.Row="8" Grid.Column="1" SelectionChanged="ComboBox_Selected" >
+                    <TextBlock>45</TextBlock>
+                    <TextBlock>57</TextBlock>
+                    <TextBlock>60</TextBlock>
+                    <TextBlock>70</TextBlock>
+                    <TextBlock>76</TextBlock>
+                    <TextBlock>83</TextBlock>
+                    <TextBlock>89</TextBlock>
+                    <TextBlock>102</TextBlock>
+                    <TextBlock>114</TextBlock>
+                    <TextBlock>121</TextBlock>
+                    <TextBlock>127</TextBlock>
+                    <TextBlock>133</TextBlock>
+                    <TextBlock>159</TextBlock>
+                    <TextBlock>168</TextBlock>
+                    <TextBlock>194</TextBlock>
+                    <TextBlock>219</TextBlock>
+                    <TextBlock>245</TextBlock>
+                    <TextBlock>273</TextBlock>
+                    <TextBlock>325</TextBlock>
+                    <TextBlock>377</TextBlock>
+                    <TextBlock>426</TextBlock>
+                </ComboBox>
+
+                <Label Content="Толщина стенки трубы" Grid.Column="0" FontSize="15"  Grid.Row="9" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.Thickness}" Grid.Column="1" FontSize="15"  Grid.Row="9" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
+
+                <Label Content="Длина изделия" Grid.Column="0" Grid.Row="10" FontSize="15"  Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.PieceLength1}" Grid.Column="1" FontSize="15"  Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <Label Content="Количество изделий" Grid.Column="0" Grid.Row="11" FontSize="15"  Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.PieceQuantity1}" Grid.Column="1" Grid.Row="11" FontSize="15"  Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <Label Content="Серийный номер в формате: номер/год" Grid.Column="0" FontSize="15"  Grid.Row="12" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.StartSerialNumber}" Grid.Column="1" FontSize="15"  Grid.Row="12" Margin="2,2,10,2" MaxLength="15" />
+
+                <Label Content="Текст маркировки 1" Grid.Column="0" Grid.Row="13" FontSize="15"  Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.Labeling1Piece1}" Grid.Column="1" FontSize="15"  Grid.Row="13" Margin="2,2,10,2" MaxLength="25" />
+
+                <Label Content="Текст маркировки 2" Grid.Column="0" Grid.Row="14" FontSize="15" Margin="10,2,2,2"/>
+                <TextBox Text="{Binding task.Labeling2Piece1}" Grid.Column="1" FontSize="15"  Grid.Row="14" Margin="2,2,10,2" MaxLength="25" />
+
+            </Grid>
+
+            <!--Btm content-->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding Create}" Grid.Column="1" Margin="5" FontSize="15"  Width="160" Height="40" Content="Создать" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Top content-->
+            <Label Grid.Row ="0"  Content="Ввод длины заготовок" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top"
+               FontSize="16"/>
+            <!--Centre content-->
+            <Border Grid.Row="1" BorderBrush="SteelBlue" BorderThickness="1" Margin="5" />
+            <Grid Grid.Row="1" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Длина заготовки" FontSize="15"  Grid.Column="0" Grid.Row="0" Margin="10,10,2,2"/>
+                <Label Content="Количество" FontSize="15"  Grid.Column="1" Grid.Row="0" Margin="10,10,2,2"/>
+
+                <TextBox Text="{Binding task.PieceLength1}" FontSize="15"  Grid.Column="0" Grid.Row="1" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity1}" FontSize="15"  Grid.Column="1" Grid.Row="1" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength2}" FontSize="15"  Grid.Column="0" Grid.Row="2" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity2}" FontSize="15"  Grid.Column="1" Grid.Row="2" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength3}" FontSize="15"  Grid.Column="0" Grid.Row="3" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity3}" FontSize="15"  Grid.Column="1" Grid.Row="3" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength4}" FontSize="15"  Grid.Column="0" Grid.Row="4" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity4}" FontSize="15"  Grid.Column="1" Grid.Row="4" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength5}" FontSize="15"  Grid.Column="0" Grid.Row="5" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity5}" FontSize="15"  Grid.Column="1" Grid.Row="5" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength6}" FontSize="15"  Grid.Column="0" Grid.Row="6" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity6}" FontSize="15"  Grid.Column="1" Grid.Row="6" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength7}" FontSize="15"  Grid.Column="0" Grid.Row="7" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity7}" FontSize="15"  Grid.Column="1" Grid.Row="7" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength8}" FontSize="15"  Grid.Column="0" Grid.Row="8" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity8}" FontSize="15"  Grid.Column="1" Grid.Row="8" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength9}" FontSize="15"  Grid.Column="0" Grid.Row="9" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity9}" FontSize="15"  Grid.Column="1" Grid.Row="9" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength10}" FontSize="15"  Grid.Column="0" Grid.Row="10" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity10}" FontSize="15"  Grid.Column="1" Grid.Row="10" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength11}" FontSize="15"  Grid.Column="0" Grid.Row="11" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity11}" FontSize="15"  Grid.Column="1" Grid.Row="11" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength12}" FontSize="15"  Grid.Column="0" Grid.Row="12" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity12}" FontSize="15"  Grid.Column="1" Grid.Row="12" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength13}" FontSize="15"  Grid.Column="0" Grid.Row="13" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity13}" FontSize="15"  Grid.Column="1" Grid.Row="13" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength14}" FontSize="15"  Grid.Column="0" Grid.Row="14" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity14}" FontSize="15"  Grid.Column="1" Grid.Row="14" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+                <TextBox Text="{Binding task.PieceLength15}" FontSize="15"  Grid.Column="0" Grid.Row="15" Margin="10,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+                <TextBox Text="{Binding task.PieceQuantity15}" FontSize="15"  Grid.Column="1" Grid.Row="15" Margin="2,2,10,2" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>

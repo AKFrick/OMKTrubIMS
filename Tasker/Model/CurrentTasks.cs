@@ -223,7 +223,8 @@ namespace Tasker.Model
                     result.BandBrand = taskResult.BandBrand;
                     result.BandSpeed = taskResult.BandSpeed;
                     result.BandType = taskResult.BandType;
-                    result.SawDownSpeed = taskResult.SawDownSpeed;                        
+                    result.SawDownSpeed = taskResult.SawDownSpeed;
+                    result.PieceLength1 = taskResult.PieceLength1; //Забираем длину детали, если вдруг она изменилась с паанели оператора
 
                     result.Status = "f";
                     db.SaveChanges();

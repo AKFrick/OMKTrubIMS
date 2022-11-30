@@ -11,22 +11,19 @@ namespace Tasker.Model
     {
         public ParsedSerialLabel(string StartSerialNumber)
         {
-            Regex regex = new Regex(@"[^0-9]{5}/[^0-9]{2}$");
             if (StartSerialNumber != null)
             {
-
-
-                if (false && regex.IsMatch(StartSerialNumber))
-                {
+               try
+                { 
                     string[] splitted = StartSerialNumber.Split('/');
                     StartSerial = int.Parse(splitted[0]);
                     EndLabel = $"/{splitted[1]}";
                 }
-                else
+                catch (Exception e)
                 {
-                    StartSerial = 1;
-                    EndLabel = $"/{DateTime.Now:yy}";
-                    Log.logThis($"Неверный формат серийного номер: {StartSerialNumber}");
+                    StartSerial = 0;
+                    EndLabel = "";
+                    OutputLog.That($"Неверный формат серийного номер: {StartSerialNumber}");
                 }
             }
             else

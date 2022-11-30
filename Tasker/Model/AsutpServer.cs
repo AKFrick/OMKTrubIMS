@@ -66,6 +66,7 @@ namespace Tasker.Model
                             try
                             {
                                 task.Status = "1";
+                                productionTask.Task.Status = "1";
                                 local.ProductionTasks.Add(productionTask.Task);
                                 OutputLog.That($"Новое задание загружено {task.TaskNumber}");
                             }
@@ -95,6 +96,7 @@ namespace Tasker.Model
                                 if (task.Status != "1")
                                 {
                                     productionTask.Status = task.Status;
+                                    OutputLog.That($"Для задания {productionTask.TaskNumber} обновлен статус: {productionTask.Status}");
                                 }
                             }
                             catch { }
@@ -149,6 +151,7 @@ namespace Tasker.Model
                                     targetTask.SawDownSpeed = task.SawDownSpeed;
                                     targetTask.IDNumberOperator = task.IDOperatorNumber;
                                     targetTask.LineNumber = lineNumber;
+                                    targetTask.PieceLength1 = task.PieceLength1;
                                     OutputLog.That($"Данные о задании загружены на сервер АСУТП {task.ID} {task.TaskNumber}");
                                 }
                                 catch (InvalidOperationException)

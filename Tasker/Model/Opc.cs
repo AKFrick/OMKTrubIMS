@@ -13,6 +13,8 @@ namespace Tasker.Model
     /// </summary>
     public class Opc
     {
+
+        readonly bool multilen = Convert.ToBoolean(ConfigurationManager.AppSettings.Get("multilen"));
         public string URI { get; set; } // = "opc.tcp://192.168.10.2:4840/";
         ApplicationInstance application;
         ApplicationConfiguration configuration;
@@ -25,6 +27,9 @@ namespace Tasker.Model
 
         private string getTaskResultID = "ns=3;s=\"OpcUaMethodGetTaskResult\"";
         private string getTaskResultMethodID = "ns=3;s=\"OpcUaMethodGetTaskResult\".Method";
+
+        private string sendItemLenID = "ns=3;s=\"OpcUaMethodSendItemLenSet\"";
+        private string sendItemLenMethodID = "ns=3;s=\"OpcUaMethodSendItemLenSet\".Method";
 
         public Opc()
         {
@@ -39,11 +44,11 @@ namespace Tasker.Model
 
         public async void SendTask(ProductionTaskExtended task)
         {
-            OutputLog.That($"Отправляем задание {task.Task.TaskNumber}");
-            configuration = await application.LoadApplicationConfiguration(false);
-            var selectedEndpoint = CoreClientUtils.SelectEndpoint(URI, false, 15000);
-            var endpointConfiguration = EndpointConfiguration.Create(configuration);
-            var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
+                OutputLog.That($"Отправляем задание {task.Task.TaskNumber}");
+                configuration = await application.LoadApplicationConfiguration(false);
+                var selectedEndpoint = CoreClientUtils.SelectEndpoint(URI, false, 15000);
+                var endpointConfiguration = EndpointConfiguration.Create(configuration);
+                var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
 
             using (session = await Session.Create(configuration,
                 endpoint,
@@ -61,7 +66,7 @@ namespace Tasker.Model
                     (Int16)(task.Task.Thickness ?? 0),
                     (float)(task.Task.PieceLength1 ?? 0),
                     (Int16)(task.Task.PieceQuantity1 ?? 0),
-                    (Int16)(task.serialLabel.StartSerial),
+                    (Int32)(task.serialLabel.StartSerial),
                     (string)task.Task.Labeling1Piece1 ?? "",
                     (string)task.Task.Labeling2Piece1 ?? "",
                     (string)task.serialLabel.EndLabel
@@ -69,40 +74,27 @@ namespace Tasker.Model
 
                 IList<object> result = session.Call(new NodeId(sendTaskID), new NodeId(sendTaskMethodID), inputs);
                 OutputLog.That($"Задание отправлено: {result[0]} {result[1]}");
+
+                if (multilen)
+                {
+                    ItemLenSet itemLenSet = new ItemLenSet(task);
+                    for (int i = 0; i <= 14; i++)
+                    {
+                        object[] inputsLen = new object[4]
+                        {
+                        (float)itemLenSet.itemLenData[i].ItemLen,
+                        (Int16)itemLenSet.itemLenData[i].ItemAmount,
+                        (string)itemLenSet.itemLenData[i].Labeling1 ?? "",
+                        (string)itemLenSet.itemLenData[i].Labeling2 ?? ""
+                        };
+
+                        session.Call(new NodeId(sendItemLenID), new NodeId(sendItemLenMethodID), inputsLen);                        
+                    }
+                    OutputLog.That($"Массив длин отправлен");
+                }
             }            
         }
 
-        //public void SendItemLenSet(ProductionTaskExtended task)
-        //{
-        //    Log.logThis($"SendTask item len set: {task.Task.TaskNumber}");
-
-        //    ItemLenSet itemLenSet = new ItemLenSet(task);
-
-        //    using (OpcClient client = new OpcClient(endpoint))
-        //    {
-        //        try
-        //        {
-        //            client.Connect();
-        //            for (int i = 0; i <= 14 ; i++ )
-        //            {                        
-        //                object[] result = client.CallMethod(
-        //                                        "ns=3;s=\"OpcUaMethodSendItemLenSet\"",
-        //                                        "ns=3;s=\"OpcUaMethodSendItemLenSet\".Method",
-        //                                        (float)itemLenSet.itemLenData[i].ItemLen,
-        //                                        (Int16)itemLenSet.itemLenData[i].ItemAmount,                                                
-        //                                        (string)itemLenSet.itemLenData[i].Labeling1 ?? "",
-        //                                        (string)itemLenSet.itemLenData[i].Labeling2 ?? ""
-        //                                        );
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Log.logThis(e.Message);
-        //            throw;
-        //        }
-        //    }
-        //}
-        
         public async System.Threading.Tasks.Task<ProductionTask> GetCurrentTaskResult()
         {
             bool success;

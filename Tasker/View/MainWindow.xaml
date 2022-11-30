@@ -44,7 +44,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding ShowCurrentTask}"  Grid.Column="0" FontSize="18" Content="ТЕКУЩИЕ" Margin="5" Height="50" Width="120"/>
                 <Button Command="{Binding ShowFinishedTask}" Grid.Column="1" FontSize="16" Content="ЗАВЕРШЕННЫЕ" Margin="5" Height="50" Width="120"/>
-                <Button Command="{Binding ShowHiddenTask}" Grid.Column="2" FontSize="18" Content="СКРЫТЫЕ" Margin="5" Height="50" Width="120"/>
+                <Button Command="{Binding ShowHiddenTask}" Grid.Column="2" FontSize="18" Content="УДАЛЕННЫЕ" Margin="5" Height="50" Width="120"/>
                 <TextBox Text="НЕТ СВЯЗИ С СЕРВЕРОМ" Grid.Column="6" FontWeight="Bold" Foreground="White" Background="Transparent" FontSize="23" Margin="5" VerticalAlignment="Center" BorderThickness="0" HorizontalAlignment="Center"/>
                 <TextBox Text="Оператор:" Grid.Column="7" FontSize="25" Margin="5" VerticalAlignment="Center" BorderThickness="0"/>
                 <ComboBox Grid.Column="8" Width="400" Height="30" Margin="5" FontSize="16" VerticalContentAlignment="Center"
@@ -62,10 +62,10 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding HideTask}" Visibility="{Binding Path=VisibleCurrentTask, Converter={StaticResource BoolToVisConverter}}" Grid.Column="0" FontSize="18" Content=" СКРЫТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding HideTask}" Visibility="{Binding Path=VisibleCurrentTask, Converter={StaticResource BoolToVisConverter}}" Background="Red" Foreground="White" Grid.Column="0" FontSize="18" Content=" УДАЛИТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
                 <Button Command="{Binding UnhideTask}" Visibility="{Binding Path=VisibleHiddenTask, Converter={StaticResource BoolToVisConverter}}" Grid.Column="0" FontSize="18" Content=" ВЕРНУТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
-                <Button Command="{Binding StartTask}" Grid.Column="2" FontSize="18" Background="LightGreen" Content="  НАЧАТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
-                <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="3" FontSize="18"  Content="  СОЗДАТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding StartTask}" Grid.Column="3" FontSize="18" Background="LightGreen" Content="  НАЧАТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
+                <Button Command="{Binding OpenNewTaskWindow}" Grid.Column="2" FontSize="18"  Content="  СОЗДАТЬ&#x0a; ЗАДАНИЕ" Margin="5,5,5,5" Width="120" Height="50"/>
             </Grid>
         </Grid>
         <!--Log output-->

@@ -8,9 +8,7 @@ namespace Tasker.Model
 {
     /// <summary> Обмен данными с PLC </summary>
     public class Plc
-    {
-        readonly string lineNumber = ConfigurationManager.AppSettings.Get("LineNumber");
-
+    {        
         Thread checkForResultJob;
 
         Opc opc;
@@ -30,7 +28,6 @@ namespace Tasker.Model
         public bool SendTask(ProductionTaskExtended task)
         {           
             opc.SendTask(task);
-            //if (lineNumber == "189") opc.SendItemLenSet(task);
             return true;
         }
 

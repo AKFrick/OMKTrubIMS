@@ -8,11 +8,13 @@ using Tasker.Model;
 using Tasker.View;
 using System.Linq;
 using System.Windows.Media;
+using System.Configuration;
 
 namespace Tasker.ModelView
 {
     class Main : BindableBase
     {
+        readonly bool multilen = Convert.ToBoolean(ConfigurationManager.AppSettings.Get("multilen"));
         public ObservableCollection<ProductionTask> TaskList { get; private set; }
         public ObservableCollection<ProductionTask> FinishedTaskList { get; private set; }
         public ObservableCollection<ProductionTask> HiddenTaskList { get; private set; }
@@ -131,8 +133,16 @@ namespace Tasker.ModelView
             plc = new Plc(currentTasks);
             OpenNewTaskWindow = new DelegateCommand(() =>
             {
-                NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
-                newTaskWindow.ShowDialog();
+                if(!multilen)
+                {
+                    NewTaskWindow newTaskWindow = new NewTaskWindow(new NewTask(currentTasks));
+                    newTaskWindow.ShowDialog();
+                }
+                else
+                {
+                    NewTaskWindowMultilen newTaskWindow = new NewTaskWindowMultilen(new NewTask(currentTasks));
+                    newTaskWindow.ShowDialog();
+                }
             });
 
             StartTask = new DelegateCommand(() =>
@@ -154,7 +164,7 @@ namespace Tasker.ModelView
                 }
                 else
                 {
-                    MessageBox.Show("Выберите пользователя");
+                    MessageBox.Show("Выберите оператора в правом верхнем углу");
                 }
                 //RaisePropertyChanged(nameof(SelectedTask));
             });
